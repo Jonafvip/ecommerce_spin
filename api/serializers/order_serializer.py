@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from api.models.order import Order
-from api.models.user import User
 from api.models.order_detail import OrderDetail
+from api.serializers.user_serializer import UserListAuxSerializer
 
 
 class OrderDetailCreateSerializer(serializers.ModelSerializer):
@@ -25,7 +25,7 @@ class OrderCreateSerializer(serializers.ModelSerializer):
 
         for detail in details:
             product = detail["product"]
-            if product.stock < details["quantity"]:
+            if product.stock < detail["quantity"]:
                 raise serializers.ValidationError(
                     f"Stock insuficiente para {product.name}"
                 )
@@ -46,18 +46,6 @@ class OrderCreateSerializer(serializers.ModelSerializer):
             product.stock -= detail["quantity"]
             product.save()
         return order
-
-
-# Serializador Auxiliar
-class UserListAuxSerializer(serializers.ModelSerializer):
-    full_name = serializers.SerializerMethodField()
-
-    class Meta:
-        model = User
-        fields = ["id", "full_name"]
-
-    def get_full_name(self, obj):
-        return f"{obj.first_name} {obj.last_name}"
 
 
 class OrderListSerializer(serializers.ModelSerializer):

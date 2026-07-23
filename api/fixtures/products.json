@@ -1,0 +1,1602 @@
+[
+  {
+    "models": "api.models.product",
+    "pk": 1,
+    "fields": {
+      "name": "Audífonos Inalámbricos Bluetooth 5.3",
+      "description": "Audífonos con cancelación de ruido y estuche de carga.",
+      "stock": 130,
+      "unit_price": "45.99",
+      "product_code": "PRD00001",
+      "image": null,
+      "is_active": true,
+      "created_at": "2024-07-17T22:19:41Z",
+      "updated_at": "2024-08-16T12:19:41Z",
+      "category": 1
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 2,
+    "fields": {
+      "name": "Cargador Rápido USB-C 65W",
+      "description": "Cargador compacto compatible con laptops y smartphones.",
+      "stock": 161,
+      "unit_price": "22.50",
+      "product_code": "PRD00002",
+      "image": null,
+      "is_active": true,
+      "created_at": "2024-03-05T10:16:41Z",
+      "updated_at": "2024-04-07T01:16:41Z",
+      "category": 1
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 3,
+    "fields": {
+      "name": "Camiseta Básica de Algodón",
+      "description": "Camiseta unisex de algodón 100%, varios colores.",
+      "stock": 46,
+      "unit_price": "12.99",
+      "product_code": "PRD00003",
+      "image": null,
+      "is_active": true,
+      "created_at": "2024-04-15T21:31:58Z",
+      "updated_at": "2024-05-05T01:31:58Z",
+      "category": 2
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 4,
+    "fields": {
+      "name": "Chaqueta Impermeable Unisex",
+      "description": "Chaqueta ligera resistente al agua y al viento.",
+      "stock": 50,
+      "unit_price": "59.90",
+      "product_code": "PRD00004",
+      "image": null,
+      "is_active": true,
+      "created_at": "2025-04-11T16:43:58Z",
+      "updated_at": "2025-04-14T11:43:58Z",
+      "category": 2
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 5,
+    "fields": {
+      "name": "Set de Macetas de Cerámica x3",
+      "description": "Macetas decorativas de distintos tamaños con plato.",
+      "stock": 79,
+      "unit_price": "28.75",
+      "product_code": "PRD00005",
+      "image": null,
+      "is_active": false,
+      "created_at": "2025-02-03T01:54:05Z",
+      "updated_at": "2025-03-16T06:54:05Z",
+      "category": 3
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 6,
+    "fields": {
+      "name": "Manguera de Jardín 15 Metros",
+      "description": "Manguera flexible reforzada con boquilla ajustable.",
+      "stock": 56,
+      "unit_price": "34.99",
+      "product_code": "PRD00006",
+      "image": null,
+      "is_active": true,
+      "created_at": "2024-11-30T04:18:05Z",
+      "updated_at": "2024-12-02T10:18:05Z",
+      "category": 3
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 7,
+    "fields": {
+      "name": "Balón de Fútbol Talla 5",
+      "description": "Balón de competición cosido a mano, uso profesional.",
+      "stock": 107,
+      "unit_price": "19.99",
+      "product_code": "PRD00007",
+      "image": null,
+      "is_active": true,
+      "created_at": "2023-05-23T22:00:40Z",
+      "updated_at": "2023-06-21T16:00:40Z",
+      "category": 4
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 8,
+    "fields": {
+      "name": "Mochila Deportiva 30L",
+      "description": "Mochila resistente con compartimento para calzado.",
+      "stock": 84,
+      "unit_price": "39.50",
+      "product_code": "PRD00008",
+      "image": null,
+      "is_active": false,
+      "created_at": "2023-09-05T03:58:40Z",
+      "updated_at": "2023-10-06T03:58:40Z",
+      "category": 4
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 9,
+    "fields": {
+      "name": "Set de Bloques de Construcción 200 Piezas",
+      "description": "Bloques compatibles, ideales para desarrollar creatividad.",
+      "stock": 90,
+      "unit_price": "24.99",
+      "product_code": "PRD00009",
+      "image": null,
+      "is_active": true,
+      "created_at": "2024-01-22T15:28:35Z",
+      "updated_at": "2024-02-26T17:28:35Z",
+      "category": 5
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 10,
+    "fields": {
+      "name": "Rompecabezas 1000 Piezas Paisaje",
+      "description": "Rompecabezas de cartón premium con imagen de alta definición.",
+      "stock": 8,
+      "unit_price": "15.50",
+      "product_code": "PRD00010",
+      "image": null,
+      "is_active": true,
+      "created_at": "2024-03-15T14:34:35Z",
+      "updated_at": "2024-04-02T14:34:35Z",
+      "category": 5
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 11,
+    "fields": {
+      "name": "Novela Clásica Tapa Dura",
+      "description": "Edición conmemorativa de una obra clásica de la literatura.",
+      "stock": 4,
+      "unit_price": "18.00",
+      "product_code": "PRD00011",
+      "image": null,
+      "is_active": true,
+      "created_at": "2024-09-01T15:42:19Z",
+      "updated_at": "2024-09-20T03:42:19Z",
+      "category": 6
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 12,
+    "fields": {
+      "name": "Libro de Cocina Internacional",
+      "description": "Recetario con platos de distintas gastronomías del mundo.",
+      "stock": 3,
+      "unit_price": "27.99",
+      "product_code": "PRD00012",
+      "image": null,
+      "is_active": true,
+      "created_at": "2025-09-15T00:36:19Z",
+      "updated_at": "2025-09-28T06:36:19Z",
+      "category": 6
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 13,
+    "fields": {
+      "name": "Crema Hidratante Facial 50ml",
+      "description": "Crema con ácido hialurónico para todo tipo de piel.",
+      "stock": 50,
+      "unit_price": "16.75",
+      "product_code": "PRD00013",
+      "image": null,
+      "is_active": true,
+      "created_at": "2025-08-06T08:38:23Z",
+      "updated_at": "2025-08-11T02:38:23Z",
+      "category": 7
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 14,
+    "fields": {
+      "name": "Set de Brochas de Maquillaje",
+      "description": "Kit de 12 brochas profesionales con estuche.",
+      "stock": 1,
+      "unit_price": "21.99",
+      "product_code": "PRD00014",
+      "image": null,
+      "is_active": true,
+      "created_at": "2024-12-25T06:17:23Z",
+      "updated_at": "2025-01-13T16:17:23Z",
+      "category": 7
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 15,
+    "fields": {
+      "name": "Aceite de Motor Sintético 5W-30",
+      "description": "Aceite de alto rendimiento para motores a gasolina.",
+      "stock": 25,
+      "unit_price": "32.99",
+      "product_code": "PRD00015",
+      "image": null,
+      "is_active": false,
+      "created_at": "2024-03-26T22:21:31Z",
+      "updated_at": "2024-04-11T20:21:31Z",
+      "category": 8
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 16,
+    "fields": {
+      "name": "Kit de Limpieza para Interiores",
+      "description": "Set de productos para limpieza y protección del interior del auto.",
+      "stock": 24,
+      "unit_price": "18.50",
+      "product_code": "PRD00016",
+      "image": null,
+      "is_active": true,
+      "created_at": "2023-10-29T10:24:31Z",
+      "updated_at": "2023-12-12T03:24:31Z",
+      "category": 8
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 17,
+    "fields": {
+      "name": "Café Molido Premium 500g",
+      "description": "Café 100% arábica de tueste medio, origen único.",
+      "stock": 196,
+      "unit_price": "9.99",
+      "product_code": "PRD00017",
+      "image": null,
+      "is_active": true,
+      "created_at": "2024-07-29T18:48:29Z",
+      "updated_at": "2024-08-07T07:48:29Z",
+      "category": 9
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 18,
+    "fields": {
+      "name": "Té Verde Orgánico Caja x20",
+      "description": "Infusión orgánica certificada en bolsitas individuales.",
+      "stock": 77,
+      "unit_price": "6.50",
+      "product_code": "PRD00018",
+      "image": null,
+      "is_active": true,
+      "created_at": "2024-11-24T00:59:29Z",
+      "updated_at": "2024-12-11T18:59:29Z",
+      "category": 9
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 19,
+    "fields": {
+      "name": "Alimento para Perro Adulto 15kg",
+      "description": "Alimento balanceado con proteína de pollo real.",
+      "stock": 41,
+      "unit_price": "49.99",
+      "product_code": "PRD00019",
+      "image": null,
+      "is_active": true,
+      "created_at": "2024-12-27T13:16:36Z",
+      "updated_at": "2025-01-22T08:16:36Z",
+      "category": 10
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 20,
+    "fields": {
+      "name": "Rascador para Gatos Torre",
+      "description": "Torre rascadora con plataformas y juguete colgante.",
+      "stock": 0,
+      "unit_price": "44.90",
+      "product_code": "PRD00020",
+      "image": null,
+      "is_active": true,
+      "created_at": "2025-01-07T11:18:36Z",
+      "updated_at": "2025-02-04T19:18:36Z",
+      "category": 10
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 21,
+    "fields": {
+      "name": "Set de Bolígrafos Gel x12",
+      "description": "Bolígrafos de tinta gel en colores surtidos.",
+      "stock": 46,
+      "unit_price": "7.99",
+      "product_code": "PRD00021",
+      "image": null,
+      "is_active": true,
+      "created_at": "2025-07-04T23:42:38Z",
+      "updated_at": "2025-07-09T01:42:38Z",
+      "category": 11
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 22,
+    "fields": {
+      "name": "Organizador de Escritorio",
+      "description": "Organizador de malla metálica con múltiples compartimentos.",
+      "stock": 47,
+      "unit_price": "14.50",
+      "product_code": "PRD00022",
+      "image": null,
+      "is_active": true,
+      "created_at": "2025-12-08T21:18:38Z",
+      "updated_at": "2026-01-16T08:18:38Z",
+      "category": 11
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 23,
+    "fields": {
+      "name": "Guitarra Acústica Clásica",
+      "description": "Guitarra de cuerdas de nylon, cuerpo de tilo.",
+      "stock": 27,
+      "unit_price": "129.99",
+      "product_code": "PRD00023",
+      "image": null,
+      "is_active": true,
+      "created_at": "2025-04-22T04:39:59Z",
+      "updated_at": "2025-05-28T08:39:59Z",
+      "category": 12
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 24,
+    "fields": {
+      "name": "Teclado Electrónico 61 Teclas",
+      "description": "Teclado con múltiples voces y ritmos incorporados.",
+      "stock": 7,
+      "unit_price": "189.00",
+      "product_code": "PRD00024",
+      "image": null,
+      "is_active": true,
+      "created_at": "2026-01-02T14:28:59Z",
+      "updated_at": "2026-01-17T09:28:59Z",
+      "category": 12
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 25,
+    "fields": {
+      "name": "Set de Pinturas Acrílicas x24",
+      "description": "Pinturas acrílicas de secado rápido, alta pigmentación.",
+      "stock": 87,
+      "unit_price": "22.99",
+      "product_code": "PRD00025",
+      "image": null,
+      "is_active": true,
+      "created_at": "2023-06-12T17:16:50Z",
+      "updated_at": "2023-07-17T23:16:50Z",
+      "category": 13
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 26,
+    "fields": {
+      "name": "Kit de Costura Completo",
+      "description": "Estuche con hilos, agujas, tijeras y accesorios.",
+      "stock": 6,
+      "unit_price": "17.50",
+      "product_code": "PRD00026",
+      "image": null,
+      "is_active": true,
+      "created_at": "2024-06-16T09:14:50Z",
+      "updated_at": "2024-06-21T22:14:50Z",
+      "category": 13
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 27,
+    "fields": {
+      "name": "Pañales Talla M Paquete x50",
+      "description": "Pañales hipoalergénicos con núcleo absorbente.",
+      "stock": 180,
+      "unit_price": "15.99",
+      "product_code": "PRD00027",
+      "image": null,
+      "is_active": true,
+      "created_at": "2024-09-21T07:53:51Z",
+      "updated_at": "2024-10-07T06:53:51Z",
+      "category": 14
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 28,
+    "fields": {
+      "name": "Cochecito de Bebé Plegable",
+      "description": "Cochecito ligero de plegado compacto con capota ajustable.",
+      "stock": 5,
+      "unit_price": "149.99",
+      "product_code": "PRD00028",
+      "image": null,
+      "is_active": true,
+      "created_at": "2025-04-05T11:08:51Z",
+      "updated_at": "2025-04-24T03:08:51Z",
+      "category": 14
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 29,
+    "fields": {
+      "name": "Taladro Inalámbrico 20V",
+      "description": "Taladro percutor con batería de litio y maletín.",
+      "stock": 41,
+      "unit_price": "79.99",
+      "product_code": "PRD00029",
+      "image": null,
+      "is_active": true,
+      "created_at": "2023-11-09T19:58:42Z",
+      "updated_at": "2023-12-10T12:58:42Z",
+      "category": 15
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 30,
+    "fields": {
+      "name": "Set de Destornilladores x32",
+      "description": "Juego de destornilladores de precisión con puntas intercambiables.",
+      "stock": 95,
+      "unit_price": "24.99",
+      "product_code": "PRD00030",
+      "image": null,
+      "is_active": false,
+      "created_at": "2024-08-14T18:01:42Z",
+      "updated_at": "2024-08-28T00:01:42Z",
+      "category": 15
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 31,
+    "fields": {
+      "name": "Control Inalámbrico para Consola",
+      "description": "Control con vibración dual y batería recargable.",
+      "stock": 5,
+      "unit_price": "54.99",
+      "product_code": "PRD00031",
+      "image": null,
+      "is_active": true,
+      "created_at": "2025-03-12T08:11:52Z",
+      "updated_at": "2025-03-27T09:11:52Z",
+      "category": 16
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 32,
+    "fields": {
+      "name": "Auriculares Gaming con Micrófono",
+      "description": "Auriculares envolventes con micrófono retráctil.",
+      "stock": 46,
+      "unit_price": "42.50",
+      "product_code": "PRD00032",
+      "image": null,
+      "is_active": true,
+      "created_at": "2025-05-02T11:19:52Z",
+      "updated_at": "2025-05-10T13:19:52Z",
+      "category": 16
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 33,
+    "fields": {
+      "name": "Zapatillas Deportivas Running",
+      "description": "Zapatillas con amortiguación de espuma y suela antideslizante.",
+      "stock": 74,
+      "unit_price": "65.00",
+      "product_code": "PRD00033",
+      "image": null,
+      "is_active": true,
+      "created_at": "2025-07-04T21:43:29Z",
+      "updated_at": "2025-08-18T13:43:29Z",
+      "category": 17
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 34,
+    "fields": {
+      "name": "Botas de Cuero Casuales",
+      "description": "Botas de cuero genuino con forro interior.",
+      "stock": 58,
+      "unit_price": "89.90",
+      "product_code": "PRD00034",
+      "image": null,
+      "is_active": true,
+      "created_at": "2025-09-14T13:00:29Z",
+      "updated_at": "2025-09-16T04:00:29Z",
+      "category": 17
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 35,
+    "fields": {
+      "name": "Reloj Analógico Acero Inoxidable",
+      "description": "Reloj resistente al agua con correa de acero.",
+      "stock": 4,
+      "unit_price": "95.00",
+      "product_code": "PRD00035",
+      "image": null,
+      "is_active": true,
+      "created_at": "2023-08-09T07:50:18Z",
+      "updated_at": "2023-09-17T03:50:18Z",
+      "category": 18
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 36,
+    "fields": {
+      "name": "Pulsera de Plata 925",
+      "description": "Pulsera artesanal de plata de ley con dije.",
+      "stock": 4,
+      "unit_price": "45.50",
+      "product_code": "PRD00036",
+      "image": null,
+      "is_active": true,
+      "created_at": "2024-03-11T16:09:18Z",
+      "updated_at": "2024-03-19T18:09:18Z",
+      "category": 18
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 37,
+    "fields": {
+      "name": "Maleta Rígida 24 Pulgadas",
+      "description": "Maleta con ruedas giratorias y candado TSA.",
+      "stock": 21,
+      "unit_price": "110.00",
+      "product_code": "PRD00037",
+      "image": null,
+      "is_active": true,
+      "created_at": "2025-12-18T14:07:10Z",
+      "updated_at": "2026-02-01T18:07:10Z",
+      "category": 19
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 38,
+    "fields": {
+      "name": "Organizador de Viaje para Cables",
+      "description": "Estuche compacto para cables, cargadores y accesorios.",
+      "stock": 7,
+      "unit_price": "12.99",
+      "product_code": "PRD00038",
+      "image": null,
+      "is_active": true,
+      "created_at": "2026-05-29T07:02:10Z",
+      "updated_at": "2026-06-02T20:02:10Z",
+      "category": 19
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 39,
+    "fields": {
+      "name": "Silla Ergonómica de Oficina",
+      "description": "Silla con soporte lumbar y reposabrazos ajustables.",
+      "stock": 12,
+      "unit_price": "175.00",
+      "product_code": "PRD00039",
+      "image": null,
+      "is_active": true,
+      "created_at": "2024-03-10T14:34:35Z",
+      "updated_at": "2024-04-22T02:34:35Z",
+      "category": 20
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 40,
+    "fields": {
+      "name": "Mesa de Centro de Madera",
+      "description": "Mesa de centro de madera maciza con acabado natural.",
+      "stock": 3,
+      "unit_price": "120.50",
+      "product_code": "PRD00040",
+      "image": null,
+      "is_active": true,
+      "created_at": "2024-03-28T16:00:35Z",
+      "updated_at": "2024-04-03T12:00:35Z",
+      "category": 20
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 41,
+    "fields": {
+      "name": "Licuadora de Alta Potencia 1200W",
+      "description": "Licuadora con vaso de vidrio y 5 velocidades.",
+      "stock": 44,
+      "unit_price": "55.99",
+      "product_code": "PRD00041",
+      "image": null,
+      "is_active": true,
+      "created_at": "2026-02-25T02:00:09Z",
+      "updated_at": "2026-03-18T14:00:09Z",
+      "category": 21
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 42,
+    "fields": {
+      "name": "Cafetera Automática Programable",
+      "description": "Cafetera de goteo con temporizador y jarra térmica.",
+      "stock": 33,
+      "unit_price": "68.90",
+      "product_code": "PRD00042",
+      "image": null,
+      "is_active": true,
+      "created_at": "2025-07-15T03:07:09Z",
+      "updated_at": "2025-08-18T05:07:09Z",
+      "category": 21
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 43,
+    "fields": {
+      "name": "Mouse Inalámbrico Ergonómico",
+      "description": "Mouse óptico con sensor de alta precisión.",
+      "stock": 5,
+      "unit_price": "19.99",
+      "product_code": "PRD00043",
+      "image": null,
+      "is_active": true,
+      "created_at": "2023-09-12T10:09:53Z",
+      "updated_at": "2023-09-18T01:09:53Z",
+      "category": 22
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 44,
+    "fields": {
+      "name": "Teclado Mecánico RGB",
+      "description": "Teclado mecánico con switches táctiles e iluminación RGB.",
+      "stock": 62,
+      "unit_price": "65.50",
+      "product_code": "PRD00044",
+      "image": null,
+      "is_active": true,
+      "created_at": "2024-08-19T04:02:53Z",
+      "updated_at": "2024-09-28T01:02:53Z",
+      "category": 22
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 45,
+    "fields": {
+      "name": "Funda Protectora para Smartphone",
+      "description": "Funda de silicona con protección antigolpes.",
+      "stock": 103,
+      "unit_price": "9.99",
+      "product_code": "PRD00045",
+      "image": null,
+      "is_active": true,
+      "created_at": "2023-06-06T00:53:23Z",
+      "updated_at": "2023-06-15T21:53:23Z",
+      "category": 23
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 46,
+    "fields": {
+      "name": "Cable USB-C Trenzado 2m",
+      "description": "Cable de carga y datos de nylon trenzado reforzado.",
+      "stock": 123,
+      "unit_price": "8.50",
+      "product_code": "PRD00046",
+      "image": null,
+      "is_active": true,
+      "created_at": "2024-06-20T00:16:23Z",
+      "updated_at": "2024-07-18T15:16:23Z",
+      "category": 23
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 47,
+    "fields": {
+      "name": "Trípode de Aluminio Ajustable",
+      "description": "Trípode ligero con cabezal de rótula para cámaras.",
+      "stock": 51,
+      "unit_price": "29.99",
+      "product_code": "PRD00047",
+      "image": null,
+      "is_active": true,
+      "created_at": "2025-11-15T00:51:41Z",
+      "updated_at": "2025-12-25T13:51:41Z",
+      "category": 24
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 48,
+    "fields": {
+      "name": "Tarjeta de Memoria SD 128GB",
+      "description": "Tarjeta de alta velocidad para foto y video 4K.",
+      "stock": 56,
+      "unit_price": "18.99",
+      "product_code": "PRD00048",
+      "image": null,
+      "is_active": true,
+      "created_at": "2026-03-22T23:35:41Z",
+      "updated_at": "2026-04-05T11:35:41Z",
+      "category": 24
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 49,
+    "fields": {
+      "name": "Set de Herramientas de Jardín x5",
+      "description": "Kit con pala, rastrillo y guantes incluidos.",
+      "stock": 44,
+      "unit_price": "26.50",
+      "product_code": "PRD00049",
+      "image": null,
+      "is_active": true,
+      "created_at": "2025-11-21T03:59:35Z",
+      "updated_at": "2025-11-29T18:59:35Z",
+      "category": 25
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 50,
+    "fields": {
+      "name": "Fertilizante Universal 1kg",
+      "description": "Fertilizante granulado para plantas de interior y exterior.",
+      "stock": 28,
+      "unit_price": "8.99",
+      "product_code": "PRD00050",
+      "image": null,
+      "is_active": true,
+      "created_at": "2025-07-02T19:55:35Z",
+      "updated_at": "2025-07-20T00:55:35Z",
+      "category": 25
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 51,
+    "fields": {
+      "name": "Casco de Ciclismo Ajustable",
+      "description": "Casco ventilado con sistema de ajuste giratorio.",
+      "stock": 40,
+      "unit_price": "34.99",
+      "product_code": "PRD00051",
+      "image": null,
+      "is_active": true,
+      "created_at": "2024-09-27T03:18:03Z",
+      "updated_at": "2024-10-23T15:18:03Z",
+      "category": 26
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 52,
+    "fields": {
+      "name": "Luz LED para Bicicleta Recargable",
+      "description": "Set de luz delantera y trasera con USB recargable.",
+      "stock": 41,
+      "unit_price": "15.99",
+      "product_code": "PRD00052",
+      "image": null,
+      "is_active": false,
+      "created_at": "2025-04-19T07:10:03Z",
+      "updated_at": "2025-05-28T21:10:03Z",
+      "category": 26
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 53,
+    "fields": {
+      "name": "Set de Mancuernas Ajustables",
+      "description": "Par de mancuernas con discos intercambiables.",
+      "stock": 17,
+      "unit_price": "89.99",
+      "product_code": "PRD00053",
+      "image": null,
+      "is_active": true,
+      "created_at": "2023-05-10T19:33:03Z",
+      "updated_at": "2023-06-17T20:33:03Z",
+      "category": 27
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 54,
+    "fields": {
+      "name": "Banda de Resistencia Elástica",
+      "description": "Set de bandas elásticas de distinta resistencia.",
+      "stock": 164,
+      "unit_price": "9.50",
+      "product_code": "PRD00054",
+      "image": null,
+      "is_active": true,
+      "created_at": "2023-09-30T07:28:03Z",
+      "updated_at": "2023-11-05T07:28:03Z",
+      "category": 27
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 55,
+    "fields": {
+      "name": "Carpa para 4 Personas Impermeable",
+      "description": "Carpa de montaje rápido con doble techo.",
+      "stock": 24,
+      "unit_price": "99.99",
+      "product_code": "PRD00055",
+      "image": null,
+      "is_active": true,
+      "created_at": "2023-12-03T17:40:01Z",
+      "updated_at": "2023-12-21T00:40:01Z",
+      "category": 28
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 56,
+    "fields": {
+      "name": "Saco de Dormir Ultraligero",
+      "description": "Saco de dormir compacto para clima templado.",
+      "stock": 40,
+      "unit_price": "54.50",
+      "product_code": "PRD00056",
+      "image": null,
+      "is_active": true,
+      "created_at": "2023-05-10T07:46:01Z",
+      "updated_at": "2023-06-07T10:46:01Z",
+      "category": 28
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 57,
+    "fields": {
+      "name": "Caña de Pescar Telescópica",
+      "description": "Caña de fibra de carbono, extensible y portátil.",
+      "stock": 12,
+      "unit_price": "32.99",
+      "product_code": "PRD00057",
+      "image": null,
+      "is_active": true,
+      "created_at": "2025-09-04T19:26:38Z",
+      "updated_at": "2025-10-18T01:26:38Z",
+      "category": 29
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 58,
+    "fields": {
+      "name": "Set de Señuelos Artificiales x20",
+      "description": "Variedad de señuelos para pesca de agua dulce.",
+      "stock": 68,
+      "unit_price": "19.50",
+      "product_code": "PRD00058",
+      "image": null,
+      "is_active": true,
+      "created_at": "2025-02-20T14:07:38Z",
+      "updated_at": "2025-02-21T05:07:38Z",
+      "category": 29
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 59,
+    "fields": {
+      "name": "Binoculares de Largo Alcance",
+      "description": "Binoculares 10x50 con recubrimiento antirreflejante.",
+      "stock": 33,
+      "unit_price": "79.99",
+      "product_code": "PRD00059",
+      "image": null,
+      "is_active": true,
+      "created_at": "2024-08-14T21:47:30Z",
+      "updated_at": "2024-09-06T14:47:30Z",
+      "category": 30
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 60,
+    "fields": {
+      "name": "Chaleco Táctico Multibolsillos",
+      "description": "Chaleco resistente con múltiples compartimentos ajustables.",
+      "stock": 5,
+      "unit_price": "45.00",
+      "product_code": "PRD00060",
+      "image": null,
+      "is_active": true,
+      "created_at": "2025-06-06T19:55:30Z",
+      "updated_at": "2025-07-21T02:55:30Z",
+      "category": 30
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 61,
+    "fields": {
+      "name": "Gafas de Natación Antiempañantes",
+      "description": "Gafas con protección UV y sello hermético.",
+      "stock": 116,
+      "unit_price": "12.99",
+      "product_code": "PRD00061",
+      "image": null,
+      "is_active": true,
+      "created_at": "2025-03-20T22:40:30Z",
+      "updated_at": "2025-03-29T12:40:30Z",
+      "category": 31
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 62,
+    "fields": {
+      "name": "Traje de Baño Deportivo",
+      "description": "Traje de baño de secado rápido para entrenamiento.",
+      "stock": 83,
+      "unit_price": "28.50",
+      "product_code": "PRD00062",
+      "image": null,
+      "is_active": true,
+      "created_at": "2025-03-16T23:40:30Z",
+      "updated_at": "2025-04-21T17:40:30Z",
+      "category": 31
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 63,
+    "fields": {
+      "name": "Mat de Yoga Antideslizante",
+      "description": "Tapete ecológico de alta densidad, 6mm de grosor.",
+      "stock": 26,
+      "unit_price": "24.99",
+      "product_code": "PRD00063",
+      "image": null,
+      "is_active": false,
+      "created_at": "2024-09-11T02:52:09Z",
+      "updated_at": "2024-10-01T22:52:09Z",
+      "category": 32
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 64,
+    "fields": {
+      "name": "Set de Bloques de Yoga x2",
+      "description": "Bloques de espuma de alta densidad para posturas.",
+      "stock": 27,
+      "unit_price": "14.50",
+      "product_code": "PRD00064",
+      "image": null,
+      "is_active": true,
+      "created_at": "2024-10-17T13:22:09Z",
+      "updated_at": "2024-12-01T16:22:09Z",
+      "category": 32
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 65,
+    "fields": {
+      "name": "Zapatillas para Correr Amortiguadas",
+      "description": "Zapatillas livianas con entresuela de espuma reactiva.",
+      "stock": 33,
+      "unit_price": "79.99",
+      "product_code": "PRD00065",
+      "image": null,
+      "is_active": true,
+      "created_at": "2025-01-10T12:00:55Z",
+      "updated_at": "2025-02-13T22:00:55Z",
+      "category": 33
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 66,
+    "fields": {
+      "name": "Banda para Brazo Porta Celular",
+      "description": "Brazalete ajustable con ventana táctil para celular.",
+      "stock": 9,
+      "unit_price": "8.99",
+      "product_code": "PRD00066",
+      "image": null,
+      "is_active": true,
+      "created_at": "2025-09-06T10:03:55Z",
+      "updated_at": "2025-10-08T12:03:55Z",
+      "category": 33
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 67,
+    "fields": {
+      "name": "Vino Tinto Reserva 750ml",
+      "description": "Vino de guarda con notas frutales y taninos suaves.",
+      "stock": 3,
+      "unit_price": "18.99",
+      "product_code": "PRD00067",
+      "image": null,
+      "is_active": true,
+      "created_at": "2024-10-19T19:11:49Z",
+      "updated_at": "2024-11-06T10:11:49Z",
+      "category": 34
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 68,
+    "fields": {
+      "name": "Cerveza Artesanal Pack x6",
+      "description": "Pack variado de cervezas artesanales de barril.",
+      "stock": 136,
+      "unit_price": "12.50",
+      "product_code": "PRD00068",
+      "image": null,
+      "is_active": true,
+      "created_at": "2025-03-31T07:49:49Z",
+      "updated_at": "2025-04-02T12:49:49Z",
+      "category": 34
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 69,
+    "fields": {
+      "name": "Chocolate Amargo 70% Cacao",
+      "description": "Tableta de chocolate amargo de origen sostenible.",
+      "stock": 265,
+      "unit_price": "4.99",
+      "product_code": "PRD00069",
+      "image": null,
+      "is_active": true,
+      "created_at": "2025-01-12T00:44:39Z",
+      "updated_at": "2025-01-21T16:44:39Z",
+      "category": 35
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 70,
+    "fields": {
+      "name": "Mix de Frutos Secos 500g",
+      "description": "Mezcla de almendras, nueces y pasas sin sal.",
+      "stock": 176,
+      "unit_price": "8.75",
+      "product_code": "PRD00070",
+      "image": null,
+      "is_active": false,
+      "created_at": "2024-11-22T11:10:39Z",
+      "updated_at": "2024-12-24T05:10:39Z",
+      "category": 35
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 71,
+    "fields": {
+      "name": "Miel Orgánica Pura 350g",
+      "description": "Miel cruda certificada, sin aditivos ni procesar.",
+      "stock": 106,
+      "unit_price": "11.50",
+      "product_code": "PRD00071",
+      "image": null,
+      "is_active": true,
+      "created_at": "2024-06-09T14:24:14Z",
+      "updated_at": "2024-07-14T23:24:14Z",
+      "category": 36
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 72,
+    "fields": {
+      "name": "Quinoa Orgánica 1kg",
+      "description": "Quinoa real orgánica, libre de gluten.",
+      "stock": 65,
+      "unit_price": "9.99",
+      "product_code": "PRD00072",
+      "image": null,
+      "is_active": true,
+      "created_at": "2025-01-09T05:24:14Z",
+      "updated_at": "2025-02-10T22:24:14Z",
+      "category": 36
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 73,
+    "fields": {
+      "name": "Pan Integral Artesanal",
+      "description": "Pan de masa madre horneado diariamente.",
+      "stock": 69,
+      "unit_price": "3.99",
+      "product_code": "PRD00073",
+      "image": null,
+      "is_active": true,
+      "created_at": "2023-08-14T20:03:17Z",
+      "updated_at": "2023-09-03T00:03:17Z",
+      "category": 37
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 74,
+    "fields": {
+      "name": "Croissants de Mantequilla x6",
+      "description": "Croissants hojaldrados horneados con mantequilla real.",
+      "stock": 7,
+      "unit_price": "6.50",
+      "product_code": "PRD00074",
+      "image": null,
+      "is_active": true,
+      "created_at": "2023-11-20T16:02:17Z",
+      "updated_at": "2023-12-17T09:02:17Z",
+      "category": 37
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 75,
+    "fields": {
+      "name": "Queso Manchego Curado 300g",
+      "description": "Queso curado de leche de oveja, sabor intenso.",
+      "stock": 66,
+      "unit_price": "14.99",
+      "product_code": "PRD00075",
+      "image": null,
+      "is_active": true,
+      "created_at": "2024-10-25T02:52:59Z",
+      "updated_at": "2024-11-28T03:52:59Z",
+      "category": 38
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 76,
+    "fields": {
+      "name": "Yogur Griego Natural x4",
+      "description": "Pack de yogur griego alto en proteína.",
+      "stock": 42,
+      "unit_price": "5.50",
+      "product_code": "PRD00076",
+      "image": null,
+      "is_active": false,
+      "created_at": "2024-09-24T08:58:59Z",
+      "updated_at": "2024-10-25T10:58:59Z",
+      "category": 38
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 77,
+    "fields": {
+      "name": "Jamón Serrano en Lonchas 200g",
+      "description": "Jamón curado cortado en finas lonchas.",
+      "stock": 31,
+      "unit_price": "13.99",
+      "product_code": "PRD00077",
+      "image": null,
+      "is_active": true,
+      "created_at": "2024-01-16T21:56:12Z",
+      "updated_at": "2024-02-11T05:56:12Z",
+      "category": 39
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 78,
+    "fields": {
+      "name": "Chorizo Artesanal Picante",
+      "description": "Chorizo curado elaborado con receta tradicional.",
+      "stock": 40,
+      "unit_price": "8.50",
+      "product_code": "PRD00078",
+      "image": null,
+      "is_active": true,
+      "created_at": "2023-06-20T17:57:12Z",
+      "updated_at": "2023-07-21T09:57:12Z",
+      "category": 39
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 79,
+    "fields": {
+      "name": "Pizza Congelada Familiar",
+      "description": "Pizza de masa fina con mozzarella y pepperoni.",
+      "stock": 89,
+      "unit_price": "7.99",
+      "product_code": "PRD00079",
+      "image": null,
+      "is_active": true,
+      "created_at": "2025-04-19T19:31:58Z",
+      "updated_at": "2025-05-05T23:31:58Z",
+      "category": 40
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 80,
+    "fields": {
+      "name": "Verduras Mixtas Congeladas 1kg",
+      "description": "Mezcla de vegetales congelados listos para cocinar.",
+      "stock": 3,
+      "unit_price": "4.50",
+      "product_code": "PRD00080",
+      "image": null,
+      "is_active": true,
+      "created_at": "2024-09-28T01:42:58Z",
+      "updated_at": "2024-10-07T08:42:58Z",
+      "category": 40
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 81,
+    "fields": {
+      "name": "Detergente Líquido 3L",
+      "description": "Detergente concentrado apto para todo tipo de tela.",
+      "stock": 127,
+      "unit_price": "9.99",
+      "product_code": "PRD00081",
+      "image": null,
+      "is_active": true,
+      "created_at": "2025-10-17T20:29:58Z",
+      "updated_at": "2025-11-02T15:29:58Z",
+      "category": 41
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 82,
+    "fields": {
+      "name": "Set de Paños de Microfibra x10",
+      "description": "Paños absorbentes multiuso para limpieza general.",
+      "stock": 64,
+      "unit_price": "11.50",
+      "product_code": "PRD00082",
+      "image": null,
+      "is_active": true,
+      "created_at": "2026-05-15T15:14:58Z",
+      "updated_at": "2026-06-17T10:14:58Z",
+      "category": 41
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 83,
+    "fields": {
+      "name": "Shampoo Anticaspa 400ml",
+      "description": "Shampoo con zinc piritiona para control de caspa.",
+      "stock": 96,
+      "unit_price": "8.99",
+      "product_code": "PRD00083",
+      "image": null,
+      "is_active": true,
+      "created_at": "2024-06-27T06:46:40Z",
+      "updated_at": "2024-07-24T06:46:40Z",
+      "category": 42
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 84,
+    "fields": {
+      "name": "Set de Afeitado Clásico",
+      "description": "Kit con navaja, brocha y jabón de afeitar.",
+      "stock": 13,
+      "unit_price": "24.50",
+      "product_code": "PRD00084",
+      "image": null,
+      "is_active": true,
+      "created_at": "2024-08-29T06:29:40Z",
+      "updated_at": "2024-09-08T23:29:40Z",
+      "category": 42
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 85,
+    "fields": {
+      "name": "Mochila Escolar Ergonómica",
+      "description": "Mochila con soporte lumbar y compartimento para laptop.",
+      "stock": 69,
+      "unit_price": "42.99",
+      "product_code": "PRD00085",
+      "image": null,
+      "is_active": true,
+      "created_at": "2025-10-11T08:42:25Z",
+      "updated_at": "2025-11-13T14:42:25Z",
+      "category": 43
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 86,
+    "fields": {
+      "name": "Set de Colores 48 Piezas",
+      "description": "Lápices de colores de madera con pigmento vivo.",
+      "stock": 46,
+      "unit_price": "9.99",
+      "product_code": "PRD00086",
+      "image": null,
+      "is_active": true,
+      "created_at": "2026-03-24T16:43:25Z",
+      "updated_at": "2026-05-04T03:43:25Z",
+      "category": 43
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 87,
+    "fields": {
+      "name": "Smartwatch con Monitor Cardíaco",
+      "description": "Reloj inteligente con GPS y monitoreo de sueño.",
+      "stock": 8,
+      "unit_price": "89.99",
+      "product_code": "PRD00087",
+      "image": null,
+      "is_active": true,
+      "created_at": "2023-10-20T06:22:37Z",
+      "updated_at": "2023-11-01T09:22:37Z",
+      "category": 44
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 88,
+    "fields": {
+      "name": "Pulsera de Actividad Física",
+      "description": "Pulsera con contador de pasos y notificaciones.",
+      "stock": 12,
+      "unit_price": "34.50",
+      "product_code": "PRD00088",
+      "image": null,
+      "is_active": true,
+      "created_at": "2023-07-18T23:14:37Z",
+      "updated_at": "2023-08-04T11:14:37Z",
+      "category": 44
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 89,
+    "fields": {
+      "name": "Parlante Bluetooth Portátil",
+      "description": "Parlante resistente al agua con 12 horas de batería.",
+      "stock": 25,
+      "unit_price": "39.99",
+      "product_code": "PRD00089",
+      "image": null,
+      "is_active": true,
+      "created_at": "2026-01-14T09:04:42Z",
+      "updated_at": "2026-02-28T13:04:42Z",
+      "category": 45
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 90,
+    "fields": {
+      "name": "Barra de Sonido para TV",
+      "description": "Barra de sonido con subwoofer inalámbrico incluido.",
+      "stock": 21,
+      "unit_price": "129.00",
+      "product_code": "PRD00090",
+      "image": null,
+      "is_active": true,
+      "created_at": "2025-09-04T19:36:42Z",
+      "updated_at": "2025-09-17T13:36:42Z",
+      "category": 45
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 91,
+    "fields": {
+      "name": "Lámpara LED de Escritorio",
+      "description": "Lámpara regulable con puerto USB de carga.",
+      "stock": 81,
+      "unit_price": "22.50",
+      "product_code": "PRD00091",
+      "image": null,
+      "is_active": true,
+      "created_at": "2024-07-09T11:07:51Z",
+      "updated_at": "2024-08-24T03:07:51Z",
+      "category": 46
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 92,
+    "fields": {
+      "name": "Tira LED RGB 5 Metros",
+      "description": "Tira LED con control remoto y múltiples efectos.",
+      "stock": 61,
+      "unit_price": "18.99",
+      "product_code": "PRD00092",
+      "image": null,
+      "is_active": true,
+      "created_at": "2024-01-28T21:53:51Z",
+      "updated_at": "2024-02-09T23:53:51Z",
+      "category": 46
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 93,
+    "fields": {
+      "name": "Cuadro Decorativo Abstracto",
+      "description": "Cuadro impreso en lienzo con marco de madera.",
+      "stock": 30,
+      "unit_price": "35.00",
+      "product_code": "PRD00093",
+      "image": null,
+      "is_active": true,
+      "created_at": "2023-06-13T07:34:12Z",
+      "updated_at": "2023-07-16T01:34:12Z",
+      "category": 47
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 94,
+    "fields": {
+      "name": "Set de Velas Aromáticas x3",
+      "description": "Velas de cera de soja con aromas relajantes.",
+      "stock": 36,
+      "unit_price": "16.99",
+      "product_code": "PRD00094",
+      "image": null,
+      "is_active": true,
+      "created_at": "2023-08-26T17:08:12Z",
+      "updated_at": "2023-09-06T22:08:12Z",
+      "category": 47
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 95,
+    "fields": {
+      "name": "Juego de Sábanas Queen 4 Piezas",
+      "description": "Sábanas de microfibra suave, tamaño queen.",
+      "stock": 59,
+      "unit_price": "45.99",
+      "product_code": "PRD00095",
+      "image": null,
+      "is_active": false,
+      "created_at": "2023-12-16T10:18:48Z",
+      "updated_at": "2023-12-25T07:18:48Z",
+      "category": 48
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 96,
+    "fields": {
+      "name": "Cortinas Blackout 2 Paneles",
+      "description": "Cortinas opacas que bloquean la luz exterior.",
+      "stock": 32,
+      "unit_price": "38.50",
+      "product_code": "PRD00096",
+      "image": null,
+      "is_active": true,
+      "created_at": "2023-12-17T02:40:48Z",
+      "updated_at": "2024-01-15T15:40:48Z",
+      "category": 48
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 97,
+    "fields": {
+      "name": "Cámara de Seguridad WiFi",
+      "description": "Cámara con visión nocturna y detección de movimiento.",
+      "stock": 44,
+      "unit_price": "55.99",
+      "product_code": "PRD00097",
+      "image": null,
+      "is_active": false,
+      "created_at": "2025-08-20T23:26:58Z",
+      "updated_at": "2025-08-21T19:26:58Z",
+      "category": 49
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 98,
+    "fields": {
+      "name": "Cerradura Inteligente con App",
+      "description": "Cerradura con acceso por huella, código y app móvil.",
+      "stock": 23,
+      "unit_price": "99.00",
+      "product_code": "PRD00098",
+      "image": null,
+      "is_active": true,
+      "created_at": "2025-08-15T09:29:58Z",
+      "updated_at": "2025-09-13T20:29:58Z",
+      "category": 49
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 99,
+    "fields": {
+      "name": "Set de Cuchillos de Acero x6",
+      "description": "Set de cuchillos de acero inoxidable con soporte.",
+      "stock": 50,
+      "unit_price": "49.99",
+      "product_code": "PRD00099",
+      "image": null,
+      "is_active": false,
+      "created_at": "2024-11-29T11:36:52Z",
+      "updated_at": "2024-12-06T03:36:52Z",
+      "category": 50
+    }
+  },
+  {
+    "models": "api.models.product",
+    "pk": 100,
+    "fields": {
+      "name": "Sartén Antiadherente 28cm",
+      "description": "Sartén con recubrimiento antiadherente apto para inducción.",
+      "stock": 51,
+      "unit_price": "27.50",
+      "product_code": "PRD00100",
+      "image": null,
+      "is_active": true,
+      "created_at": "2025-11-21T19:17:52Z",
+      "updated_at": "2026-01-06T15:17:52Z",
+      "category": 50
+    }
+  }
+]

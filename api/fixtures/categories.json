@@ -1,0 +1,552 @@
+[
+  {
+    "models": "api.models.category",
+    "pk": 1,
+    "fields": {
+      "name": "Electrónica",
+      "description": "Dispositivos electrónicos, gadgets y accesorios tecnológicos.",
+      "is_active": true,
+      "created_at": "2023-11-28T04:25:41Z",
+      "updated_at": "2023-12-01T07:17:41Z"
+    }
+  },
+  {
+    "models": "api.models.category",
+    "pk": 2,
+    "fields": {
+      "name": "Ropa y Accesorios",
+      "description": "Prendas de vestir y accesorios de moda para todas las edades.",
+      "is_active": false,
+      "created_at": "2024-01-10T18:03:58Z",
+      "updated_at": "2024-02-12T00:05:58Z"
+    }
+  },
+  {
+    "models": "api.models.category",
+    "pk": 3,
+    "fields": {
+      "name": "Hogar y Jardín",
+      "description": "Artículos para decorar y mantener el hogar y el jardín.",
+      "is_active": true,
+      "created_at": "2024-03-04T02:15:05Z",
+      "updated_at": "2024-04-08T15:18:05Z"
+    }
+  },
+  {
+    "models": "api.models.category",
+    "pk": 4,
+    "fields": {
+      "name": "Deportes y Aire Libre",
+      "description": "Equipamiento deportivo y artículos para actividades al aire libre.",
+      "is_active": true,
+      "created_at": "2023-05-07T07:40:40Z",
+      "updated_at": "2023-06-13T09:16:40Z"
+    }
+  },
+  {
+    "models": "api.models.category",
+    "pk": 5,
+    "fields": {
+      "name": "Juguetes y Juegos",
+      "description": "Juguetes educativos y de entretenimiento para niños.",
+      "is_active": true,
+      "created_at": "2023-02-20T07:02:35Z",
+      "updated_at": "2023-04-15T11:20:35Z"
+    }
+  },
+  {
+    "models": "api.models.category",
+    "pk": 6,
+    "fields": {
+      "name": "Libros",
+      "description": "Libros de ficción, no ficción, educativos y de consulta.",
+      "is_active": false,
+      "created_at": "2024-07-07T03:36:19Z",
+      "updated_at": "2024-08-12T00:47:19Z"
+    }
+  },
+  {
+    "models": "api.models.category",
+    "pk": 7,
+    "fields": {
+      "name": "Salud y Belleza",
+      "description": "Productos de cuidado personal, salud y belleza.",
+      "is_active": false,
+      "created_at": "2024-08-07T20:12:23Z",
+      "updated_at": "2024-08-14T13:57:23Z"
+    }
+  },
+  {
+    "models": "api.models.category",
+    "pk": 8,
+    "fields": {
+      "name": "Automotriz",
+      "description": "Repuestos, accesorios y herramientas para vehículos.",
+      "is_active": true,
+      "created_at": "2023-03-03T19:13:31Z",
+      "updated_at": "2023-04-16T12:40:31Z"
+    }
+  },
+  {
+    "models": "api.models.category",
+    "pk": 9,
+    "fields": {
+      "name": "Alimentos y Bebidas",
+      "description": "Productos alimenticios y bebidas de todo tipo.",
+      "is_active": true,
+      "created_at": "2024-04-21T18:59:29Z",
+      "updated_at": "2024-05-15T04:14:29Z"
+    }
+  },
+  {
+    "models": "api.models.category",
+    "pk": 10,
+    "fields": {
+      "name": "Mascotas",
+      "description": "Alimentos, juguetes y accesorios para mascotas.",
+      "is_active": true,
+      "created_at": "2024-12-16T07:05:36Z",
+      "updated_at": "2025-01-04T23:36:36Z"
+    }
+  },
+  {
+    "models": "api.models.category",
+    "pk": 11,
+    "fields": {
+      "name": "Oficina y Papelería",
+      "description": "Suministros de oficina y artículos de papelería.",
+      "is_active": true,
+      "created_at": "2025-01-16T14:18:38Z",
+      "updated_at": "2025-01-20T17:50:38Z"
+    }
+  },
+  {
+    "models": "api.models.category",
+    "pk": 12,
+    "fields": {
+      "name": "Música e Instrumentos",
+      "description": "Instrumentos musicales y accesorios relacionados.",
+      "is_active": true,
+      "created_at": "2025-02-14T10:09:59Z",
+      "updated_at": "2025-03-17T23:11:59Z"
+    }
+  },
+  {
+    "models": "api.models.category",
+    "pk": 13,
+    "fields": {
+      "name": "Arte y Manualidades",
+      "description": "Materiales para arte, manualidades y proyectos creativos.",
+      "is_active": true,
+      "created_at": "2023-03-21T17:36:50Z",
+      "updated_at": "2023-05-17T03:57:50Z"
+    }
+  },
+  {
+    "models": "api.models.category",
+    "pk": 14,
+    "fields": {
+      "name": "Bebés y Maternidad",
+      "description": "Productos para bebés y artículos de maternidad.",
+      "is_active": false,
+      "created_at": "2024-08-31T15:37:51Z",
+      "updated_at": "2024-09-29T18:30:51Z"
+    }
+  },
+  {
+    "models": "api.models.category",
+    "pk": 15,
+    "fields": {
+      "name": "Herramientas",
+      "description": "Herramientas manuales y eléctricas para el hogar.",
+      "is_active": true,
+      "created_at": "2023-10-04T15:44:42Z",
+      "updated_at": "2023-10-08T17:30:42Z"
+    }
+  },
+  {
+    "models": "api.models.category",
+    "pk": 16,
+    "fields": {
+      "name": "Videojuegos",
+      "description": "Consolas, videojuegos y accesorios gaming.",
+      "is_active": true,
+      "created_at": "2024-10-24T18:43:52Z",
+      "updated_at": "2024-11-22T04:28:52Z"
+    }
+  },
+  {
+    "models": "api.models.category",
+    "pk": 17,
+    "fields": {
+      "name": "Calzado",
+      "description": "Zapatos y calzado para hombre, mujer y niños.",
+      "is_active": false,
+      "created_at": "2024-11-15T11:01:29Z",
+      "updated_at": "2024-12-07T16:40:29Z"
+    }
+  },
+  {
+    "models": "api.models.category",
+    "pk": 18,
+    "fields": {
+      "name": "Joyería y Relojes",
+      "description": "Joyas, bisutería y relojes de todo estilo.",
+      "is_active": true,
+      "created_at": "2023-03-02T06:49:18Z",
+      "updated_at": "2023-03-11T06:04:18Z"
+    }
+  },
+  {
+    "models": "api.models.category",
+    "pk": 19,
+    "fields": {
+      "name": "Equipaje y Viaje",
+      "description": "Maletas, mochilas y accesorios de viaje.",
+      "is_active": true,
+      "created_at": "2025-06-11T15:05:10Z",
+      "updated_at": "2025-07-10T03:40:10Z"
+    }
+  },
+  {
+    "models": "api.models.category",
+    "pk": 20,
+    "fields": {
+      "name": "Muebles",
+      "description": "Muebles para el hogar y la oficina.",
+      "is_active": true,
+      "created_at": "2023-05-21T13:55:35Z",
+      "updated_at": "2023-06-08T12:21:35Z"
+    }
+  },
+  {
+    "models": "api.models.category",
+    "pk": 21,
+    "fields": {
+      "name": "Electrodomésticos",
+      "description": "Electrodomésticos grandes y pequeños para el hogar.",
+      "is_active": true,
+      "created_at": "2024-11-30T12:14:09Z",
+      "updated_at": "2024-12-05T17:23:09Z"
+    }
+  },
+  {
+    "models": "api.models.category",
+    "pk": 22,
+    "fields": {
+      "name": "Computación",
+      "description": "Computadoras, laptops y accesorios informáticos.",
+      "is_active": true,
+      "created_at": "2023-08-27T00:31:53Z",
+      "updated_at": "2023-10-03T05:47:53Z"
+    }
+  },
+  {
+    "models": "api.models.category",
+    "pk": 23,
+    "fields": {
+      "name": "Telefonía",
+      "description": "Teléfonos móviles y accesorios de telefonía.",
+      "is_active": true,
+      "created_at": "2023-05-30T13:34:23Z",
+      "updated_at": "2023-07-09T07:54:23Z"
+    }
+  },
+  {
+    "models": "api.models.category",
+    "pk": 24,
+    "fields": {
+      "name": "Fotografía",
+      "description": "Cámaras, lentes y equipo fotográfico.",
+      "is_active": true,
+      "created_at": "2024-12-08T16:39:41Z",
+      "updated_at": "2025-01-21T15:42:41Z"
+    }
+  },
+  {
+    "models": "api.models.category",
+    "pk": 25,
+    "fields": {
+      "name": "Jardinería",
+      "description": "Herramientas y productos para el cuidado del jardín.",
+      "is_active": true,
+      "created_at": "2025-06-10T21:51:35Z",
+      "updated_at": "2025-07-06T10:16:35Z"
+    }
+  },
+  {
+    "models": "api.models.category",
+    "pk": 26,
+    "fields": {
+      "name": "Ciclismo",
+      "description": "Bicicletas, repuestos y accesorios para ciclismo.",
+      "is_active": true,
+      "created_at": "2024-05-08T20:25:03Z",
+      "updated_at": "2024-05-20T22:38:03Z"
+    }
+  },
+  {
+    "models": "api.models.category",
+    "pk": 27,
+    "fields": {
+      "name": "Fitness y Ejercicio",
+      "description": "Equipos y accesorios para entrenamiento físico.",
+      "is_active": true,
+      "created_at": "2023-04-23T10:38:03Z",
+      "updated_at": "2023-04-29T11:14:03Z"
+    }
+  },
+  {
+    "models": "api.models.category",
+    "pk": 28,
+    "fields": {
+      "name": "Camping y Senderismo",
+      "description": "Equipo para acampar y actividades de senderismo.",
+      "is_active": true,
+      "created_at": "2023-04-14T11:39:01Z",
+      "updated_at": "2023-04-18T18:18:01Z"
+    }
+  },
+  {
+    "models": "api.models.category",
+    "pk": 29,
+    "fields": {
+      "name": "Pesca",
+      "description": "Cañas, carretes y artículos para la pesca.",
+      "is_active": false,
+      "created_at": "2024-10-11T08:22:38Z",
+      "updated_at": "2024-11-03T23:29:38Z"
+    }
+  },
+  {
+    "models": "api.models.category",
+    "pk": 30,
+    "fields": {
+      "name": "Caza",
+      "description": "Equipamiento y accesorios para actividades de caza.",
+      "is_active": false,
+      "created_at": "2024-05-14T14:30:30Z",
+      "updated_at": "2024-06-02T16:39:30Z"
+    }
+  },
+  {
+    "models": "api.models.category",
+    "pk": 31,
+    "fields": {
+      "name": "Natación",
+      "description": "Trajes de baño y accesorios para natación.",
+      "is_active": true,
+      "created_at": "2023-12-17T23:16:30Z",
+      "updated_at": "2024-02-09T21:26:30Z"
+    }
+  },
+  {
+    "models": "api.models.category",
+    "pk": 32,
+    "fields": {
+      "name": "Yoga y Pilates",
+      "description": "Esterillas y accesorios para yoga y pilates.",
+      "is_active": false,
+      "created_at": "2023-07-30T16:23:09Z",
+      "updated_at": "2023-09-13T10:21:09Z"
+    }
+  },
+  {
+    "models": "api.models.category",
+    "pk": 33,
+    "fields": {
+      "name": "Running",
+      "description": "Calzado y ropa especializada para correr.",
+      "is_active": true,
+      "created_at": "2024-06-24T09:41:55Z",
+      "updated_at": "2024-06-30T08:35:55Z"
+    }
+  },
+  {
+    "models": "api.models.category",
+    "pk": 34,
+    "fields": {
+      "name": "Bebidas Alcohólicas",
+      "description": "Vinos, cervezas y licores de diversas marcas.",
+      "is_active": true,
+      "created_at": "2024-01-11T05:22:49Z",
+      "updated_at": "2024-01-25T22:56:49Z"
+    }
+  },
+  {
+    "models": "api.models.category",
+    "pk": 35,
+    "fields": {
+      "name": "Snacks y Dulces",
+      "description": "Golosinas, botanas y productos de confitería.",
+      "is_active": true,
+      "created_at": "2023-12-04T20:14:39Z",
+      "updated_at": "2024-01-25T03:05:39Z"
+    }
+  },
+  {
+    "models": "api.models.category",
+    "pk": 36,
+    "fields": {
+      "name": "Productos Orgánicos",
+      "description": "Alimentos y productos orgánicos certificados.",
+      "is_active": true,
+      "created_at": "2024-02-15T23:51:14Z",
+      "updated_at": "2024-02-28T16:22:14Z"
+    }
+  },
+  {
+    "models": "api.models.category",
+    "pk": 37,
+    "fields": {
+      "name": "Panadería",
+      "description": "Pan, pasteles y productos de panadería fresca.",
+      "is_active": true,
+      "created_at": "2023-01-30T00:50:17Z",
+      "updated_at": "2023-03-01T09:02:17Z"
+    }
+  },
+  {
+    "models": "api.models.category",
+    "pk": 38,
+    "fields": {
+      "name": "Lácteos",
+      "description": "Leche, quesos y derivados lácteos.",
+      "is_active": false,
+      "created_at": "2023-12-19T14:51:59Z",
+      "updated_at": "2024-02-04T02:14:59Z"
+    }
+  },
+  {
+    "models": "api.models.category",
+    "pk": 39,
+    "fields": {
+      "name": "Carnes y Embutidos",
+      "description": "Carnes frescas, embutidos y charcutería.",
+      "is_active": true,
+      "created_at": "2023-04-15T07:30:12Z",
+      "updated_at": "2023-05-06T14:00:12Z"
+    }
+  },
+  {
+    "models": "api.models.category",
+    "pk": 40,
+    "fields": {
+      "name": "Congelados",
+      "description": "Alimentos congelados listos para preparar.",
+      "is_active": true,
+      "created_at": "2024-09-16T00:30:58Z",
+      "updated_at": "2024-10-27T12:21:58Z"
+    }
+  },
+  {
+    "models": "api.models.category",
+    "pk": 41,
+    "fields": {
+      "name": "Limpieza del Hogar",
+      "description": "Productos de limpieza para el hogar.",
+      "is_active": true,
+      "created_at": "2025-05-04T21:07:58Z",
+      "updated_at": "2025-05-29T19:55:58Z"
+    }
+  },
+  {
+    "models": "api.models.category",
+    "pk": 42,
+    "fields": {
+      "name": "Cuidado Personal",
+      "description": "Artículos de higiene y cuidado personal diario.",
+      "is_active": true,
+      "created_at": "2023-07-02T13:50:40Z",
+      "updated_at": "2023-07-23T16:41:40Z"
+    }
+  },
+  {
+    "models": "api.models.category",
+    "pk": 43,
+    "fields": {
+      "name": "Papelería Escolar",
+      "description": "Útiles y materiales escolares para estudiantes.",
+      "is_active": true,
+      "created_at": "2025-01-09T12:29:25Z",
+      "updated_at": "2025-02-25T15:15:25Z"
+    }
+  },
+  {
+    "models": "api.models.category",
+    "pk": 44,
+    "fields": {
+      "name": "Tecnología Wearable",
+      "description": "Smartwatches y dispositivos vestibles inteligentes.",
+      "is_active": true,
+      "created_at": "2023-05-11T00:09:37Z",
+      "updated_at": "2023-07-07T15:00:37Z"
+    }
+  },
+  {
+    "models": "api.models.category",
+    "pk": 45,
+    "fields": {
+      "name": "Audio y Sonido",
+      "description": "Bocinas, audífonos y equipos de sonido.",
+      "is_active": true,
+      "created_at": "2024-09-18T19:30:42Z",
+      "updated_at": "2024-11-17T06:39:42Z"
+    }
+  },
+  {
+    "models": "api.models.category",
+    "pk": 46,
+    "fields": {
+      "name": "Iluminación",
+      "description": "Lámparas y soluciones de iluminación para el hogar.",
+      "is_active": true,
+      "created_at": "2023-05-15T00:00:51Z",
+      "updated_at": "2023-06-30T20:06:51Z"
+    }
+  },
+  {
+    "models": "api.models.category",
+    "pk": 47,
+    "fields": {
+      "name": "Decoración",
+      "description": "Artículos decorativos para embellecer espacios.",
+      "is_active": true,
+      "created_at": "2023-05-23T13:55:12Z",
+      "updated_at": "2023-07-14T19:56:12Z"
+    }
+  },
+  {
+    "models": "api.models.category",
+    "pk": 48,
+    "fields": {
+      "name": "Textiles para el Hogar",
+      "description": "Sábanas, cortinas y textiles para el hogar.",
+      "is_active": true,
+      "created_at": "2023-10-27T16:15:48Z",
+      "updated_at": "2023-12-04T02:31:48Z"
+    }
+  },
+  {
+    "models": "api.models.category",
+    "pk": 49,
+    "fields": {
+      "name": "Seguridad del Hogar",
+      "description": "Cámaras y sistemas de seguridad residencial.",
+      "is_active": true,
+      "created_at": "2025-05-04T04:03:58Z",
+      "updated_at": "2025-06-20T16:00:58Z"
+    }
+  },
+  {
+    "models": "api.models.category",
+    "pk": 50,
+    "fields": {
+      "name": "Instrumentos de Cocina",
+      "description": "Utensilios y herramientas para cocinar.",
+      "is_active": true,
+      "created_at": "2024-08-20T16:26:52Z",
+      "updated_at": "2024-10-18T08:34:52Z"
+    }
+  }
+]

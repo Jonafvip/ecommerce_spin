@@ -8,7 +8,7 @@ class ProductListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Product
-        fields = ["id", "name", "unit_price"]
+        fields = ["id", "name", "unit_price", "category"]
 
 
 class ProductDetailSerializer(serializers.ModelSerializer):
@@ -27,14 +27,14 @@ class ProductCreateSerializer(serializers.ModelSerializer):
 
     def validate_stock(self, value):
         if value > 100000:
-            raise serializers.ValidationError({
-                "stock": "El stock de inventario excede el limite"
-            })
+            raise serializers.ValidationError(
+                {"stock": "El stock de inventario excede el limite"}
+            )
         return value
 
     def validate_unit_price(self, value):
         if value > 100000:
-            raise serializers.ValidationError({
-                "unit_price": "El precio del producto excede el limite"
-            })
+            raise serializers.ValidationError(
+                {"unit_price": "El precio del producto excede el limite"}
+            )
         return value

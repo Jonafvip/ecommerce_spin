@@ -1,19 +1,29 @@
 from api.models.product import Product
-from api.serializers.product_serializer import (ProductListSerializer,
-                                                ProductCreateSerializer,
-                                                ProductDetailSerializer)
+from api.serializers.product_serializer import (
+    ProductListSerializer,
+    ProductCreateSerializer,
+    ProductDetailSerializer,
+)
+from api.permissions import IsAdminOrReadOnly
 from rest_framework.viewsets import ModelViewSet
+from rest_framework.pagination import PageNumberPagination
+from rest_framework.filters import OrderingFilter
 
 
 class ProductViewSet(ModelViewSet):
     serializer_class = ProductListSerializer
+    permission_classes = [IsAdminOrReadOnly]
+    filter_backends = [OrderingFilter]
+    ordering_fields = ["name", "unit_price"]
+    pagination_class = PageNumberPagination
+    pagination_class.page_size = 10
 
     serializer_actions = {
         "list": ProductListSerializer,
         "create": ProductCreateSerializer,
         "retrieve": ProductDetailSerializer,
         "update": ProductDetailSerializer,
-        "partial_update": ProductDetailSerializer
+        "partial_update": ProductDetailSerializer,
     }
 
     def get_queryset(self):

@@ -28,7 +28,7 @@ export const PaginationProducts = ({
   const pageNumber = Array.from({ length: totalPages }, (_, i) => i + 1);
 
   return (
-    <Pagination className="mt-5 p-10 border-t-2">
+    <Pagination className="mt-10 p-10 border-t-2">
       <PaginationContent>
         <PaginationItem>
           <PaginationPrevious
@@ -50,7 +50,7 @@ export const PaginationProducts = ({
               onClick={(e) => {
                 e.preventDefault();
                 if (page === currentPage) return;
-                const targetUrl = `${BASE_URL}?page=${page}`;
+                const targetUrl = `${BASE_URL}products/?page=${page}`;
                 onPageChange(targetUrl, page);
               }}
             >

@@ -9,7 +9,7 @@ import { CircleDollarSign } from "lucide-react";
 import { MdOutlineSupportAgent } from "react-icons/md";
 import { LuTruck } from "react-icons/lu";
 import CardUser from "@/components/CardUser";
-
+import Hero from "@/assets/hero.png";
 type ProductListExceptCategory = Omit<ProductsList, "category">;
 
 export const Home = () => {
@@ -33,38 +33,49 @@ export const Home = () => {
     <div>
       {/* Hero */}
       <section className="border-b-2 border-gray-200">
-        <div className="relative min-h-96 w-full bg-[url('@/assets/hero.png')] bg-contain bg-top-left bg-no-repeat sm:aspect-1983/793 sm:min-h-0">
-          <div className="absolute top-[30%] left-[5%] max-w-lg">
-            <h2 className="text-4xl font-semibold text-gray-900">
-              Encuentra todo lo que necesitas, en un solo lugar.
-            </h2>
-            <p className="text-xl font-light mt-3">
-              Explora miles de productos en tecnología, hogar, moda y más.
-              Compra hoy y recíbelo directo en la puerta de tu casa.
-            </p>
-            <Button className="w-56 mt-7 p-6">
-              Ver Productos <ArrowRight />
-            </Button>
+        <div className="relative min-h-[26rem] overflow-hidden md:min-h-[38rem]">
+          <img
+            src={Hero}
+            alt="Hero"
+            className="absolute inset-0 h-full w-full object-cover object-center"
+          />
+
+          <div className="absolute inset-0 bg-linear-to-r from-white/90 via-white/70 to-white/30 md:bg-none" />
+
+          <div className="relative z-10 flex min-h-[26rem] items-center justify-center px-4 md:px-30  text-center md:min-h-[32rem] md:top-[70px] md:justify-start md:text-left">
+            <div className="max-w-md md:max-w-lg">
+              <h2 className="text-2xl font-semibold text-gray-900 sm:text-3xl md:text-4xl">
+                Encuentra todo lo que necesitas, en un solo lugar.
+              </h2>
+              <p className="mt-3 text-base font-light text-gray-700 sm:text-lg md:text-xl">
+                Explora miles de productos en tecnología, hogar, moda y más.
+                Compra hoy y recíbelo directo en la puerta de tu casa.
+              </p>
+              <Button className="mt-7 w-full max-w-56 p-6">
+                Ver Productos <ArrowRight />
+              </Button>
+            </div>
           </div>
         </div>
 
-        <div className="flex items-center justify-evenly p-14">
-          <div className="flex flex-col items-center gap-1">
+        {/* Badges */}
+        <div className="grid grid-cols-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 py-6 px-6  md:px-8 md:py-14">
+          <div className="flex flex-col items-center px-5 gap-1">
             <LuTruck size="30" />
             <h3 className="tracking-wider leading-relaxed">Compra rapida</h3>
             <p className="text-xs text-gray-400">Velocidad siempre</p>
           </div>
-          <div className="flex flex-col items-center gap-1">
+          <div className="flex flex-col items-center px-5 gap-1">
             <ShieldCheck size="30" />
             <h3 className="tracking-wider leading-relaxed">Pagos Seguros</h3>
             <p className="text-xs text-gray-400">100% Protegidos</p>
           </div>
-          <div className="flex flex-col items-center gap-1">
+          <div className="flex flex-col items-center px-5 gap-1">
             <CircleDollarSign size="30" />
             <h3 className="tracking-wider leading-relaxed">Reembolsos</h3>
             <p className="text-xs text-gray-400">30 dias de Garantia</p>
           </div>
-          <div className="flex flex-col items-center gap-1">
+          <div className="flex flex-col items-center px-5 gap-1">
             <MdOutlineSupportAgent size="30" />
             <h3 className="tracking-wider leading-relaxed">24/7 Soporte</h3>
             <p className="text-xs text-gray-400"> Siempre para ayudarte</p>
@@ -122,12 +133,12 @@ export const Home = () => {
         </div>
       </section>
 
-      <section className="mt-30 p-10">
+      <section className="mt-10 md:mt-20 p-10">
         <div>
-          <div className="flex items-center justify-between px-20">
+          <div className=" text-center mb-10">
             <h2 className="text-4xl font-light">Nuevos Productos</h2>
           </div>
-          <div className="flex justify-end px-22">
+          <div className="flex justify-center md:justify-end px-22">
             <p className="cursor-pointer border-b border-transparent hover:border-gray-800 transition-colors pb-1 font-light">
               VER TODO
             </p>
@@ -147,18 +158,21 @@ export const Home = () => {
         </div>
       </section>
 
-      <section className="py-25">
-        <div className="h-80 bg-black flex items-center justify-between px-20">
-          <div className="flex flex-col gap-4">
-            <h2 className="text-5xl font-light tracking-wide text-white">
+      <section className="w-full py-10 md:py-25">
+        <div className="flex flex-col gap-6 bg-black p-6 md:h-80 md:flex-row md:items-center md:justify-between md:px-25 md:py-10">
+          <div className="flex flex-col gap-4 text-center md:text-left">
+            <h2 className="text-3xl font-light tracking-wide text-white sm:text-4xl md:text-5xl">
               Rebajas de Verano
             </h2>
-            <p className="text-gray-300 tracking-wide ">
+            <p className="text-gray-300 tracking-wide">
               Obten hasta un 30% de descuento en cualquier compra de diferentes
               piezas por tiempo limitado
             </p>
           </div>
-          <Button variant="outline" className="rounded-none p-6 font-mono">
+          <Button
+            variant="outline"
+            className="rounded-none p-6 font-mono md:mt-0"
+          >
             Compra en las rebajas
           </Button>
         </div>

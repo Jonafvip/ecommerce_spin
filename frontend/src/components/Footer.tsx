@@ -9,14 +9,14 @@ import { Store } from "lucide-react";
 
 export const Footer = () => {
   return (
-    <div className="border-t px-6">
-      <div className="flex justify-around p-8">
-        <div className="w-1/3">
-          <h3 className="flex items-center text-2xl tracking-wider py-4 gap-4">
+    <div className="border-t px-12 py-6 md:px-6">
+      <div className="flex flex-col gap-8 p-4 md:flex-row md:items-start md:justify-around md:p-8">
+        <div className="w-full md:w-1/3">
+          <h3 className="flex items-center gap-4 py-4 text-2xl tracking-wider">
             <Store />
             Ecommerce Spin
           </h3>
-          <p>
+          <p className="text-sm md:text-base">
             Nos apasiona ofrecerte la mejor experiencia de compra. Con envíos
             rápidos, pagos 100% seguros y un catálogo seleccionado, aseguramos
             que recibas exactamente lo que buscas sin complicaciones.
@@ -36,10 +36,10 @@ export const Footer = () => {
             </li>
           </ul>
         </div>
-        {/* elementos */}
-        <div className="w-1/2 flex  justify-between">
+
+        <div className="grid grid-cols-2 gap-6 md:w-1/2 md:grid-cols-4 md:justify-between">
           <div>
-            <h3 className="text-xl font-light tracking-wider py-4">Shop</h3>
+            <h3 className="py-4 text-xl font-light tracking-wider">Shop</h3>
             <ul className="flex flex-col gap-4 text-xs">
               <li>Nuevos Productos</li>
               <li>Collection</li>
@@ -47,7 +47,7 @@ export const Footer = () => {
             </ul>
           </div>
           <div>
-            <h3 className="text-xl font-light tracking-wider py-4">Support</h3>
+            <h3 className="py-4 text-xl font-light tracking-wider">Support</h3>
             <ul className="flex flex-col gap-4 text-xs">
               <li>Centro de ayuda</li>
               <li>Envíos y devoluciones</li>
@@ -56,7 +56,7 @@ export const Footer = () => {
             </ul>
           </div>
           <div>
-            <h3 className="text-xl font-light tracking-wider py-4">About</h3>
+            <h3 className="py-4 text-xl font-light tracking-wider">About</h3>
             <ul className="flex flex-col gap-4 text-xs">
               <li>Nuevos Historia</li>
               <li>Sustentabilidad</li>
@@ -65,7 +65,7 @@ export const Footer = () => {
             </ul>
           </div>
           <div>
-            <h3 className="text-xl font-light tracking-wider py-4">Legal</h3>
+            <h3 className="py-4 text-xl font-light tracking-wider">Legal</h3>
             <ul className="flex flex-col gap-4 text-xs">
               <li>Politica de Privacidad</li>
               <li>Terminos de Servicio</li>
@@ -74,11 +74,12 @@ export const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="flex items-center justify-between border-t py-8 px-23 ">
-        <p className="text-gray-500">
+
+      <div className="flex flex-col gap-4 border-t py-6 px-4 md:flex-row md:items-center md:justify-between md:px-20">
+        <p className="text-center text-sm text-gray-500 md:text-left">
           &copy; 2026 Ecommerce Spin. Todos los derechos reservados.
         </p>
-        <ul className="flex gap-4">
+        <ul className="flex justify-center gap-4 md:justify-end">
           <li>
             <FaCcPaypal size="20" />
           </li>

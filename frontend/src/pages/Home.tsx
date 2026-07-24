@@ -10,6 +10,7 @@ import { MdOutlineSupportAgent } from "react-icons/md";
 import { LuTruck } from "react-icons/lu";
 import CardUser from "@/components/CardUser";
 import Hero from "@/assets/hero.png";
+import { NavLink } from "react-router-dom";
 type ProductListExceptCategory = Omit<ProductsList, "category">;
 
 export const Home = () => {
@@ -52,7 +53,9 @@ export const Home = () => {
                 Compra hoy y recíbelo directo en la puerta de tu casa.
               </p>
               <Button className="mt-7 w-full max-w-56 p-6">
-                Ver Productos <ArrowRight />
+                <NavLink to="products/" className="flex items-center gap-4">
+                  Ver Productos <ArrowRight />
+                </NavLink>
               </Button>
             </div>
           </div>

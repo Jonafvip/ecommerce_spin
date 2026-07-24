@@ -11,13 +11,15 @@ export const Header = () => {
         <div className="md:hidden">
           <SheetSide />
         </div>
-        <h2 className="text-lg font-semibold md:text-2xl">Ecommerce-SPIN</h2>
+        <h2 className="text-lg font-semibold md:text-2xl">
+          <NavLink to="/">Ecommerce-SPIN</NavLink>
+        </h2>
       </div>
 
       {/* nav center */}
       <ul className="hidden md:flex gap-4">
         <li className="cursor-pointer border-b border-transparent transition-colors hover:border-gray-800">
-          Home
+          <NavLink to="/">Home</NavLink>
         </li>
         <li className="cursor-pointer border-b border-transparent transition-colors hover:border-gray-800">
           <NavLink to="/products">Collection</NavLink>

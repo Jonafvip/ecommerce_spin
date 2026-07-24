@@ -13,3 +13,8 @@ export interface PaginatedProductsResponse {
   previous: string | null;
   results: ProductListExceptCategory[];
 }
+
+export interface CategoryList{
+  id:number
+  name:string
+}

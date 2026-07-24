@@ -1,27 +1,34 @@
 import { Search } from "lucide-react";
 import { UserRound } from "lucide-react";
 import { ShoppingCart } from "lucide-react";
+import { SheetSide } from "@/components/SheetResponsive";
+import { NavLink } from "react-router-dom";
 
 export const Header = () => {
   return (
-    <div className="flex items-center justify-between py-6 px-15 border-b border-gray-200">
-      <h2 className="text-2xl font-semibold">Ecommerce-SPIN</h2>
+    <div className="flex items-center justify-between border-b border-gray-200 px-4 py-4 md:px-15 md:py-6">
+      <div className="flex items-center gap-3 md:gap-0">
+        <div className="md:hidden">
+          <SheetSide />
+        </div>
+        <h2 className="text-lg font-semibold md:text-2xl">Ecommerce-SPIN</h2>
+      </div>
 
       {/* nav center */}
-      <ul className="flex gap-4">
-        <li className="cursor-pointer border-b border-transparent hover:border-gray-800 transition-colors">
+      <ul className="hidden md:flex gap-4">
+        <li className="cursor-pointer border-b border-transparent transition-colors hover:border-gray-800">
           Home
         </li>
-        <li className="cursor-pointer border-b border-transparent hover:border-gray-800 transition-colors">
-          Collection
+        <li className="cursor-pointer border-b border-transparent transition-colors hover:border-gray-800">
+          <NavLink to="/products">Collection</NavLink>
         </li>
-        <li className="cursor-pointer border-b border-transparent hover:border-gray-800 transition-colors">
+        <li className="cursor-pointer border-b border-transparent transition-colors hover:border-gray-800">
           About
         </li>
       </ul>
 
       {/* nav icons */}
-      <ul className="flex gap-8">
+      <ul className="hidden md:flex gap-8">
         <li className="cursor-pointer">
           <Search />
         </li>

@@ -1,7 +1,7 @@
 from rest_framework import serializers
-from ecommerce_spin.backend.api.models.cart import Cart
-from ecommerce_spin.backend.api.models.cart_detail import CartDetail
-from ecommerce_spin.backend.api.serializers.user_serializer import UserListAuxSerializer
+from ..models.cart import Cart
+from ..models.cart_detail import CartDetail
+from .user_serializer import UserListAuxSerializer
 
 
 class CartDetailSerializer(serializers.ModelSerializer):

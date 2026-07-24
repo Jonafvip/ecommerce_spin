@@ -1,10 +1,10 @@
-from ecommerce_spin.backend.api.models.category import Category
-from ecommerce_spin.backend.api.serializers.category_serializer import (
+from ..models.category import Category
+from ..serializers.category_serializer import (
     CategoryListSerializer,
     CategoryCreateSerializer,
 )
 from rest_framework.viewsets import ModelViewSet
-from ecommerce_spin.backend.api.permissions import IsAdminOrReadOnly
+from ..permissions import IsAdminOrReadOnly
 
 
 class CategoryViewSet(ModelViewSet):

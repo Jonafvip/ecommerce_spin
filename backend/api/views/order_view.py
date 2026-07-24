@@ -1,10 +1,10 @@
 from rest_framework import viewsets, status
-from ecommerce_spin.backend.api.models.order import Order
-from ecommerce_spin.backend.api.serializers.order_serializer import OrderListSerializer, OrderCreateSerializer
+from ..models.order import Order
+from ..serializers.order_serializer import OrderListSerializer, OrderCreateSerializer
 from rest_framework.permissions import (
     IsAuthenticated,
 )
-from ecommerce_spin.backend.api.permissions import IsAdmin, IsCustomer
+from ..permissions import IsAdmin, IsCustomer
 
 
 class OrderViewSet(viewsets.ModelViewSet):

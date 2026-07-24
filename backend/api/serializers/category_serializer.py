@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from ecommerce_spin.backend.api.models.category import Category
+from ..models.category import Category
 
 
 class CategoryListSerializer(serializers.ModelSerializer):

@@ -1,5 +1,5 @@
-from ecommerce_spin.backend.api.models.user import User
-from ecommerce_spin.backend.api.serializers.user_serializer import UserCreateSerializer, UserDetailSerializer
+from ..models.user import User
+from ..serializers.user_serializer import UserCreateSerializer, UserDetailSerializer
 from rest_framework.generics import CreateAPIView, RetrieveAPIView
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.authtoken.models import Token

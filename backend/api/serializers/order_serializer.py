@@ -1,7 +1,7 @@
 from rest_framework import serializers
-from ecommerce_spin.backend.api.models.order import Order
-from ecommerce_spin.backend.api.models.order_detail import OrderDetail
-from ecommerce_spin.backend.api.serializers.user_serializer import UserListAuxSerializer
+from ..models.order import Order
+from ..models.order_detail import OrderDetail
+from .user_serializer import UserListAuxSerializer
 
 
 class OrderDetailCreateSerializer(serializers.ModelSerializer):

@@ -1,6 +1,6 @@
 from rest_framework.viewsets import ModelViewSet
-from ecommerce_spin.backend.api.models.cart import Cart
-from ecommerce_spin.backend.api.serializers.cart_serializer import CartCreateSerializer, CartListSerializer
+from ..models.cart import Cart
+from ..serializers.cart_serializer import CartCreateSerializer, CartListSerializer
 from rest_framework.permissions import IsAuthenticated, AllowAny
 
 

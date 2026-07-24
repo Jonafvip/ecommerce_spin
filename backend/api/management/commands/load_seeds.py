@@ -1,8 +1,8 @@
 from pathlib import Path
 
 from django.core.management.base import BaseCommand
-from ecommerce_spin.backend.api.models.category import Category
-from ecommerce_spin.backend.api.models.product import Product
+from api.models.category import Category
+from api.models.product import Product
 import json
 
 

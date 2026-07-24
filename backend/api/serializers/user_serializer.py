@@ -1,4 +1,4 @@
-from ecommerce_spin.backend.api.models.user import User
+from ..models.user import User
 from rest_framework import serializers
 from rest_framework.authtoken.models import Token
 

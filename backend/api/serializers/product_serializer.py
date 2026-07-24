@@ -1,6 +1,6 @@
 from rest_framework import serializers
-from ecommerce_spin.backend.api.models.product import Product
-from ecommerce_spin.backend.api.serializers.category_serializer import CategoryListSerializer
+from ..models.product import Product
+from .category_serializer import CategoryListSerializer
 
 
 class ProductListSerializer(serializers.ModelSerializer):

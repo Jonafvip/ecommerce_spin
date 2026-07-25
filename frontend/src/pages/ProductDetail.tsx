@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { type ProductDetail as Details } from "@/types/types";
 import { api } from "@/api/api";
 import { useParams } from "react-router-dom";
-import { Card } from "@/components/Card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
@@ -36,16 +35,19 @@ export const ProductDetail = () => {
     if (id) {
       fetchData(id);
     }
-    window.scroll(0,0)
+    window.scroll(0, 0);
   }, [id]);
 
   return (
-    <div className="w-full h-[700px]">
-      <section className="flex pt-20 pb-38 justify-center h-screen gap-20">
-        <div className="w-96">
-          <Card />
+    <div className="w-full h-175 mb-30 md:mb-0">
+      <section className="flex flex-col md:flex-row pt-60 pl-6 md:pl-2 md:pt-20 pb-45 justify-center h-screen gap-5 md:gap-20">
+        <div className="w-80 h-130 mt-12 md:w-96">
+          <img
+            src={productDetailData.image}
+            className="h-90 md:h-112.5 p-6 mt-40 md:mt-0  md:p-2 "
+          />
         </div>
-        <div className="flex flex-col justify-between tracking-wide">
+        <div className="flex flex-col px-4 md:pt-13 md:px-1 mb-30 md:mb-1  justify-between tracking-wide">
           <div className="flex flex-col gap-5">
             <Badge variant="outline" className="p-4">
               Categoria - {productDetailData.category.name}
@@ -58,7 +60,7 @@ export const ProductDetail = () => {
             </Badge>
             <p className="tracking-wide">{productDetailData.description}</p>
           </div>
-          <Button className="rounded-none p-6 text-xl flex gap-4">
+          <Button className="rounded-none p-6 text-xl flex gap-4 mt-5">
             Agregar al Carrito <ArrowRight />
           </Button>
         </div>

@@ -48,3 +48,26 @@ export interface LoginUser {
 export interface AuthTokenResponse {
   token: string;
 }
+
+export interface CartDetailItem {
+  id: number;
+  product: number | string;
+  product_name: string;
+  product_description: string;
+  product_image: string;
+  product_price: string;
+  quantity: number;
+  total: number;
+}
+
+export interface CartList {
+  id: number;
+  status: string;
+  user: {
+    id: string | number;
+    full_name: string;
+  } | null;
+  details: CartDetailItem[];
+}
+
+export type OmitUserInCart = Omit<CartList, "user">;

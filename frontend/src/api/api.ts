@@ -7,6 +7,7 @@ import {
   type RegisterUser,
   type LoginUser,
   type AuthTokenResponse,
+  type OmitUserInCart,
 } from "@/types/types";
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
@@ -49,6 +50,34 @@ export const api = {
       `http://127.0.0.1:8000/api-token-auth/`,
       userdata,
     );
+    return response.data;
+  },
+  logoutUser: () => {
+    localStorage.removeItem("auth_token");
+    window.location.href = "/";
+  },
+  getCartList: async (): Promise<OmitUserInCart[]> => {
+    const token = localStorage.getItem("auth_token");
+    const response = await axios.get<OmitUserInCart[]>(`${BASE_URL}carts/`, {
+      headers: { Authorization: `Token ${token}` },
+    });
+    return response.data;
+  },
+  updateCartItemQuantity: async (detailId: number, quantity: number) => {
+    const token = localStorage.getItem("auth_token");
+    const response = await axios.patch(
+      `${BASE_URL}carts/`,
+      { detailId: detailId, quantity },
+      { headers: { Authorization: `Token ${token}` } },
+    );
+    return response;
+  },
+  removeCartItem: async (detail_id: number) => {
+    const token = localStorage.getItem("auth_token");
+    const response = await axios.delete(`${BASE_URL}carts/`, {
+      headers: { Authorization: `Token ${token}` },
+      data: { detail_id: detail_id },
+    });
     return response.data;
   },
 };

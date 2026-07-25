@@ -38,7 +38,9 @@ export const Header = () => {
           <HoverCard />
         </li>
         <li className="cursor-pointer">
-          <ShoppingCart />
+          <NavLink to="/cart">
+            <ShoppingCart />
+          </NavLink>
         </li>
       </ul>
     </div>

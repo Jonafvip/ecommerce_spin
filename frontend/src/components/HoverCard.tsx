@@ -6,9 +6,11 @@ import {
 import { UserRound } from "lucide-react";
 import { Separator } from "./ui/separator";
 import { NavLink } from "react-router-dom";
+import { api } from "@/api/api";
 const HOVER_CARD_SIDES = ["bottom"] as const;
 
 export const HoverCard = () => {
+  const token = localStorage.getItem("auth_token");
   return (
     <div className="flex flex-wrap justify-center gap-2">
       {HOVER_CARD_SIDES.map((side) => (
@@ -21,21 +23,46 @@ export const HoverCard = () => {
           <HoverCardContent side={side}>
             <div className="flex flex-col gap-1">
               <>
-                <NavLink
-                  to="/register"
-                  className="font-normal text-gray-600 hover:text-black"
-                >
-                  Resgistrarse
-                </NavLink>
-                <Separator />
-                <NavLink
-                  to="/login"
-                  className="font-normal text-gray-600 hover:text-black"
-                >
-                  Iniciar Sesion
-                </NavLink>
-                <Separator />
-                {/* Aqui deberi ir Cerrar Sesion */}
+                {token ? (
+                  <>
+                    <NavLink
+                      to="/register"
+                      className="font-normal text-gray-600 hover:text-black"
+                    >
+                      Registrarse
+                    </NavLink>
+                    <Separator />
+                    <NavLink
+                      to="/login"
+                      className="font-normal text-gray-600 hover:text-black"
+                    >
+                      Iniciar Sesion
+                    </NavLink>
+                    <Separator />
+                    {/* Aqui deberi ir Cerrar Sesion */}
+                    <NavLink to="#" onClick={() => api.logoutUser()}>
+                      Cerrar Sesion
+                    </NavLink>
+                  </>
+                ) : (
+                  <>
+                    <NavLink
+                      to="/register"
+                      className="font-normal text-gray-600 hover:text-black"
+                    >
+                      Registrarse
+                    </NavLink>
+                    <Separator />
+                    <NavLink
+                      to="/login"
+                      className="font-normal text-gray-600 hover:text-black"
+                    >
+                      Iniciar Sesion
+                    </NavLink>
+                    <Separator />
+                    {/* Aqui deberi ir Cerrar Sesion */}
+                  </>
+                )}
               </>
             </div>
           </HoverCardContent>

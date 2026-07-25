@@ -2,6 +2,7 @@ import { api } from "@/api/api";
 import { Card } from "@/components/Card";
 import { Checkbox } from "@/components/Checkbox";
 import { PaginationProducts } from "@/components/PaginationProducts";
+import { Select } from "@/components/Select";
 import { type ProductsList, type CategoryList } from "@/types/types";
 import { useEffect, useState } from "react";
 
@@ -12,6 +13,8 @@ export const Products = () => {
   );
   const [categoriesData, setCategoriesData] = useState<CategoryList[]>([]);
   const [priceRange, setPriceRange] = useState<string>("all");
+  const [ordering, setOrdering] = useState<string>("");
+  const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
   const [nextUrl, setnextUrl] = useState<string | null>(null);
   const [prevUrl, setPrevUrl] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
@@ -62,29 +65,53 @@ export const Products = () => {
         } else if (priceRange === "500+") {
           params.append("price_min", "500.00");
         }
-        const url = `${import.meta.env.VITE_BASE_URL}products/?${params.toString()}`;
+
+        if (ordering) {
+          params.append("ordering", ordering);
+        }
+
+        if (selectedCategory !== null) {
+          params.append("category", selectedCategory.toString());
+        }
+
+        const queryString = params.toString();
+        const url = queryString
+          ? `${import.meta.env.VITE_BASE_URL}products/?${queryString}`
+          : undefined;
+
         await fetchProductsData(url, 1);
       } catch (e) {
         console.log(e);
       }
     };
-    if (priceRange !== "all") {
-      fetchDataProductQueryParams();
-    } else {
-      fetchProductsData(undefined, 1);
-    }
-  }, [priceRange]);
+    fetchDataProductQueryParams();
+    window.scroll(0, 0);
+  }, [priceRange, ordering, selectedCategory]);
 
   return (
     <div className="flex">
       {/* Filtros */}
-      <aside className="shrink-0 pl-8">
+      <aside className="shrink-0 pl-8 hidden md:block">
         <div className="flex flex-col justify-center p-8 pt-15 border-b-2">
-          <h4 className="text-xl">Categoria</h4>
+          <h4 className="text-xl mb-3">Categoria</h4>
+          <button
+            onClick={() => setSelectedCategory(null)}
+            className={`text-left py-1 text-sm tracking-wider ${selectedCategory === null ? "font-bold text-black" : "font-light text-gray-600 hover:text-black"}`}
+          >
+            Todas las categorías
+          </button>
           {categoriesData?.slice(0, 10).map((cat) => (
-            <p key={cat.id} className="font-light tracking-wide py-2">
+            <button
+              key={cat.id}
+              onClick={() => setSelectedCategory(cat.id)}
+              className={`text-left py-2  tracking-wider transition-colors ${
+                selectedCategory === cat.id
+                  ? "font-bold text-black"
+                  : "font-light text-gray-600 hover:text-black"
+              }`}
+            >
               {cat.name}
-            </p>
+            </button>
           ))}
         </div>
         <div className="p-8">
@@ -122,12 +149,23 @@ export const Products = () => {
       </aside>
       {/* Mostrar Productos */}
       <section className="w-full p-10">
-        <h2 className="w-238 ml-20 pb-6 pt-4 text-3xl font-light tracking-wider border-b-2">
-          Products <span className="text-xl">({count})</span>
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 px-8 md:px-20 mt-8">
+        <div className="flex flex-col items-center md:flex-row justify-between gap-4 px-8 md:px-20">
+          <h2 className="pb-6 pt-4 text-3xl font-light tracking-wider">
+            Products <span className="text-xl">({count})</span>
+          </h2>
+          <div className="shrink-0">
+            <Select value={ordering} onChange={setOrdering} />
+          </div>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 px-8 md:mx-auto mt-8">
           {productsData?.map((pro) => (
-            <Card key={pro.id} title={pro.name} badge={pro.unit_price} />
+            <Card
+              id={pro.id}
+              key={pro.id}
+              title={pro.name}
+              badge={pro.unit_price}
+              titleButton="Ver Producto"
+            />
           ))}
         </div>
         <PaginationProducts

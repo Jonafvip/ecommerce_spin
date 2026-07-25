@@ -30,7 +30,7 @@ export const Login = () => {
   };
 
   return (
-    <div className="h-[400px] flex items-center justify-center my-30">
+    <div className="h-100 flex items-center justify-center my-30">
       <form
         className="w-84  md:w-1/2 lg:w-1/3 flex flex-col items-center justify-center gap-8 border rounded-2xl p-8 shadow-2xl"
         onSubmit={handleSubmit}
@@ -51,6 +51,7 @@ export const Login = () => {
           value={userData.password}
           onChange={handleChange}
           required={true}
+          type="password"
         />
         <Button type="submit" className="p-6">
           Inicia Sesion

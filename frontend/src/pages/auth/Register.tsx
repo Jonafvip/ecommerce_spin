@@ -24,6 +24,7 @@ export const Register = () => {
       const response = await api.postRegister(userData);
       setUserData(response);
       setUserData(initialValues);
+      window.location.href = "/login";
     } catch (error) {
       if (axios.isAxiosError(error)) {
         const serverError = error.response?.data;
@@ -32,7 +33,7 @@ export const Register = () => {
     }
   };
   return (
-    <div className="h-[500px] flex items-center justify-center my-30">
+    <div className="h-125 flex items-center justify-center my-30">
       <form
         className="w-84  md:w-1/2 lg:w-1/3 flex flex-col items-center justify-center gap-8 border rounded-2xl p-8 shadow-2xl"
         onSubmit={handleSubmit}

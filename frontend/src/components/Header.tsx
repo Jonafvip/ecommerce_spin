@@ -1,8 +1,8 @@
 import { Search } from "lucide-react";
-import { UserRound } from "lucide-react";
 import { ShoppingCart } from "lucide-react";
 import { SheetSide } from "@/components/SheetResponsive";
 import { NavLink } from "react-router-dom";
+import { HoverCard } from "@/components/HoverCard";
 
 export const Header = () => {
   return (
@@ -22,7 +22,7 @@ export const Header = () => {
           <NavLink to="/">Home</NavLink>
         </li>
         <li className="cursor-pointer border-b border-transparent transition-colors hover:border-gray-800">
-          <NavLink to="/products">Collection</NavLink>
+          <NavLink to="/products">Products</NavLink>
         </li>
         <li className="cursor-pointer border-b border-transparent transition-colors hover:border-gray-800">
           About
@@ -35,7 +35,7 @@ export const Header = () => {
           <Search />
         </li>
         <li className="cursor-pointer">
-          <UserRound />
+          <HoverCard />
         </li>
         <li className="cursor-pointer">
           <ShoppingCart />

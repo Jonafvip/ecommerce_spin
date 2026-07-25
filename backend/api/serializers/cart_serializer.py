@@ -2,6 +2,11 @@ from rest_framework import serializers
 from ..models.cart import Cart
 from ..models.cart_detail import CartDetail
 from .user_serializer import UserListAuxSerializer
+from rest_framework import serializers
+from ..models.cart import Cart
+from ..models.cart_detail import CartDetail
+from .user_serializer import UserListAuxSerializer
+from ..serializers.cart_details_serializer import CartDetailReadProductSerializer
 
 
 class CartDetailSerializer(serializers.ModelSerializer):
@@ -47,7 +52,27 @@ class CartCreateSerializer(serializers.ModelSerializer):
 
 class CartListSerializer(serializers.ModelSerializer):
     user = UserListAuxSerializer(read_only=True, allow_null=True)
+    details = CartDetailReadProductSerializer(many=True, read_only=True)
 
     class Meta:
         model = Cart
-        fields = ["id", "status", "user"]
+        fields = ["id", "status", "user", "details"]
+
+
+class CartUpdateSerializer(serializers.ModelSerializer):
+    details = CartDetailSerializer(many=True)
+
+    class Meta:
+        model = Cart
+        fields = ["id", "details"]
+
+    def update(self, instance, validated_data):
+        details_data = validated_data.pop("details")
+
+        for item in details_data:
+            detail_id = item.get("id")
+            if detail_id:
+                CartDetail.objects.filter(id=detail_id, cart=instance).update(
+                    quantity=item.get("quantity")
+                )
+        return instance

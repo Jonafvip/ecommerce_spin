@@ -42,22 +42,24 @@ export const PaginationProducts = ({
             }
           />
         </PaginationItem>
-        {pageNumber.map((page) => (
-          <PaginationItem key={page}>
-            <PaginationLink
-              href="#"
-              isActive={page === currentPage}
-              onClick={(e) => {
-                e.preventDefault();
-                if (page === currentPage) return;
-                const targetUrl = `${BASE_URL}products/?page=${page}`;
-                onPageChange(targetUrl, page);
-              }}
-            >
-              {page}
-            </PaginationLink>
-          </PaginationItem>
-        ))}
+        <div className="hidden md:flex items-center gap-1">
+          {pageNumber.map((page) => (
+            <PaginationItem key={page}>
+              <PaginationLink
+                href="#"
+                isActive={page === currentPage}
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (page === currentPage) return;
+                  const targetUrl = `${BASE_URL}products/?page=${page}`;
+                  onPageChange(targetUrl, page);
+                }}
+              >
+                {page}
+              </PaginationLink>
+            </PaginationItem>
+          ))}
+        </div>
         <PaginationItem>
           <PaginationEllipsis />
         </PaginationItem>

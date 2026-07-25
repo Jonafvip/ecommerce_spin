@@ -5,18 +5,37 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Button } from "./ui/button";
+import { useNavigate } from "react-router-dom";
 
 interface MyPropCard {
-  badge: string;
-  title: string;
+  id?: string | number;
+  badge?: string;
+  title?: string;
   descripcion?: string;
   titleButton?: string;
   image?: string;
 }
 
-export const Card = ({ badge, title, descripcion, image }: MyPropCard) => {
+export const Card = ({
+  id,
+  badge,
+  title,
+  descripcion,
+  image,
+  titleButton,
+}: MyPropCard) => {
+  const navigate = useNavigate();
+
   return (
-    <CardFather className="flex flex-col overflow-hidden transition-all hover:shadow-xl rounded-none">
+    <CardFather
+      className="flex flex-col items-center overflow-hidden transition-all hover:shadow-xl rounded-none"
+      onClick={
+        titleButton === "Ver Producto"
+          ? () => navigate(`/products/${id}`)
+          : undefined
+      }
+    >
       <div className="relative w-full aspect-square bg-gray-100 shrink-0">
         {image ? (
           <>
@@ -33,21 +52,26 @@ export const Card = ({ badge, title, descripcion, image }: MyPropCard) => {
           </div>
         )}
 
-        <div className="absolute top-3 right-3 z-20">
-          <Badge variant="secondary" className="font-semibold shadow-sm">
-            {badge}
-          </Badge>
-        </div>
+        {badge ? (
+          <div className="absolute top-3 right-3 z-20">
+            <Badge variant="secondary" className="font-semibold shadow-sm">
+              {badge}
+            </Badge>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
 
-      <CardHeader className="grow p-5 pb-2">
-        <CardTitle className="text-xl line-clamp-2">{title}</CardTitle>
+      <CardHeader className="min-w-52 h-18 p-2 pb-2">
+        <CardTitle className="text-xl ">{title}</CardTitle>
         {descripcion && (
           <CardDescription className="line-clamp-2 mt-2">
             {descripcion}
           </CardDescription>
         )}
       </CardHeader>
+      {titleButton ? <Button className="w-48 p-4 ">{titleButton}</Button> : ""}
     </CardFather>
   );
 };

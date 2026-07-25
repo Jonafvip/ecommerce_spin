@@ -143,7 +143,7 @@ export const Home = () => {
           </div>
           <div className="flex justify-center md:justify-end px-22">
             <p className="cursor-pointer border-b border-transparent hover:border-gray-800 transition-colors pb-1 font-light">
-              VER TODO
+              <NavLink to="products/">VER TODO</NavLink>
             </p>
           </div>
         </div>
@@ -152,6 +152,7 @@ export const Home = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-8 md:px-20 mt-8">
           {productsData.slice(0, 4).map((pro) => (
             <Card
+              id={pro.id}
               key={pro.id}
               title={pro.name}
               badge={`$${pro.unit_price}`}
@@ -193,6 +194,7 @@ export const Home = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-8 md:px-20 mt-8">
           {productsData.slice(4, 8).map((pro) => (
             <Card
+              id={pro.id}
               key={pro.id}
               title={pro.name}
               badge={`$${pro.unit_price}`}
@@ -202,6 +204,7 @@ export const Home = () => {
         </div>
       </section>
 
+      {/* Section de reseñas */}
       <section className="py-20">
         <div className="p-8">
           <h2 className="text-4xl text-center font-light tracking-wide">

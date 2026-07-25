@@ -34,7 +34,7 @@ export const Home = () => {
     <div>
       {/* Hero */}
       <section className="border-b-2 border-gray-200">
-        <div className="relative min-h-[26rem] overflow-hidden md:min-h-[38rem]">
+        <div className="relative min-h-104 overflow-hidden md:min-h-152">
           <img
             src={Hero}
             alt="Hero"
@@ -43,7 +43,7 @@ export const Home = () => {
 
           <div className="absolute inset-0 bg-linear-to-r from-white/90 via-white/70 to-white/30 md:bg-none" />
 
-          <div className="relative z-10 flex min-h-[26rem] items-center justify-center px-4 md:px-30  text-center md:min-h-[32rem] md:top-[70px] md:justify-start md:text-left">
+          <div className="relative z-10 flex min-h-104 items-center justify-center px-4 md:px-30  text-center md:min-h-128 md:top-17.5 md:justify-start md:text-left">
             <div className="max-w-md md:max-w-lg">
               <h2 className="text-2xl font-semibold text-gray-900 sm:text-3xl md:text-4xl">
                 Encuentra todo lo que necesitas, en un solo lugar.

@@ -64,7 +64,7 @@ export const ProductDetail = () => {
       <section className="flex flex-col md:flex-row pt-60 pl-6 md:pl-2 md:pt-20 pb-45 justify-center h-screen gap-5 md:gap-20">
         <div className="w-80 h-130 mt-12 md:w-96">
           <img
-            src={productDetailData.image}
+            src={productDetailData.image || undefined}
             className="h-90 md:h-112.5 p-6 mt-40 md:mt-0  md:p-2 "
           />
         </div>

@@ -6,14 +6,14 @@ export interface ProductsList {
 }
 
 export interface ProductDetail {
-  id: number | string;
+  id: number;
   name: string;
   description: string;
   unit_price: string;
   product_code: string;
   image: string;
   category: {
-    id: string | number;
+    id: number;
     name: string;
   };
 }

@@ -63,6 +63,15 @@ export const api = {
     });
     return response.data;
   },
+  addProductToCart: async (productId: number, quantity: number = 1) => {
+    const token = localStorage.getItem("auth_token");
+    const response = await axios.post(
+      `${BASE_URL}carts/add-item/`,
+      { product_id: productId, quantity },
+      { headers: { Authorization: `Token ${token}` } },
+    );
+    return response.data;
+  },
   updateCartItemQuantity: async (detailId: number, quantity: number) => {
     const token = localStorage.getItem("auth_token");
     const response = await axios.patch(

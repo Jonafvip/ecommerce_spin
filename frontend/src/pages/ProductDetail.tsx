@@ -5,13 +5,15 @@ import { useParams } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import axios from "axios";
+
 const initialValue: Details = {
-  id: "",
+  id: 0,
   name: "",
   description: "",
   image: "",
   category: {
-    id: "",
+    id: 0,
     name: "",
   },
   product_code: "",
@@ -38,6 +40,25 @@ export const ProductDetail = () => {
     window.scroll(0, 0);
   }, [id]);
 
+  const handleAddProducToCard = async () => {
+    if (!productDetailData.id) return;
+    console.log("Enviando id de productos:", productDetailData.id);
+
+    if (!productDetailData.id) {
+      console.error("El producto aún no ha cargado su ID.");
+      return;
+    }
+    try {
+      await api.addProductToCart(productDetailData.id, 1);
+      alert("Producto añadido al carrito con exito");
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        const serverError = error.response?.data;
+        console.log(serverError);
+      }
+    }
+  };
+
   return (
     <div className="w-full h-175 mb-30 md:mb-0">
       <section className="flex flex-col md:flex-row pt-60 pl-6 md:pl-2 md:pt-20 pb-45 justify-center h-screen gap-5 md:gap-20">
@@ -60,7 +81,10 @@ export const ProductDetail = () => {
             </Badge>
             <p className="tracking-wide">{productDetailData.description}</p>
           </div>
-          <Button className="rounded-none p-6 text-xl flex gap-4 mt-5">
+          <Button
+            className="rounded-none p-6 text-xl flex gap-4 mt-5"
+            onClick={() => handleAddProducToCard()}
+          >
             Agregar al Carrito <ArrowRight />
           </Button>
         </div>

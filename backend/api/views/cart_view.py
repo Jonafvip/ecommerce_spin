@@ -1,5 +1,6 @@
 from rest_framework.viewsets import ModelViewSet
 from ..models.cart import Cart
+from ..models.product import Product
 from ..models.cart_detail import CartDetail
 from ..serializers.cart_serializer import CartCreateSerializer, CartListSerializer
 from rest_framework.permissions import IsAuthenticated, AllowAny
@@ -36,6 +37,51 @@ class CartViewSet(ModelViewSet):
             serializer.save(user=self.request.user)
         else:
             serializer.save()
+
+    @action(detail=False, methods=["post"], url_path="add-item")
+    def add_item(self, request):
+        product_id = request.data.get("product_id")
+        quantity = int(request.data.get("quantity", 1))
+
+        if not product_id:
+            return Response(
+                {"error": "Se requiere product_id"}, status=status.HTTP_400_BAD_REQUEST
+            )
+
+        cart, _ = Cart.objects.get_or_create(user=request.user, status="ACTIVE")
+
+        try:
+            product = Product.objects.get(id=product_id)
+        except Product.DoesNotExist:
+            return Response(
+                {"error": "El producto no existe"}, status=status.HTTP_404_NOT_FOUND
+            )
+
+        if product.stock < quantity:
+            return Response(
+                {"error": f"Stock insuficiente para {product.name}"},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        detail, created = CartDetail.objects.get_or_create(
+            cart=cart, product=product, defaults={"quantity": quantity}
+        )
+
+        if not created:
+            new_quantity = detail.quantity + quantity
+            if product.name < new_quantity:
+                return Response(
+                    {
+                        "error": f"Stock insuficiente. Solo quedan {product.stock} unidades"
+                    },
+                    status=status.HTTP_400_BAD_REQUEST,
+                )
+            detail.quantity = new_quantity
+            detail.save()
+        return Response(
+            {"message": "Producto añadido al carrito con exito"},
+            status=status.HTTP_200_OK,
+        )
 
     @action(detail=False, methods=["delete"], url_path="remove-item")
     def remove_item(self, request):

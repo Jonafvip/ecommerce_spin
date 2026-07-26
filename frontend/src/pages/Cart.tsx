@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-
+import axios from "axios";
 export const Cart = () => {
   const [cartData, setCartData] = useState<OmitUserInCart[]>([]);
 
@@ -32,7 +32,7 @@ export const Cart = () => {
     try {
       await api.updateCartItemQuantity(detailId, newQuantity);
     } catch (error) {
-      console.log("Error al actuizar la cantidad:", error);
+      console.log("Error al actualizat la cantidad:", error);
     }
   };
 
@@ -76,7 +76,10 @@ export const Cart = () => {
     try {
       await api.removeCartItem(detailId);
     } catch (error) {
-      console.error("Error al eliminar item:", error);
+      if (axios.isAxiosError(error)) {
+        const serverError = error.response?.data;
+        console.log(serverError);
+      }
     }
   };
 
@@ -93,17 +96,17 @@ export const Cart = () => {
   }, []);
 
   return (
-    <div className="w-full flex justify-center">
+    <div className="w-full flex flex-col justify-center  md:flex-row md:justify-center">
       {/* section */}
-      <section className="w-10/17 min-h-175">
-        <h2 className="text-4xl font-light mb-2 p-10">Cart</h2>
+      <section className="w-full min-h-175 md:w-10/17">
+        <h2 className="text-4xl font-light mb-2 p-8 md:p-10">Cart</h2>
         <Separator />
         {cartData.map((car) => (
-          <div key={car.id}>
+          <div key={car.id} className="p-2 md:p-0">
             {car.details.map((det) => (
               <div key={det.id} className="w-full flex">
                 {" "}
-                <div className="w-full flex py-4 pl-9 gap-10">
+                <div className="w-full flex flex-wrap py-4 pl-9 gap-10">
                   <img src={det.product_image} className="w-44 h-50" />
                   <div className="flex flex-col justify-between">
                     <div className="py-2">
@@ -142,7 +145,7 @@ export const Cart = () => {
                   </p>
                   <Button
                     variant="ghost"
-                    className="cursor-pointer"
+                    className="cursor-pointer pt-4 "
                     onClick={() => handleRemove(det.id)}
                   >
                     Remove
@@ -156,36 +159,36 @@ export const Cart = () => {
       </section>
 
       {/* aside */}
-      <aside className="w-1/3 py-30 px-8">
-        <div className="border rounded-2xl p-6 shadow-md flex flex-col gap-4">
+      <aside className="w-full py-20 px-8 md:px-8 md:w-1/3 md:py-30">
+        <div className="border rounded-2xl p-6 shadow-md flex flex-col gap-3 md:gap-4 ">
           <h2 className="text-xl font-light tracking-wider border-b pb-3">
             Resumen del pedido
           </h2>
 
-          <div className="flex justify-between items-center text-lg py-2 px-4">
+          <div className="flex flex-col justify-between items-center md:flex-row text-lg py-2 px-4">
             <span className="text-gray-600">SubTotal:</span>
             <span className="font-light text-xl">${subtotal.toFixed(2)}</span>
           </div>
 
-          <div className="flex justify-between items-center text-lg py-2 px-4">
+          <div className="flex flex-col justify-between items-center md:flex-row text-lg py-2 px-4">
             <span className="text-gray-600">Envio:</span>
             <span className="font-light text-xl">Calculado para pagar</span>
           </div>
 
-          <div className="flex justify-between items-center text-lg py-2 px-4">
+          <div className="flex flex-col justify-between items-center md:flex-row text-lg py-2 px-4">
             <span className="text-gray-600">Tax:</span>
             <span className="font-light text-xl">$0.00</span>
           </div>
 
           <Separator />
 
-          <div className="flex justify-between items-center text-lg py-2 px-4">
+          <div className="flex flex-col justify-between items-center md:flex-row text-lg py-2 px-4">
             <span className="text-gray-600">Total:</span>
             <span className="font-semibold text-2xl">
               ${subtotal.toFixed(2)}
             </span>
           </div>
-          <Button className="w-80 py-6 text-lg ml-10 mt-2">
+          <Button className="w-40 mx-auto py-6 text-2xs mt-2 md:w-80 md:text-lg">
             Continuar Compra
           </Button>
           <div className="flex flex-col gap-3 px-2 py-4">

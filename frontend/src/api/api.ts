@@ -74,7 +74,7 @@ export const api = {
   },
   removeCartItem: async (detail_id: number) => {
     const token = localStorage.getItem("auth_token");
-    const response = await axios.delete(`${BASE_URL}carts/`, {
+    const response = await axios.delete(`${BASE_URL}carts/remove-item/`, {
       headers: { Authorization: `Token ${token}` },
       data: { detail_id: detail_id },
     });

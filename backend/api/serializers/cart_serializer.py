@@ -1,11 +1,7 @@
 from rest_framework import serializers
 from ..models.cart import Cart
-from ..models.cart_detail import CartDetail
 from .user_serializer import UserListAuxSerializer
-from rest_framework import serializers
-from ..models.cart import Cart
 from ..models.cart_detail import CartDetail
-from .user_serializer import UserListAuxSerializer
 from ..serializers.cart_details_serializer import CartDetailReadProductSerializer
 
 

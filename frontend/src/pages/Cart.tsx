@@ -168,7 +168,7 @@ export const Cart = () => {
 
       {/* aside */}
       <aside className="w-full py-20 px-8 md:px-8 md:w-1/3 md:py-30">
-        <div className="border rounded-2xl p-6 shadow-md flex flex-col gap-3 md:gap-4 ">
+        <div className="border rounded-2xl p-6 shadow-md flex flex-col gap-3 md:gap-4 bg-gray-50 ">
           <h2 className="text-xl font-light tracking-wider border-b pb-3">
             Resumen del pedido
           </h2>

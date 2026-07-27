@@ -69,7 +69,7 @@ class CartViewSet(ModelViewSet):
 
         if not created:
             new_quantity = detail.quantity + quantity
-            if product.name < new_quantity:
+            if product.stock < new_quantity:
                 return Response(
                     {
                         "error": f"Stock insuficiente. Solo quedan {product.stock} unidades"
@@ -82,6 +82,47 @@ class CartViewSet(ModelViewSet):
             {"message": "Producto añadido al carrito con exito"},
             status=status.HTTP_200_OK,
         )
+
+    @action(detail=False, methods=["patch", "put"], url_path="update-quantity")
+    def update_item_quantity(self, request):
+        detaild_id = request.data.get("detail_id")
+        quantity = request.data.get("quantity")
+
+        if not detaild_id or quantity is None:
+            return Response(
+                {"error": "Se requieren detail_id  y quantity"},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        try:
+            quantity = int(quantity)
+            if quantity < 1:
+                return Response(
+                    {"error": "Se requiere detail_id y quantity"},
+                    status=status.HTTP_400_BAD_REQUEST,
+                )
+
+            item = CartDetail.objects.get(id=detaild_id, cart__user=request.user)
+
+            if item.product.stock < quantity:
+                return Response(
+                    {
+                        "error": f"Stock insuficiente.Solo quedan {item.product.stock} unidades"
+                    },
+                    status=status.HTTP_400_BAD_REQUEST,
+                )
+            item.quantity = quantity
+            item.save()
+
+            return Response(
+                {"message": "Cantidad actualizada correctamente"},
+                status=status.HTTP_200_OK,
+            )
+        except CartDetail.DoesNotExist:
+            return Response(
+                {"error": "El detalle no existe o no te pertenece"},
+                status=status.HTTP_404_NOT_FOUND,
+            )
 
     @action(detail=False, methods=["delete"], url_path="remove-item")
     def remove_item(self, request):

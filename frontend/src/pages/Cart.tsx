@@ -5,8 +5,11 @@ import { ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import axios from "axios";
+import { useCart } from "@/context/CartContext";
+
 export const Cart = () => {
   const [cartData, setCartData] = useState<OmitUserInCart[]>([]);
+  const { refreshCartCount } = useCart();
 
   const subtotal = cartData.reduce((accCart, car) => {
     const cartTotal = car.details.reduce((accDetail, det) => {
@@ -31,8 +34,11 @@ export const Cart = () => {
     );
     try {
       await api.updateCartItemQuantity(detailId, newQuantity);
+      await refreshCartCount();
     } catch (error) {
-      console.log("Error al actualizat la cantidad:", error);
+      if (axios.isAxiosError(error)) {
+        console.log("Respuesta de error de Django:", error.response?.data);
+      }
     }
   };
 
@@ -60,6 +66,7 @@ export const Cart = () => {
 
     try {
       await api.updateCartItemQuantity(detailId, newQuantity);
+      await refreshCartCount();
     } catch (error) {
       console.error("Error al actualizar cantidad:", error);
     }
@@ -75,6 +82,7 @@ export const Cart = () => {
 
     try {
       await api.removeCartItem(detailId);
+      await refreshCartCount();
     } catch (error) {
       if (axios.isAxiosError(error)) {
         const serverError = error.response?.data;

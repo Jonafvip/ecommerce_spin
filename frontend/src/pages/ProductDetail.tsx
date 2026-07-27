@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import axios from "axios";
+import { useCart } from "@/context/CartContext";
 
 const initialValue: Details = {
   id: 0,
@@ -24,6 +25,7 @@ export const ProductDetail = () => {
   const [productDetailData, setProductDetailData] =
     useState<Details>(initialValue);
   const { id } = useParams<{ id: string }>();
+  const { refreshCartCount } = useCart();
 
   useEffect(() => {
     const fetchData = async (productId?: string | number) => {
@@ -42,7 +44,6 @@ export const ProductDetail = () => {
 
   const handleAddProducToCard = async () => {
     if (!productDetailData.id) return;
-    console.log("Enviando id de productos:", productDetailData.id);
 
     if (!productDetailData.id) {
       console.error("El producto aún no ha cargado su ID.");
@@ -50,7 +51,7 @@ export const ProductDetail = () => {
     }
     try {
       await api.addProductToCart(productDetailData.id, 1);
-      alert("Producto añadido al carrito con exito");
+      await refreshCartCount();
     } catch (error) {
       if (axios.isAxiosError(error)) {
         const serverError = error.response?.data;

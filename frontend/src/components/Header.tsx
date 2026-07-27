@@ -28,7 +28,7 @@ export const Header = () => {
           <NavLink to="/products">Products</NavLink>
         </li>
         <li className="cursor-pointer border-b border-transparent transition-colors hover:border-gray-800">
-          About
+         <NavLink to="/about"> About</NavLink>
         </li>
       </ul>
 

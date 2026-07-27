@@ -11,12 +11,40 @@ import { LuTruck } from "react-icons/lu";
 import CardUser from "@/components/CardUser";
 import Hero from "@/assets/hero.png";
 import { NavLink } from "react-router-dom";
+import imgTecnologia from "@/assets/tecnologia.webp";
+import imgHogar from "@/assets/hogar.webp";
+import imgRopa from "@/assets/ropa.webp";
+import imgHerramientas from "@/assets/herramientas.webp";
+
 type ProductListExceptCategory = Omit<ProductsList, "category">;
 
 export const Home = () => {
   const [productsData, setProductsData] = useState<ProductListExceptCategory[]>(
     [],
   );
+
+  const CategoryData = [
+    {
+      nombre: "Tecnología",
+      imageBackground: imgTecnologia,
+      url: "/products",
+    },
+    {
+      nombre: "Hogar",
+      imageBackground: imgHogar,
+      url: "/products",
+    },
+    {
+      nombre: "Moda",
+      imageBackground: imgRopa,
+      url: "/products",
+    },
+    {
+      nombre: "Herramientas",
+      imageBackground: imgHerramientas,
+      url: "/products",
+    },
+  ];
 
   useEffect(() => {
     const fetchData = async () => {
@@ -93,45 +121,27 @@ export const Home = () => {
           </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-8 md:px-2">
-            <div className="relative group overflow-hidden  h-64 cursor-pointer">
-              <div className="absolute inset-0 bg-[url('@/assets/tecnologia.webp')] bg-cover bg-center transition-transform duration-300 group-hover:scale-105" />
-              <div className="absolute inset-0 bg-black/40 transition-colors group-hover:bg-black/30" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <p className="text-white text-xl font-bold tracking-wide">
-                  Tecnología
-                </p>
+            {CategoryData.map((cat) => (
+              <div
+                key={cat.nombre}
+                className="relative group overflow-hidden h-64 cursor-pointer"
+              >
+                <NavLink to={cat.url}>
+                  <div
+                    className="absolute inset-0 bg-cover bg-center transition-transform duration-300 group-hover:scale-105"
+                    style={{
+                      backgroundImage: `url(${cat.imageBackground})`,
+                    }}
+                  />
+                  <div className="absolute inset-0 bg-black/40 transition-colors group-hover:bg-black/30" />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <p className="text-white text-xl font-bold tracking-wide">
+                      {cat.nombre}
+                    </p>
+                  </div>
+                </NavLink>
               </div>
-            </div>
-
-            <div className="relative group overflow-hidden  h-64 cursor-pointer">
-              <div className="absolute inset-0 bg-[url('@/assets/hogar.webp')] bg-cover bg-center transition-transform duration-300 group-hover:scale-105" />
-              <div className="absolute inset-0 bg-black/40 transition-colors group-hover:bg-black/30" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <p className="text-white text-xl font-bold tracking-wide">
-                  Hogar
-                </p>
-              </div>
-            </div>
-
-            <div className="relative group overflow-hidden  h-64 cursor-pointer">
-              <div className="absolute inset-0 bg-[url('@/assets/ropa.webp')] bg-cover bg-center transition-transform duration-300 group-hover:scale-105" />
-              <div className="absolute inset-0 bg-black/40 transition-colors group-hover:bg-black/30" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <p className="text-white text-xl font-bold tracking-wide">
-                  Moda
-                </p>
-              </div>
-            </div>
-
-            <div className="relative group overflow-hidden  h-64 cursor-pointer">
-              <div className="absolute inset-0 bg-[url('@/assets/herramientas.webp')] bg-cover bg-center transition-transform duration-300 group-hover:scale-105" />
-              <div className="absolute inset-0 bg-black/40 transition-colors group-hover:bg-black/30" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <p className="text-white text-xl font-bold tracking-wide">
-                  Herramientas
-                </p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>

@@ -75,8 +75,8 @@ export const api = {
   updateCartItemQuantity: async (detailId: number, quantity: number) => {
     const token = localStorage.getItem("auth_token");
     const response = await axios.patch(
-      `${BASE_URL}carts/`,
-      { detailId: detailId, quantity },
+      `${BASE_URL}carts/update-quantity/`,
+      { detail_id: Number(detailId), quantity: Number(quantity) },
       { headers: { Authorization: `Token ${token}` } },
     );
     return response;

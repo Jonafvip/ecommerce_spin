@@ -9,8 +9,13 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
+import { NavLink } from "react-router-dom";
 
-const mobileLinks = ["Home", "Collection", "About"];
+const mobileLinks = [
+  { section: "Home", url: "/" },
+  { section: "Products", url: "/products" },
+  { section: "About", url: "/about" },
+];
 
 export const SheetSide = () => {
   return (
@@ -31,17 +36,15 @@ export const SheetSide = () => {
 
           <SheetFooter className="mt-0 gap-2 p-4">
             {mobileLinks.map((item) => (
-              <SheetClose key={item}>
+              <NavLink to={item.url} key={item.section}>
                 <Button className="w-full p-6" variant="outline">
-                  {item}
+                  {item.section}
                 </Button>
-              </SheetClose>
+              </NavLink>
             ))}
 
-            <SheetClose>
-              <Button variant="default" className="w-full p-6">
-                Cancelar
-              </Button>
+            <SheetClose className="bg-black text-white p-4 rounded-2xl">
+              Cancelar
             </SheetClose>
           </SheetFooter>
         </SheetContent>

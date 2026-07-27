@@ -6,6 +6,7 @@ import { ProductDetail } from "./pages/ProductDetail";
 import { Register } from "./pages/auth/Register";
 import { Login } from "./pages/auth/Login";
 import { Cart } from "./pages/Cart";
+import { CartProvider } from "./context/CartContext";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -41,7 +42,9 @@ const router = createBrowserRouter([
 export const App = () => {
   return (
     <>
-      <RouterProvider router={router} />
+      <CartProvider>
+        <RouterProvider router={router} />
+      </CartProvider>
     </>
   );
 };

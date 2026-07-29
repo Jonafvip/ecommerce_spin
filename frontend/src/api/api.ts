@@ -8,6 +8,7 @@ import {
   type LoginUser,
   type AuthTokenResponse,
   type OmitUserInCart,
+  type UserDetailt,
 } from "@/types/types";
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
@@ -86,6 +87,13 @@ export const api = {
     const response = await axios.delete(`${BASE_URL}carts/remove-item/`, {
       headers: { Authorization: `Token ${token}` },
       data: { detail_id: detail_id },
+    });
+    return response.data;
+  },
+  getUserDetail: async (): Promise<UserDetailt> => {
+    const token = localStorage.getItem("auth_token");
+    const response = await axios.get<UserDetailt>(`${BASE_URL}user/me/`, {
+      headers: { Authorization: `Token ${token}` },
     });
     return response.data;
   },

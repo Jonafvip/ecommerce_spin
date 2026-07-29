@@ -7,7 +7,8 @@ import { useCart } from "@/context/CartContext";
 
 export const Header = () => {
   const { cartCount } = useCart();
-  
+  const token = localStorage.getItem("auth_token");
+
   return (
     <div className="flex items-center justify-between border-b border-gray-200 px-4 py-4 md:px-15 md:py-6">
       <div className="flex items-center gap-3 md:gap-0">
@@ -28,12 +29,19 @@ export const Header = () => {
           <NavLink to="/products">Products</NavLink>
         </li>
         <li className="cursor-pointer border-b border-transparent transition-colors hover:border-gray-800">
-         <NavLink to="/about"> About</NavLink>
+          <NavLink to="/about"> About</NavLink>
         </li>
       </ul>
 
       {/* nav icons */}
       <ul className="hidden md:flex gap-8">
+        {token ? (
+          <li>
+            <NavLink to="/dash">DashBoard</NavLink>
+          </li>
+        ) : (
+          ""
+        )}
         <li className="cursor-pointer">
           <Search />
         </li>

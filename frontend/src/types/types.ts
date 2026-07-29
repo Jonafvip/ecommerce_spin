@@ -71,3 +71,12 @@ export interface CartList {
 }
 
 export type OmitUserInCart = Omit<CartList, "user">;
+
+export interface UserDetailt {
+  id?: number;
+  username: string;
+  first_name: string;
+  last_name: string;
+  email: string;
+  role: string;
+}

@@ -3,10 +3,9 @@ import { Card } from "@/components/Card";
 import { Checkbox } from "@/components/Checkbox";
 import { PaginationProducts } from "@/components/PaginationProducts";
 import { Select } from "@/components/Select";
-import { type ProductsList, type CategoryList } from "@/types/types";
+import { type CategoryList,type ProductListExceptCategory } from "@/types/types";
 import { useEffect, useState } from "react";
 
-type ProductListExceptCategory = Omit<ProductsList, "category">;
 export const Products = () => {
   const [productsData, setProductsData] = useState<ProductListExceptCategory[]>(
     [],

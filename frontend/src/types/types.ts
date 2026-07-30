@@ -18,6 +18,30 @@ export interface ProductDetail {
   };
 }
 
+export interface ProductCreate {
+  name: string;
+  description: string;
+  stock: number;
+  unit_price: string | number;
+  product_code: string;
+  image: File | null;
+  is_active: boolean;
+  category: number;
+}
+
+export interface ProductListWatchAdmin {
+  id: string;
+  name: string;
+  unit_price: string;
+  product_code: string;
+  stock: number;
+  category: {
+    name: string;
+  };
+  image?: string;
+  is_active: boolean;
+}
+
 export type ProductListExceptCategory = Omit<ProductsList, "category">;
 
 export interface PaginatedProductsResponse {

@@ -2,13 +2,13 @@ import { Input as InputGlobal } from "@/components/ui/input";
 import { Field, FieldLabel } from "@/components/ui/field";
 
 interface InputMyProp {
-  placeholder: string;
-  label: string;
-  value: string | undefined;
-  name: string;
+  placeholder?: string;
+  label?: string;
+  value?: string | undefined |number;
+  name?: string;
   required?: boolean;
   type?: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export const Input = ({

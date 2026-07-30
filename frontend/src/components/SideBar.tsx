@@ -9,6 +9,7 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { LayoutDashboard, ShoppingCart, Archive, Users } from "lucide-react";
+import { NavLink } from "react-router-dom";
 
 export function AppSidebar() {
   return (
@@ -24,7 +25,9 @@ export function AppSidebar() {
             <SidebarMenuItem>
               <SidebarMenuButton className="transition-all duration-200 ease-in-out hover:bg-slate-100 dark:hover:bg-zinc-800 hover:text-primary hover:translate-x-1 py-5 pl-6">
                 <LayoutDashboard className="h-5! w-6! shrink-0" />
-                <span className="text-base font-light">Dashboard</span>
+                <span className="text-base font-light">
+                  <NavLink to="/dash">Dashboard</NavLink>
+                </span>
               </SidebarMenuButton>
             </SidebarMenuItem>
 

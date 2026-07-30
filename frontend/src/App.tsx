@@ -9,6 +9,7 @@ import { Cart } from "./pages/Cart";
 import { CartProvider } from "./context/CartContext";
 import { About } from "./pages/About";
 import { Dashboard } from "./pages/Dashboard/Dashboard";
+import { CreateProducts } from "./pages/Dashboard/CreateProducts";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
       {
         path: "/dash",
         element: <Dashboard />,
+      },
+      {
+        path: "/create-products",
+        element: <CreateProducts />,
       },
     ],
   },

@@ -4,7 +4,7 @@ import {
 
 interface SelectMyProp {
   value: string;
-  onChange: (value: string) => void;
+  onChange: (value: string) => void;  
 }
 export const Select = ({ value, onChange }: SelectMyProp) => {
   return (

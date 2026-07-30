@@ -8,6 +8,7 @@ interface InputMyProp {
   name?: string;
   required?: boolean;
   type?: string;
+  accept?:string
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -18,6 +19,7 @@ export const Input = ({
   name,
   required,
   type,
+  accept,
   onChange,
 }: InputMyProp) => {
   return (
@@ -31,6 +33,7 @@ export const Input = ({
         onChange={onChange}
         required={required}
         className="p-5"
+        accept={accept}
       />
     </Field>
   );

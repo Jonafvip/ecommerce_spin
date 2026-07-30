@@ -53,7 +53,7 @@ const data = [
 export const Step4 = () => {
   return (
     <LineChart
-      style={{ width: "100%", aspectRatio: 1.618, maxWidth: 600 }}
+      style={{ width: "100%", aspectRatio: 1.618, maxWidth: 700 }}
       responsive
       data={data}
       margin={{

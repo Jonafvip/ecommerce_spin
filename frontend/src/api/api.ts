@@ -10,6 +10,7 @@ import {
   type OmitUserInCart,
   type UserDetailt,
 } from "@/types/types";
+import { type ProductListWatchAdmin } from "@/types/types";
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
@@ -28,11 +29,28 @@ export const api = {
     );
     return response.data;
   },
+  postProductCreate: async (productData: FormData): Promise<ProductListWatchAdmin> => {
+    const token = localStorage.getItem("auth_token");
+    const response = await axios.post<ProductListWatchAdmin>(`${BASE_URL}products/`, productData, {
+      headers: { Authorization: `Token ${token}` },
+    });
+    return response.data;
+  },
   getProductsNavigation: async (
     url?: string,
   ): Promise<PaginatedProductsResponse> => {
     const endpoint = url || `${BASE_URL}products/`!;
     const response = await axios.get<PaginatedProductsResponse>(endpoint);
+    return response.data;
+  },
+  getProductsAdmin: async (): Promise<ProductListWatchAdmin[]> => {
+    const token = localStorage.getItem("auth_token");
+    const response = await axios.get<ProductListWatchAdmin[]>(
+      `${BASE_URL}products/list-products-admin/`,
+      {
+        headers: { Authorization: `Token ${token}` },
+      },
+    );
     return response.data;
   },
   getCategories: async (): Promise<CategoryList[]> => {

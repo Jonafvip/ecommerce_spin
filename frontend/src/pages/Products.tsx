@@ -2,9 +2,19 @@ import { api } from "@/api/api";
 import { Card } from "@/components/Card";
 import { Checkbox } from "@/components/Checkbox";
 import { PaginationProducts } from "@/components/PaginationProducts";
-import { Select } from "@/components/Select";
-import { type CategoryList,type ProductListExceptCategory } from "@/types/types";
+import { Select, type SelectionOption } from "@/components/Select";
+import {
+  type CategoryList,
+  type ProductListExceptCategory,
+} from "@/types/types";
 import { useEffect, useState } from "react";
+
+const CustomerSortOptions: SelectionOption[] = [
+  { value: "name", label: "Nombre (A-Z)" },
+  { value: "-name", label: "Nombre (Z-A)" },
+  { value: "unit_price", label: "Precio: Menor a Mayor" },
+  { value: "-unit_price", label: "Precio: Mayor a Menor" },
+];
 
 export const Products = () => {
   const [productsData, setProductsData] = useState<ProductListExceptCategory[]>(
@@ -153,7 +163,12 @@ export const Products = () => {
             Products <span className="text-xl">({count})</span>
           </h2>
           <div className="shrink-0">
-            <Select value={ordering} onChange={setOrdering} />
+            <Select
+              value={ordering}
+              onChange={setOrdering}
+              placeholder="Ordenar Por: "
+              options={CustomerSortOptions}
+            />
           </div>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8 px-8 md:px-15 md:mx-auto mt-8">

@@ -51,6 +51,13 @@ export interface PaginatedProductsResponse {
   results: ProductListExceptCategory[];
 }
 
+export interface PaginatedCustomerResponse {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: UserListByAdmin[];
+}
+
 export interface CategoryList {
   id: number;
   name: string;
@@ -101,6 +108,14 @@ export interface UserDetailt {
   username: string;
   first_name: string;
   last_name: string;
+  email: string;
+  role: string;
+}
+
+export interface UserListByAdmin {
+  id: number;
+  username?: string;
+  full_name: string;
   email: string;
   role: string;
 }

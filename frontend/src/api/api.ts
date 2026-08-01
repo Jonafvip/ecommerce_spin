@@ -9,10 +9,12 @@ import {
   type AuthTokenResponse,
   type OmitUserInCart,
   type UserDetailt,
+  type PaginatedCustomerResponse,
 } from "@/types/types";
 import { type ProductListWatchAdmin } from "@/types/types";
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
+const TOKEN_AUTH = import.meta.env.VITE_TOKEN_AUTH
 
 export const api = {
   getProducts: async (): Promise<{ results: ProductListExceptCategory[] }> => {
@@ -29,11 +31,17 @@ export const api = {
     );
     return response.data;
   },
-  postProductCreate: async (productData: FormData): Promise<ProductListWatchAdmin> => {
+  postProductCreate: async (
+    productData: FormData,
+  ): Promise<ProductListWatchAdmin> => {
     const token = localStorage.getItem("auth_token");
-    const response = await axios.post<ProductListWatchAdmin>(`${BASE_URL}products/`, productData, {
-      headers: { Authorization: `Token ${token}` },
-    });
+    const response = await axios.post<ProductListWatchAdmin>(
+      `${BASE_URL}products/`,
+      productData,
+      {
+        headers: { Authorization: `Token ${token}` },
+      },
+    );
     return response.data;
   },
   getProductsNavigation: async (
@@ -66,7 +74,7 @@ export const api = {
   },
   postLogin: async (userdata: LoginUser): Promise<AuthTokenResponse> => {
     const response = await axios.post<AuthTokenResponse>(
-      `http://127.0.0.1:8000/api-token-auth/`,
+      TOKEN_AUTH,
       userdata,
     );
     return response.data;
@@ -111,6 +119,16 @@ export const api = {
   getUserDetail: async (): Promise<UserDetailt> => {
     const token = localStorage.getItem("auth_token");
     const response = await axios.get<UserDetailt>(`${BASE_URL}user/me/`, {
+      headers: { Authorization: `Token ${token}` },
+    });
+    return response.data;
+  },
+  getUsersListByAdmin: async (
+    url?: string,
+  ): Promise<PaginatedCustomerResponse> => {
+    const token = localStorage.getItem("auth_token");
+    const endpoint = url || `${BASE_URL}users/admin/`;
+    const response = await axios.get<PaginatedCustomerResponse>(endpoint, {
       headers: { Authorization: `Token ${token}` },
     });
     return response.data;

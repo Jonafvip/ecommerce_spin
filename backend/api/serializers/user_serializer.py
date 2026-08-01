@@ -46,3 +46,22 @@ class UserListAuxSerializer(serializers.ModelSerializer):
 
     def get_full_name(self, obj):
         return f"{obj.first_name} {obj.last_name}"
+
+
+class UserListByAdminSerializer(serializers.ModelSerializer):
+    full_name = serializers.SerializerMethodField()
+
+    class Meta:
+        model = User
+        fields = ["id", "username", "full_name", "email", "role"]
+
+    def get_full_name(self, obj):
+        first = obj.first_name if obj.first_name else ""
+        last = obj.last_name if obj.last_name else ""
+
+        full_name = f"{first} {last}"
+
+        if not full_name:
+            return obj.email
+
+        return full_name

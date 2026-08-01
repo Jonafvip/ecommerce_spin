@@ -10,6 +10,7 @@ import { CartProvider } from "./context/CartContext";
 import { About } from "./pages/About";
 import { Dashboard } from "./pages/Dashboard/Dashboard";
 import { CreateProducts } from "./pages/Dashboard/CreateProducts";
+import { Customer } from "./pages/Dashboard/Customer";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
       {
         path: "/create-products",
         element: <CreateProducts />,
+      },
+      {
+        path: "/customers",
+        element: <Customer />,
       },
     ],
   },

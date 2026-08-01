@@ -1,10 +1,17 @@
 from ..models.user import User
-from ..serializers.user_serializer import UserCreateSerializer, UserDetailSerializer
-from rest_framework.generics import CreateAPIView, RetrieveAPIView
+from ..serializers.user_serializer import (
+    UserCreateSerializer,
+    UserDetailSerializer,
+    UserListByAdminSerializer,
+)
+from rest_framework.generics import CreateAPIView, RetrieveAPIView, ListAPIView
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.filters import OrderingFilter
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.pagination import PageNumberPagination
 
 
 class UserCreateAPIView(CreateAPIView):
@@ -28,3 +35,16 @@ class UserRetrieveAPIView(RetrieveAPIView):
 
     def get_object(self):
         return self.request.user
+
+
+class UserListByAdminAPIView(ListAPIView):
+    queryset = User.objects.filter(is_active=True)
+    serializer_class = UserListByAdminSerializer
+    permission_classes = [IsAuthenticated]
+    filter_backends = [DjangoFilterBackend, OrderingFilter]
+    ordering_fields = ["username"]
+    pagination_class = PageNumberPagination
+    pagination_class.page_size = 10
+
+    def get_queryset(self):
+        return User.objects.filter(is_active=True).filter(role="CUSTOMER")

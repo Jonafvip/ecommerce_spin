@@ -5,11 +5,18 @@ from ..serializers.category_serializer import (
 )
 from rest_framework.viewsets import ModelViewSet
 from ..permissions import IsAdminOrReadOnly
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.pagination import PageNumberPagination
+from rest_framework.decorators import action
+from rest_framework.response import Response
 
 
 class CategoryViewSet(ModelViewSet):
     serializer_class = CategoryListSerializer
     permission_classes = [IsAdminOrReadOnly]
+    filter_backends = [DjangoFilterBackend]
+    pagination_class = PageNumberPagination
+    pagination_class.page_size = 10
 
     def get_queryset(self):
         return Category.objects.filter(is_active=True)
@@ -20,3 +27,9 @@ class CategoryViewSet(ModelViewSet):
         elif self.action == "list":
             return CategoryListSerializer
         return CategoryListSerializer
+
+    @action(detail=False, methods=["get"], url_path="all-categories")
+    def all_category(self, request):
+        category = self.get_queryset()
+        serializer = CategoryListSerializer(category, many=True)
+        return Response(serializer.data)

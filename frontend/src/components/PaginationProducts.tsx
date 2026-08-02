@@ -14,7 +14,7 @@ interface PaginationMyProp {
   next: string | null;
   prev: string | null;
   currentPage: number;
-  totalPages: number;
+  totalPages?: number;
   onPageChange: (url: string, pageNumber: number) => void;
 }
 
@@ -25,7 +25,7 @@ export const PaginationProducts = ({
   totalPages,
   onPageChange,
 }: PaginationMyProp) => {
-  const pageNumber = Array.from({ length: totalPages }, (_, i) => i + 1);
+  const pageNumber = Array.from({ length: totalPages! }, (_, i) => i + 1);
 
   return (
     <Pagination className="mt-10 p-10 border-t-2">

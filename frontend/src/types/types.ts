@@ -61,6 +61,21 @@ export interface PaginatedCustomerResponse {
 export interface CategoryList {
   id: number;
   name: string;
+  description: string;
+  is_active: boolean;
+}
+
+export interface PaginationCategory {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: CategoryList[];
+}
+
+export interface CategoryCreate {
+  name: string;
+  description: string;
+  is_active: boolean;
 }
 
 export interface RegisterUser {

@@ -10,11 +10,13 @@ import {
   type OmitUserInCart,
   type UserDetailt,
   type PaginatedCustomerResponse,
+  type CategoryCreate,
+  type PaginationCategory,
 } from "@/types/types";
 import { type ProductListWatchAdmin } from "@/types/types";
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
-const TOKEN_AUTH = import.meta.env.VITE_TOKEN_AUTH
+const TOKEN_AUTH = import.meta.env.VITE_TOKEN_AUTH;
 
 export const api = {
   getProducts: async (): Promise<{ results: ProductListExceptCategory[] }> => {
@@ -62,7 +64,23 @@ export const api = {
     return response.data;
   },
   getCategories: async (): Promise<CategoryList[]> => {
-    const response = await axios.get<CategoryList[]>(`${BASE_URL}categories/`);
+    const response = await axios.get<CategoryList[]>(
+      `${BASE_URL}categories/all-categories/`,
+    );
+    return response.data;
+  },
+  postCategory: async (data: CategoryCreate): Promise<CategoryCreate> => {
+    const token = localStorage.getItem("auth_token");
+    const response = await axios.post(`${BASE_URL}categories/`, data, {
+      headers: { Authorization: `Token ${token}` },
+    });
+    return response.data;
+  },
+  getCategoriesNavigation: async (
+    url?: string,
+  ): Promise<PaginationCategory> => {
+    const endpoint = url || `${BASE_URL}categories/`;
+    const response = await axios.get<PaginationCategory>(endpoint);
     return response.data;
   },
   postRegister: async (userData: RegisterUser): Promise<RegisterUser> => {
@@ -73,10 +91,7 @@ export const api = {
     return response.data;
   },
   postLogin: async (userdata: LoginUser): Promise<AuthTokenResponse> => {
-    const response = await axios.post<AuthTokenResponse>(
-      TOKEN_AUTH,
-      userdata,
-    );
+    const response = await axios.post<AuthTokenResponse>(TOKEN_AUTH, userdata);
     return response.data;
   },
   logoutUser: () => {

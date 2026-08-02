@@ -11,6 +11,7 @@ import { About } from "./pages/About";
 import { Dashboard } from "./pages/Dashboard/Dashboard";
 import { CreateProducts } from "./pages/Dashboard/CreateProducts";
 import { Customer } from "./pages/Dashboard/Customer";
+import { Category } from "./pages/Dashboard/Category";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
       {
         path: "/customers",
         element: <Customer />,
+      },
+      {
+        path: "/category",
+        element: <Category />,
       },
     ],
   },

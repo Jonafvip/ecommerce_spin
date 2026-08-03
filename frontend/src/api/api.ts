@@ -69,18 +69,25 @@ export const api = {
     );
     return response.data;
   },
-  postCategory: async (data: CategoryCreate): Promise<CategoryCreate> => {
+  postCategory: async (data: CategoryCreate): Promise<CategoryList> => {
     const token = localStorage.getItem("auth_token");
-    const response = await axios.post(`${BASE_URL}categories/`, data, {
-      headers: { Authorization: `Token ${token}` },
-    });
+    const response = await axios.post<CategoryList>(
+      `${BASE_URL}categories/`,
+      data,
+      {
+        headers: { Authorization: `Token ${token}` },
+      },
+    );
     return response.data;
   },
   getCategoriesNavigation: async (
     url?: string,
   ): Promise<PaginationCategory> => {
+    const token = localStorage.getItem("auth_token");
     const endpoint = url || `${BASE_URL}categories/`;
-    const response = await axios.get<PaginationCategory>(endpoint);
+    const response = await axios.get<PaginationCategory>(endpoint, {
+      headers: { Authorization: `Token ${token}` },
+    });
     return response.data;
   },
   postRegister: async (userData: RegisterUser): Promise<RegisterUser> => {

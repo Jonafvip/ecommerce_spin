@@ -10,9 +10,9 @@ import { Dialog } from "@/components/Dialog";
 export const CreateProducts = () => {
   const [productsData, setProductsData] = useState<ProductListWatchAdmin[]>([]);
 
-  const handleProductCreated = (newProduct:ProductListWatchAdmin) => {
-    setProductsData((prevProducts) => [newProduct,...prevProducts])
-  }
+  const handleProductCreated = (newProduct: ProductListWatchAdmin) => {
+    setProductsData((prevProducts) => [newProduct, ...prevProducts]);
+  };
 
   useEffect(() => {
     const fetchDataProduct = async () => {
@@ -32,18 +32,24 @@ export const CreateProducts = () => {
   return (
     <SidebarProvider>
       <AppSidebar />
-      <SidebarTrigger />
-      <div className="w-[1000px] mx-auto">
-        <div className="flex items-center justify-between">
-          <div className="py-6">
-            <h2 className="text-2xl">Products</h2>
-            <p>Controla tu Inventario</p>
+      <div className="flex flex-col w-full min-h-screen">
+        <SidebarTrigger className="m-2" />
+        <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 py-6">
+            <div>
+              <h2 className="text-2xl font-medium">Productos</h2>
+              <p className="text-muted-foreground tracking-wider mt-1">
+                Controla tu Inventario
+              </p>
+            </div>
+            <div className="w-full sm:w-auto">
+              <Dialog onProductCreated={handleProductCreated} />
+            </div>
           </div>
-          <div>
-            <Dialog onProductCreated={handleProductCreated}/>
+          <div className="overflow-x-auto">
+            <Table option={productsData} />
           </div>
         </div>
-        <Table option={productsData} />
       </div>
     </SidebarProvider>
   );

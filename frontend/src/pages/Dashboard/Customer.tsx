@@ -49,67 +49,71 @@ export const Customer = () => {
     fetchDataCustomer(url, 1);
   }, [ordering]);
 
+  const customerMetrics = [
+    { id: "totales", label: "Clientes Totales" },
+    { id: "retencion", label: "Tasa de Retencion" },
+    { id: "nuevos", label: "Nuevos Clientes" },
+  ];
+
   return (
     <SidebarProvider>
       <AppSidebar />
-      <SidebarTrigger />
-      <section className="w-275 mx-auto p-6">
-        <div className="w-full mx-auto flex justify-between items-center">
-          <div>
-            <h2 className="text-3xl tracking-wider">Clientes</h2>
-            <p className="text-2xs text-gray-600  tracking-wider">
-              Gestiona tu lista de Clientes y Consulta las estadisticas
-            </p>
-          </div>
-          <div>
-            <Select
-              value={ordering}
-              placeholder="Ordenar Por: "
-              options={selectCustomerSort}
-              onChange={setOrdering}
-            />
-          </div>
-        </div>
-        <div className="py-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-2 py-6  md:py-2">
-            <div className="w-80 lg:w-72 h-40 border border-gray-400 bg-gray-50 p-4 rounded-2xl font-light stracking-wider">
-              <div className="flex  items-center gap-10">
-                <h5>Clientes Totales</h5>
-              </div>
+      <div className="flex flex-col w-full min-h-screen">
+        <SidebarTrigger className="m-2" />
+        <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div>
+              <h2 className="text-2xl sm:text-3xl tracking-wider">Clientes</h2>
+              <p className="text-base text-gray-500 tracking-wider mt-1">
+                Gestiona tu lista de Clientes y Consulta las estadisticas
+              </p>
             </div>
-            <div className="w-80 lg:w-72 h-40 border border-gray-400 bg-gray-50 p-4 rounded-2xl font-light tracking-wider">
-              <div className="flex  items-center gap-10">
-                <h5>Tasa de Retencion</h5>
-              </div>
-            </div>
-            <div className="w-80 lg:w-72 h-40 border border-gray-400 bg-gray-50 p-4 rounded-2xl font-light tracking-wider">
-              <div className="flex items-center gap-10">
-                <h5>Nuevos Clientes</h5>
-              </div>
+            <div className="w-full sm:w-auto">
+              <Select
+                value={ordering}
+                placeholder="Ordenar Por: "
+                options={selectCustomerSort}
+                onChange={setOrdering}
+              />
             </div>
           </div>
-        </div>
-        <div className="flex gap-4">
-          <div className="w-full lg:w-9/12 min-w-0 overflow-x-auto">
-            <TableCustomized
-              options={customerData}
-              next={nextUrl}
-              prev={prevUrl}
-              onPageChange={fetchDataCustomer}
-              currentPage={currentPage}
-            />
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 py-6">
+            {customerMetrics.map((metric) => (
+              <div
+                key={metric.id}
+                className="border border-gray-200 bg-gray-50 p-5 rounded-2xl font-light tracking-wider flex flex-col justify-between gap-6 min-h-35"
+              >
+                <h5 className="text-sm text-muted-foreground">
+                  {metric.label}
+                </h5>
+                <p className="text-2xl font-medium">—</p>
+              </div>
+            ))}
           </div>
-          <div className="w-full lg:w-1/3 min-w-0 h-76.25 bg-gray-50 py-4 rounded-xl border border-gray-200">
-            <Barchar
-              data={[
-                { name: "January", value: 100 },
-                { name: "February", value: 150 },
-                { name: "Marz", value: 250 },
-              ]}
-            />
+
+          <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
+            <div className="xl:col-span-2 min-w-0 overflow-x-auto">
+              <TableCustomized
+                options={customerData}
+                next={nextUrl}
+                prev={prevUrl}
+                onPageChange={fetchDataCustomer}
+                currentPage={currentPage}
+              />
+            </div>
+            <div className="min-w-0 min-h-76.25 bg-gray-50 py-4 rounded-xl border border-gray-200">
+              <Barchar
+                data={[
+                  { name: "January", value: 100 },
+                  { name: "February", value: 150 },
+                  { name: "Marz", value: 250 },
+                ]}
+              />
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
     </SidebarProvider>
   );
 };

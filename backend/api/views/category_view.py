@@ -9,11 +9,12 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.decorators import action
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated,AllowAny
 
 
 class CategoryViewSet(ModelViewSet):
     serializer_class = CategoryListSerializer
-    permission_classes = [IsAdminOrReadOnly]
+    permission_classes = [AllowAny]
     filter_backends = [DjangoFilterBackend]
     pagination_class = PageNumberPagination
     pagination_class.page_size = 10
@@ -27,6 +28,11 @@ class CategoryViewSet(ModelViewSet):
         elif self.action == "list":
             return CategoryListSerializer
         return CategoryListSerializer
+
+    def get_permissions(self):
+        if self.action == "all_category":
+            return [AllowAny()]
+        return super().get_permissions()
 
     @action(detail=False, methods=["get"], url_path="all-categories")
     def all_category(self, request):

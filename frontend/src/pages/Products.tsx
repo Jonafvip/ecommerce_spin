@@ -7,6 +7,7 @@ import {
   type CategoryList,
   type ProductListExceptCategory,
 } from "@/types/types";
+import axios from "axios";
 import { useEffect, useState } from "react";
 
 const CustomerSortOptions: SelectionOption[] = [
@@ -53,9 +54,13 @@ export const Products = () => {
     const fetchCategoriesData = async () => {
       try {
         const response = await api.getCategories();
+        console.log(response)
         setCategoriesData(response);
       } catch (error) {
-        console.log(error);
+        if(axios.isAxiosError(error)){
+          const serverError = error.response?.data
+          console.log(serverError)
+        }
       }
     };
     fetchCategoriesData();

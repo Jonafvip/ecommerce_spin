@@ -32,12 +32,36 @@ export const Dashboard = () => {
       image: Camisa,
     },
     { id: 4, name: "Motocierra", price: 669.99, stock: 60, image: Moto },
+    { id: 5, name: "MotocierraV2", price: 559.99, stock: 30, image: Moto },
   ];
+
+  const metricCards = [
+    {
+      id: "ingresos",
+      label: "Ingresos Totales",
+      icon: <FaMoneyBill1Wave size="20" />,
+    },
+    {
+      id: "pedidos",
+      label: "Total de Pedidos",
+      icon: <IoBagOutline size="20" />,
+    },
+    {
+      id: "clientes",
+      label: "Clientes Activos",
+      icon: <MdOutlinePeopleAlt size="20" />,
+    },
+    {
+      id: "promedio",
+      label: "Promedio de Pedidos",
+      icon: <ScrollText size="20" />,
+    },
+  ];
+
   useEffect(() => {
     const fetchUserData = async () => {
       try {
         const response = await api.getUserDetail();
-        console.log(response);
         setUserDataDetail(response);
       } catch (error) {
         if (axios.isAxiosError(error)) {
@@ -52,65 +76,76 @@ export const Dashboard = () => {
   return (
     <SidebarProvider>
       <AppSidebar />
-      <SidebarTrigger />
-      <div className="w-min-full p-6 flex flex-col mx-auto">
-        <div className="flex items-center justify-between">
-          <div>
-            <h2 className="text-3xl tracking-wider">
-              DashBoard Descripcion General
-            </h2>
-            <h3 className="tracking-wider">
-              Bienvenido de vuelta {userDataDetail?.username}... Que Haremos
-              Ahora!
-            </h3>
-          </div>
-          <Button className="rounded-xl p-5 mr-8 tracking-wider">
-            <ArrowDownToLine /> Export Report
-          </Button>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 py-6  md:py-14">
-          <div className="w-80 lg:w-65 h-40 border border-gray-400 bg-gray-50 p-4 rounded-2xl font-light stracking-wider">
-            <div className="flex  items-center gap-10">
-              <h5>Ingresos Totales</h5>
-              <FaMoneyBill1Wave size="25" />
+      <div className="flex flex-col w-full min-h-screen">
+        <SidebarTrigger className="m-2" />
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 flex flex-col">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div>
+              <h2 className="text-2xl sm:text-3xl tracking-wider">
+                DashBoard Descripcion General
+              </h2>
+              <h3 className="text-sm sm:text-base text-muted-foreground tracking-wider mt-1">
+                Bienvenido de vuelta {userDataDetail?.username}... Que Haremos
+                Ahora!
+              </h3>
             </div>
+            <Button className="rounded-xl p-5 tracking-wider w-full sm:w-auto">
+              <ArrowDownToLine /> Export Report
+            </Button>
           </div>
-          <div className="w-80 lg:w-65 h-40 border border-gray-400 bg-gray-50 p-4 rounded-2xl font-light tracking-wider">
-            <div className="flex  items-center gap-10">
-              <h5> Total de Pedidos</h5>
-              <IoBagOutline size="25" />
-            </div>
-          </div>
-          <div className="w-80 lg:w-65 h-40 border border-gray-400 bg-gray-50 p-4 rounded-2xl font-light tracking-wider">
-            <div className="flex items-center gap-10">
-              <h5>Clientes Activos</h5>
-              <MdOutlinePeopleAlt size="25" />
-            </div>
-          </div>
-          <div className="w-80 lg:w-65 h-40 border border-gray-400 bg-gray-50 p-4 rounded-2xl font-light tracking-wider">
-            <div className="flex items-center gap-5">
-              <h5>Promedio de Pedidos</h5>
-              <ScrollText />
-            </div>
-          </div>
-        </div>
-        <div className="flex gap-8">
-          <div className="w-10/14 border-2 border-gray-300 rounded-2xl p-4">
-            <Step4 />
-          </div>
-          <div className="w-1/3 border-2 border-gray-300 rounded-2xl">
-            <h2 className="text-xl tracking-wide px-4 p-4">Top Products</h2>
-            <div className="flex flex-col gap-4 p-4">
-              {productData.map((pro) => (
-                <div key={pro.id} className="flex justify-between gap-4">
-                  <img src={pro.image} className="w-25 object-cover rounded-2xl" />
-                  <div className="px-4">
-                    <h2>{pro.name}</h2>
-                    <p>{pro.stock} unidades</p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 py-6 md:py-10">
+            {metricCards.map((card) => (
+              <div
+                key={card.id}
+                className="border border-gray-200 bg-gray-50 p-5 rounded-2xl font-light tracking-wider flex flex-col justify-between gap-6 min-h-35"
+              >
+                <div className="flex items-center justify-between">
+                  <h5 className="text-sm text-muted-foreground">
+                    {card.label}
+                  </h5>
+                  <div className="flex items-center justify-center w-9 h-9 rounded-full bg-white border border-gray-200 shrink-0">
+                    {card.icon}
                   </div>
-                  <p>${pro.price}</p>
                 </div>
-              ))}
+                <p className="text-2xl font-medium">—</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
+            <div className="xl:col-span-2 border-2 border-gray-200 rounded-2xl p-4 overflow-x-auto">
+              <Step4 />
+            </div>
+            <div className="border-2 border-gray-200 rounded-2xl p-4">
+              <h2 className="text-xl tracking-wide px-4 pt-4 pb-2">
+                Top Products
+              </h2>
+              <div className="flex flex-col gap-2 p-4">
+                {productData.map((pro) => (
+                  <div
+                    key={pro.id}
+                    className="flex items-center justify-between gap-3 py-2"
+                  >
+                    <div className="flex items-center gap-3 min-w-0">
+                      <img
+                        src={pro.image}
+                        alt={pro.name}
+                        className="w-14 h-14 object-cover rounded-xl shrink-0"
+                      />
+                      <div className="min-w-0">
+                        <h2 className="text-sm font-medium truncate">
+                          {pro.name}
+                        </h2>
+                        <p className="text-xs text-muted-foreground">
+                          {pro.stock} unidades
+                        </p>
+                      </div>
+                    </div>
+                    <p className="text-sm font-medium shrink-0">${pro.price}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>

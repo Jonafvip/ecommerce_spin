@@ -103,6 +103,25 @@ export const Cart = () => {
     fetchCartData();
   }, []);
 
+  const handleCheckout = async () => {
+    try {
+      await api.postOrder(
+        cartData.flatMap((car) =>
+          car.details.map((det) => ({
+            product: det.product,
+            quantity: det.quantity,
+          })),
+        ),
+      );
+      alert("Compra realizada");
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        const serverError = error.response?.data;
+        console.log(serverError);
+      }
+    }
+  };
+
   return (
     <div className="w-full flex flex-col justify-center  md:flex-row md:justify-center">
       {/* section */}
@@ -196,7 +215,10 @@ export const Cart = () => {
               ${subtotal.toFixed(2)}
             </span>
           </div>
-          <Button className="w-40 max-w-40  md:max-w-full mx-auto py-6 text-2xs mt-2 md:w-80 md:text-lg">
+          <Button
+            className="w-40 max-w-40  md:max-w-full mx-auto py-6 text-2xs mt-2 md:w-80 md:text-lg"
+            onClick={handleCheckout}
+          >
             Continuar Compra
           </Button>
           <div className="flex flex-col gap-3 px-2 py-4">

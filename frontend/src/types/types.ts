@@ -134,3 +134,15 @@ export interface UserListByAdmin {
   email: string;
   role: string;
 }
+
+export interface OrderList {
+  id: number;
+  status: string;
+  created_at: Date;
+  user: {
+    id: string;
+    full_name: string;
+    username: string;
+  };
+  total:number
+}

@@ -12,6 +12,7 @@ import {
   type PaginatedCustomerResponse,
   type CategoryCreate,
   type PaginationCategory,
+  type OrderList,
 } from "@/types/types";
 import { type ProductListWatchAdmin } from "@/types/types";
 
@@ -128,7 +129,7 @@ export const api = {
       { detail_id: Number(detailId), quantity: Number(quantity) },
       { headers: { Authorization: `Token ${token}` } },
     );
-    return response;
+    return response.data;
   },
   removeCartItem: async (detail_id: number) => {
     const token = localStorage.getItem("auth_token");
@@ -152,6 +153,26 @@ export const api = {
     const endpoint = url || `${BASE_URL}users/admin/`;
     const response = await axios.get<PaginatedCustomerResponse>(endpoint, {
       headers: { Authorization: `Token ${token}` },
+    });
+    return response.data;
+  },
+  postOrder: async (
+    details: { product: number | string; quantity: number }[],
+  ): Promise<OmitUserInCart> => {
+    const token = localStorage.getItem("auth_token");
+    const response = await axios.post<OmitUserInCart>(
+      `${BASE_URL}orders/`,
+      { details },
+      {
+        headers: { Authorization: `Token ${token}` },
+      },
+    );
+    return response.data;
+  },
+  getOrders: async (): Promise<OrderList[]> => {
+    const token = localStorage.getItem("auth_token");
+    const response = await axios.get<OrderList[]>(`${BASE_URL}orders/`, {
+      headers: { Authorization: `Token  ${token}` },
     });
     return response.data;
   },

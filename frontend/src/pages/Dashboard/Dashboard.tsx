@@ -85,8 +85,12 @@ export const Dashboard = () => {
                 DashBoard Descripcion General
               </h2>
               <h3 className="text-sm sm:text-base text-muted-foreground tracking-wider mt-1">
-                Bienvenido de vuelta {userDataDetail?.username}... Que Haremos
-                Ahora!
+                Bienvenido de vuelta{" "}
+                {userDataDetail?.username
+                  ? userDataDetail.username.charAt(0).toUpperCase() +
+                    userDataDetail.username.slice(1).toLowerCase()
+                  : "Usuario"}
+                ... ¡Qué haremos ahora!
               </h3>
             </div>
             <Button className="rounded-xl p-5 tracking-wider w-full sm:w-auto">

@@ -9,7 +9,13 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { cn } from "@/lib/utils";
-import { LayoutDashboard, Archive, Users, ListFilterPlus } from "lucide-react";
+import {
+  LayoutDashboard,
+  Archive,
+  Users,
+  ListFilterPlus,
+  ShoppingCart,
+} from "lucide-react";
 import { NavLink } from "react-router-dom";
 
 const menuItems = [
@@ -17,6 +23,7 @@ const menuItems = [
   { to: "/create-products", label: "Productos", icon: Archive },
   { to: "/customers", label: "Clientes", icon: Users },
   { to: "/categories", label: "Categorias", icon: ListFilterPlus },
+  { to: "/orders", label: "Pedidos", icon: ShoppingCart },
 ];
 
 export function AppSidebar() {
@@ -51,16 +58,6 @@ export function AppSidebar() {
                 </SidebarMenuItem>
               );
             })}
-
-            {/* Luego trabajere en los pedidos */}
-            {/* <SidebarMenuItem>
-              <SidebarMenuButton className="py-5 pl-5 rounded-lg">
-                <NavLink to="/orders" className="flex items-center gap-3 w-full">
-                  <ShoppingCart className="h-5! w-5! shrink-0" />
-                  <span className="text-base font-light">Orders</span>
-                </NavLink>
-              </SidebarMenuButton>
-            </SidebarMenuItem> */}
           </SidebarMenu>
         </SidebarGroup>
       </SidebarContent>

@@ -3,6 +3,7 @@ from ..models.order import Order
 from ..serializers.order_serializer import OrderListSerializer, OrderCreateSerializer
 from rest_framework.permissions import (
     IsAuthenticated,
+    AllowAny
 )
 from ..permissions import IsAdmin, IsCustomer
 
@@ -10,7 +11,7 @@ from ..permissions import IsAdmin, IsCustomer
 class OrderViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.select_related("user")
     serializer_class = OrderListSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
     serializer_actions = {
         "list": OrderListSerializer,
@@ -18,9 +19,9 @@ class OrderViewSet(viewsets.ModelViewSet):
     }
 
     serializer_permissions = {
-        "list": [IsAuthenticated],
-        "create": [IsAuthenticated],
-        "destroy": [IsAdmin],
+        "list": [IsAuthenticated()],
+        "create": [IsAuthenticated()],
+        "destroy": [IsAdmin()],
     }
 
     def get_permissions(self):

@@ -21,7 +21,9 @@ class OrderCreateSerializer(serializers.ModelSerializer):
     def validate(self, data):
         details = data["details"]
         if not details:
-            raise serializers.ValidationError("La orden debe tener al menos un producto")
+            raise serializers.ValidationError(
+                "La orden debe tener al menos un producto"
+            )
 
         for detail in details:
             product = detail["product"]
@@ -41,7 +43,7 @@ class OrderCreateSerializer(serializers.ModelSerializer):
                 order=order,
                 product=product,
                 quantity=detail["quantity"],
-                price=product.unit_price
+                price=product.unit_price,
             )
             product.stock -= detail["quantity"]
             product.save()
@@ -49,8 +51,19 @@ class OrderCreateSerializer(serializers.ModelSerializer):
 
 
 class OrderListSerializer(serializers.ModelSerializer):
-    user = UserListAuxSerializer(read_only=True)
+    user = serializers.SerializerMethodField()
+    total = serializers.SerializerMethodField()
 
     class Meta:
         model = Order
-        fields = ["id", "status", "created_at", "user"]
+        fields = ["id", "status", "created_at", "user", "total"]
+
+    def get_user(self, obj):
+        from .user_serializer import UserListAuxSerializer
+
+        if obj.user:
+            return UserListAuxSerializer(obj.user).data
+        return None
+
+    def get_total(self, obj):
+        return sum(detail.total for detail in obj.details.all())

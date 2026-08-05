@@ -13,6 +13,8 @@ import { CreateProducts } from "./pages/Dashboard/CreateProducts";
 import { Customer } from "./pages/Dashboard/Customer";
 import { Category } from "./pages/Dashboard/Category";
 import { Order } from "./pages/Dashboard/Order";
+import { Toaster } from "@/components/ui/toast";
+import { AuthProvider } from "./context/AuthContext";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -72,9 +74,12 @@ const router = createBrowserRouter([
 export const App = () => {
   return (
     <>
-      <CartProvider>
-        <RouterProvider router={router} />
-      </CartProvider>
+      <AuthProvider>
+        <CartProvider>
+          <RouterProvider router={router} />
+          <Toaster />
+        </CartProvider>
+      </AuthProvider>
     </>
   );
 };

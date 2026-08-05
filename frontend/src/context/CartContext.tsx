@@ -6,6 +6,7 @@ import {
   type ReactNode,
 } from "react";
 import { api } from "@/api/api";
+import { useAuth } from "@/context/AuthContext";
 
 interface CartContextType {
   cartCount: number;
@@ -14,6 +15,7 @@ interface CartContextType {
 const Cartcontext = createContext<CartContextType | undefined>(undefined);
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
+  const { isAuthenticated } = useAuth();
   const [cartCount, setCartCount] = useState<number>(0);
 
   const refreshCartCount = async () => {
@@ -42,8 +44,12 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   };
 
   useEffect(() => {
+    if (!isAuthenticated) {
+      setCartCount(0);
+      return;
+    }
     refreshCartCount();
-  }, []);
+  }, [isAuthenticated]);
 
   return (
     <Cartcontext.Provider value={{ cartCount, refreshCartCount }}>

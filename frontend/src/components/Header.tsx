@@ -4,10 +4,12 @@ import { SheetSide } from "@/components/SheetResponsive";
 import { NavLink } from "react-router-dom";
 import { HoverCard } from "@/components/HoverCard";
 import { useCart } from "@/context/CartContext";
+import { useAuth } from "@/context/AuthContext";
 
 export const Header = () => {
   const { cartCount } = useCart();
-  const token = localStorage.getItem("auth_token");
+  const { isAuthenticated} = useAuth();
+  // const token = localStorage.getItem("auth_token");
 
   return (
     <div className="flex items-center justify-between border-b border-gray-200 px-4 py-4 md:px-15 md:py-6">
@@ -35,7 +37,7 @@ export const Header = () => {
 
       {/* nav icons */}
       <ul className="hidden md:flex gap-8">
-        {token ? (
+        {isAuthenticated ? (
           <li>
             <NavLink to="/dash">DashBoard</NavLink>
           </li>

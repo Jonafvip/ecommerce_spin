@@ -22,6 +22,9 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { api } from "@/api/api";
 import { DropDown } from "@/components/DropDown";
+import { toast } from "./ui/toast";
+import { Spinner } from "@/components/ui/spinner";
+import { Badge } from "@/components/ui/badge";
 
 interface DialogProps {
   onProductCreated: (newProduct: ProductListWatchAdmin) => void;
@@ -41,6 +44,10 @@ const initialValue: ProductCreate = {
 export const Dialog = ({ onProductCreated }: DialogProps) => {
   const [productData, setProductData] = useState<ProductCreate>(initialValue);
   const [categoriesData, setCategoriesData] = useState<CategoryList[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [errors, setErrors] = useState<string | null>(null);
+  const [categoriesLoading, setCategoriesLoading] = useState<boolean>(false);
+  const [categoriesErrors, setCategoriesErrors] = useState<string | null>(null);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
@@ -54,10 +61,16 @@ export const Dialog = ({ onProductCreated }: DialogProps) => {
 
   const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setErrors(null);
     if (!productData.category || productData.category === 0) {
-      alert("Por favor selecciona una categoría válida.");
+      toast.add({
+        type: "warning",
+        title: "Categoria",
+        description: "Por favor selecciona una categoría válida.",
+      });
       return;
     }
+    setLoading(true);
 
     const formdata = new FormData();
     formdata.append("name", productData.name);
@@ -75,28 +88,64 @@ export const Dialog = ({ onProductCreated }: DialogProps) => {
     try {
       const createdProduct = await api.postProductCreate(formdata);
       onProductCreated(createdProduct);
-      console.log("Producto creado correctamente");
+      toast.add({
+        type: "success",
+        title: "Producto",
+        description: "Producto Creado Correctamente",
+      });
       setProductData(initialValue);
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        const serverError = error.response?.data;
-        console.log(serverError);
+        if (error.response) {
+          const data = error.response.data as Record<string, string[]>;
+          const message = Object.values(data).flat();
+          setErrors(message.join(" - ") || "Error desconocido");
+          toast.add({
+            type: "error",
+            title: "No se pudo crear el Producto",
+            description: message.join(", "),
+          });
+        } else {
+          setErrors("Error de conexion del servidor");
+          toast.add({
+            type: "error",
+            title: "Error de red",
+            description: "No se pudo conectar al servidor",
+          });
+        }
+      } else {
+        setErrors("Ocurrio un error inesperado");
       }
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const fetchCategoriesData = async () => {
+    setCategoriesLoading(true);
+    setCategoriesErrors(null);
+    try {
+      const response = await api.getCategories();
+      setCategoriesData(response);
+    } catch (error) {
+      const message = axios.isAxiosError(error)
+        ? error.response
+          ? "No se puedieron cargar las categorias. Intente de nuevo"
+          : "Error de Conexion. Verifica tu red"
+        : "Ocurrio un error inesperado";
+      setCategoriesErrors(message);
+      toast.add({
+        type: "error",
+        title: "Categorias",
+        description: message,
+      });
+    } finally {
+      setCategoriesLoading(false);
     }
   };
 
   useEffect(() => {
-    const fetchCategoriesData = async () => {
-      try {
-        const response = await api.getCategories();
-        setCategoriesData(response);
-      } catch (error) {
-        if (axios.isAxiosError(error)) {
-          const serverError = error.response?.data;
-          console.log(serverError);
-        }
-      }
-    };
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     fetchCategoriesData();
   }, []);
 
@@ -186,19 +235,36 @@ export const Dialog = ({ onProductCreated }: DialogProps) => {
 
               <Field>
                 <Label>Categoría</Label>
-                <DropDown
-                  categories={categoriesData}
-                  selectedCategoryId={productData.category}
-                  onSelectCategory={(selectedCat) =>
-                    setProductData({ ...productData, category: selectedCat })
-                  }
-                />
+                {categoriesLoading ? (
+                  <Spinner />
+                ) : categoriesErrors ? (
+                  <Button size="sm" type="button" onClick={fetchCategoriesData}>
+                    Reintentar
+                  </Button>
+                ) : (
+                  <DropDown
+                    categories={categoriesData}
+                    selectedCategoryId={productData.category}
+                    onSelectCategory={(selectedCat) =>
+                      setProductData({ ...productData, category: selectedCat })
+                    }
+                  />
+                )}
               </Field>
             </div>
           </FieldGroup>
+          {errors && (
+            <>
+              <Badge variant="ghost">
+                <p className="text-red-500">{errors}</p>
+              </Badge>
+            </>
+          )}
           <DialogFooter className="flex sm:gap-2">
             <DialogClose render={<Button variant="outline">Cancelar</Button>} />
-            <Button type="submit">Guardar Producto</Button>
+            <Button type="submit">
+              {loading ? <Spinner /> : "Guardar Producto"}
+            </Button>
           </DialogFooter>
         </form>
       </DialogContent>

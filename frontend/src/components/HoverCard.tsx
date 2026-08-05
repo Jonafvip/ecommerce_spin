@@ -6,11 +6,11 @@ import {
 import { UserRound } from "lucide-react";
 import { Separator } from "./ui/separator";
 import { NavLink } from "react-router-dom";
-import { api } from "@/api/api";
+import { useAuth } from "@/context/AuthContext";
 const HOVER_CARD_SIDES = ["bottom"] as const;
 
 export const HoverCard = () => {
-  const token = localStorage.getItem("auth_token");
+  const { isAuthenticated, logout } = useAuth();
   return (
     <div className="flex flex-wrap justify-center gap-2">
       {HOVER_CARD_SIDES.map((side) => (
@@ -23,24 +23,9 @@ export const HoverCard = () => {
           <HoverCardContent side={side}>
             <div className="flex flex-col gap-1">
               <>
-                {token ? (
+                {isAuthenticated ? (
                   <>
-                    <NavLink
-                      to="/register"
-                      className="font-normal text-gray-600 hover:text-black"
-                    >
-                      Registrarse
-                    </NavLink>
-                    <Separator />
-                    <NavLink
-                      to="/login"
-                      className="font-normal text-gray-600 hover:text-black"
-                    >
-                      Iniciar Sesion
-                    </NavLink>
-                    <Separator />
-                    {/* Aqui deberi ir Cerrar Sesion */}
-                    <NavLink to="#" onClick={() => api.logoutUser()}>
+                    <NavLink to="/" onClick={logout}>
                       Cerrar Sesion
                     </NavLink>
                   </>

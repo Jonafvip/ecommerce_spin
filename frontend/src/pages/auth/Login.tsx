@@ -3,6 +3,13 @@ import { api } from "@/api/api";
 import React, { useState } from "react";
 import { Input } from "@/components/Input";
 import { Button } from "@/components/ui/button";
+import axios from "axios";
+import { toast } from "@/components/ui/toast";
+import { useAuth } from "@/context/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { Badge } from "@/components/ui/badge";
+import { Spinner } from "@/components/ui/spinner";
+
 const initialValues: LoginUser = {
   username: "",
   password: "",
@@ -10,6 +17,10 @@ const initialValues: LoginUser = {
 
 export const Login = () => {
   const [userData, setUserData] = useState<LoginUser>(initialValues);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [errors, setErrors] = useState<string | null>(null);
+  const { login } = useAuth();
+  const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserData({ ...userData, [e.target.name]: e.target.value });
@@ -17,15 +28,45 @@ export const Login = () => {
 
   const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading(true);
+    setErrors(null);
     try {
       const response = await api.postLogin(userData);
-      localStorage.setItem("auth_token", response.token);
+      login(response.token);
       setUserData(initialValues);
-      window.location.href = "/";
+      toast.add({
+        type: "success",
+        title: "Bienvenido!",
+        description: "Sesión Iniciada Correctamente",
+      });
+      setTimeout(() => {
+        navigate("/");
+      }, 200);
     } catch (error) {
-      if (error instanceof Error) {
-        console.log(error.message);
+      if (axios.isAxiosError(error)) {
+        if (error.response) {
+          const data = error.response.data as { non_field_errors?: string[] };
+          const message =
+            data?.non_field_errors?.[0] ?? "Credencias incorrectas";
+          setErrors(message);
+          toast.add({
+            type: "error",
+            title: "Error al iniciar sesión",
+            description: message,
+          });
+        } else {
+          setErrors("Error de conexion con el servidor");
+          toast.add({
+            type: "error",
+            title: "Error de red",
+            description: "No se pudo conectar al servidor",
+          });
+        }
+      } else {
+        setErrors("Ocurrio un error inesperado");
       }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -36,6 +77,15 @@ export const Login = () => {
         onSubmit={handleSubmit}
       >
         <h2 className="text-2xl tracking-wider">Inicia Sesion</h2>
+        {errors ? (
+          <>
+            <Badge variant="ghost">
+              <p className="text-red-500">{errors}</p>
+            </Badge>
+          </>
+        ) : (
+          ""
+        )}
         <Input
           label="Username"
           name="username"
@@ -54,7 +104,7 @@ export const Login = () => {
           type="password"
         />
         <Button type="submit" className="p-6">
-          Inicia Sesion
+          {loading ? <Spinner /> : "Inicar Sesion"}
         </Button>
       </form>
     </div>

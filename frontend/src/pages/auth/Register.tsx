@@ -4,6 +4,10 @@ import React, { useState } from "react";
 import { Input } from "@/components/Input";
 import { Button } from "@/components/ui/button";
 import axios from "axios";
+import { toast } from "@/components/ui/toast";
+import { Spinner } from "@/components/ui/spinner";
+import { Badge } from "@/components/ui/badge";
+import { useNavigate } from "react-router-dom";
 const initialValues: RegisterUser = {
   username: "",
   first_name: "",
@@ -13,23 +17,52 @@ const initialValues: RegisterUser = {
 };
 
 export const Register = () => {
+  const navigate = useNavigate();
   const [userData, setUserData] = useState<RegisterUser>(initialValues);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [errors, setErrors] = useState<string | null>(null);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserData({ ...userData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading(true);
+    setErrors(null);
     try {
-      const response = await api.postRegister(userData);
-      setUserData(response);
+      await api.postRegister(userData);
+      toast.add({
+        type: "success",
+        title: "Usuario Creado con exito",
+      });
       setUserData(initialValues);
-      window.location.href = "/login";
+      navigate("/login");
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        const serverError = error.response?.data;
-        console.log(serverError);
+        if (error.response) {
+          const data = error.response.data as Record<string, string[]>;
+          const message =
+            Object.values(data).flat().join(" - ") || "Error desconocido";
+          setErrors(message);
+          toast.add({
+            type: "error",
+            title: "Error al Registrarse",
+            description: message,
+          });
+        } else {
+          setErrors("Error de conexion con el servidor");
+          toast.add({
+            type: "error",
+            title: "Error de red",
+            description: "No se pudo conectar al servidor",
+          });
+        }
+      } else {
+        setErrors("Ocurrio un error inesperado");
       }
+    } finally {
+      setLoading(false);
     }
   };
   return (
@@ -39,6 +72,15 @@ export const Register = () => {
         onSubmit={handleSubmit}
       >
         <h2 className="text-2xl tracking-wider">Registrate</h2>
+        {errors ? (
+          <>
+            <Badge variant="ghost">
+              <p className="text-red-500">{errors}</p>
+            </Badge>
+          </>
+        ) : (
+          ""
+        )}
         <Input
           label="Username"
           name="username"
@@ -79,7 +121,7 @@ export const Register = () => {
           type="password"
         />
         <Button type="submit" className="p-6">
-          Registrase
+          {loading ? <Spinner /> : "Registrarse"}
         </Button>
       </form>
     </div>

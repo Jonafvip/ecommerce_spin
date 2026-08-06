@@ -12,6 +12,7 @@ from rest_framework import status
 from rest_framework.filters import OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.pagination import PageNumberPagination
+from django.db.models import Count
 
 
 class UserCreateAPIView(CreateAPIView):
@@ -47,4 +48,8 @@ class UserListByAdminAPIView(ListAPIView):
     pagination_class.page_size = 10
 
     def get_queryset(self):
-        return User.objects.filter(is_active=True).filter(role="CUSTOMER")
+        return (
+            User.objects.filter(is_active=True)
+            .filter(role="CUSTOMER")
+            .annotate(orders_count=Count("orders"))
+        )

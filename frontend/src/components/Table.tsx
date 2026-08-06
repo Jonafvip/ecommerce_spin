@@ -17,7 +17,7 @@ interface TableMyProps {
 
 export const Table = ({ option, onDelete }: TableMyProps) => {
   return (
-    <TableGlobal className="border-2 border-gray-200">
+    <TableGlobal className="border-2 border-gray-200 mt-6 lg:mt-0 md:mt-0">
       <TableHeader className="bg-gray-100">
         <TableRow>
           <TableHead className="w-20">Image</TableHead>

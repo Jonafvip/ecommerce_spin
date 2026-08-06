@@ -43,15 +43,17 @@ export const Order = () => {
     <SidebarProvider>
       <AppSidebar />
       <SidebarTrigger className="m-2" />
-      <div className="w-230 mx-auto py-10">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-10">
         <div className="pb-6">
-          <h2 className="text-3xl">Pedidos</h2>
-          <p>
+          <h2 className="text-2xl sm:text-2xl font-medium">Pedidos</h2>
+          <p className="text-base text-gray-500 tracking-wider mt-1">
             Gestionar y realizar el seguimiento de la satisfacción del clientes
           </p>
         </div>
         {errors && <p className="text-red-500">{errors}</p>}
-        {loading ? <SkeletonTable /> : <TableOrders options={ordersData} />}
+        <div className="w-full overflow-x-auto rounded-lg border mt-6">
+          {loading ? <SkeletonTable /> : <TableOrders options={ordersData} />}
+        </div>
       </div>
     </SidebarProvider>
   );

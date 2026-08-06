@@ -38,7 +38,7 @@ export const TableOrders = ({
           <TableHeader>
             <TableRow>
               <TableHead className="pl-4">ID</TableHead>
-              <TableHead>Nombre</TableHead>
+              <TableHead>Cliente</TableHead>
               <TableHead>Fecha de Pedido</TableHead>
               <TableHead>Estado</TableHead>
               <TableHead>Total</TableHead>

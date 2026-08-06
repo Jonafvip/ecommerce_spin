@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import axios from "axios";
 import { useCart } from "@/context/CartContext";
+import { toast } from "@/components/ui/toast";
 
 export const Cart = () => {
   const [cartData, setCartData] = useState<OmitUserInCart[]>([]);
@@ -113,7 +114,11 @@ export const Cart = () => {
           })),
         ),
       );
-      alert("Compra realizada");
+      toast.add({
+        type: "success",
+        title: "Compra",
+        description: "Compra realizada con Exito!",
+      });
     } catch (error) {
       if (axios.isAxiosError(error)) {
         const serverError = error.response?.data;
@@ -171,8 +176,8 @@ export const Cart = () => {
                     ${Number(det.product_price) * det.quantity}
                   </p>
                   <Button
-                    variant="ghost"
-                    className="cursor-pointer pt-4 "
+                    variant="destructive"
+                    className="cursor-pointer pt-4 pb-4"
                     onClick={() => handleRemove(det.id)}
                   >
                     Remove

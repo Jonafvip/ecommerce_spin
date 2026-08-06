@@ -17,9 +17,13 @@ import Refri from "@/assets/refrigeradora.webp";
 import Tv from "@/assets/nueva-smart-tv.webp";
 export const Dashboard = () => {
   const [userDataDetail, setUserDataDetail] = useState<UserDetailt>();
-  // const [productData, setProductData] = useState<ProductListExceptCategory[]>(
-  //   [],
-  // );
+
+  const [stats, setStats] = useState({
+    income: 0,
+    orders: 0,
+    customers: 0,
+    average: 0,
+  });
 
   const productData = [
     { id: 1, name: "Televisor", price: 789.99, stock: 20, image: Tv },
@@ -40,21 +44,25 @@ export const Dashboard = () => {
       id: "ingresos",
       label: "Ingresos Totales",
       icon: <FaMoneyBill1Wave size="20" />,
+      result: `$${stats.income}`,
     },
     {
       id: "pedidos",
       label: "Total de Pedidos",
       icon: <IoBagOutline size="20" />,
+      result: stats.orders,
     },
     {
       id: "clientes",
       label: "Clientes Activos",
       icon: <MdOutlinePeopleAlt size="20" />,
+      result: stats.customers,
     },
     {
       id: "promedio",
       label: "Promedio de Pedidos",
       icon: <ScrollText size="20" />,
+      result: stats.average,
     },
   ];
 
@@ -71,6 +79,30 @@ export const Dashboard = () => {
       }
     };
     fetchUserData();
+  }, []);
+
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        const [orders, customers] = await Promise.all([
+          api.getOrders(),
+          api.getUsersListByAdmin(),
+        ]);
+        const totalOrders = orders.length;
+        const income = orders.reduce((acc, o) => acc + Number(o.total), 0);
+        const totalCustomer = customers.count;
+
+        setStats({
+          income,
+          orders: totalOrders,
+          customers: totalCustomer,
+          average: totalCustomer > 0 ? totalOrders / totalCustomer : 0,
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchStats();
   }, []);
 
   return (
@@ -105,14 +137,14 @@ export const Dashboard = () => {
                 className="border border-gray-200 bg-gray-50 p-5 rounded-2xl font-light tracking-wider flex flex-col justify-between gap-6 min-h-35"
               >
                 <div className="flex items-center justify-between">
-                  <h5 className="text-sm text-muted-foreground">
+                  <h5 className="text-sm font-medium">
                     {card.label}
                   </h5>
                   <div className="flex items-center justify-center w-9 h-9 rounded-full bg-white border border-gray-200 shrink-0">
                     {card.icon}
                   </div>
                 </div>
-                <p className="text-2xl font-medium">—</p>
+                <p className="text-4xl font-medium">{card.result}</p>
               </div>
             ))}
           </div>

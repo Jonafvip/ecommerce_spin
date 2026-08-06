@@ -54,7 +54,15 @@ class UserListByAdminSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ["id", "username", "full_name", "email", "role","orders_count"]
+        fields = [
+            "id",
+            "username",
+            "full_name",
+            "email",
+            "role",
+            "orders_count",
+            "date_joined",
+        ]
 
     def get_full_name(self, obj):
         first = obj.first_name if obj.first_name else ""

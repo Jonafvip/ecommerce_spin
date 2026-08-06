@@ -6,24 +6,63 @@ import type { ProductListWatchAdmin } from "@/types/types";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Dialog } from "@/components/Dialog";
+import { toast } from "@/components/ui/toast";
+import { SkeletonTable } from "@/components/SkeletonTable";
 
 export const CreateProducts = () => {
   const [productsData, setProductsData] = useState<ProductListWatchAdmin[]>([]);
+  const [errors, setErrors] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const handleProductCreated = (newProduct: ProductListWatchAdmin) => {
     setProductsData((prevProducts) => [newProduct, ...prevProducts]);
   };
 
+  const handleDelete = async (id: string | number) => {
+    try {
+      await api.deleteProduct(id);
+      setProductsData((prev) => prev.filter((pro) => pro.id !== id));
+      toast.add({
+        type: "success",
+        title: "Product",
+        description: "Producto eliminado Correctamente!",
+      });
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        const message = error.response
+          ? "No se pudo eliminar el Producto"
+          : "Error de conextion con el servidor";
+        setErrors(message);
+        toast.add({
+          type: "error",
+          title: "Producto",
+          description: message,
+        });
+      }
+    }
+  };
+
   useEffect(() => {
     const fetchDataProduct = async () => {
+      setErrors(null);
+      setLoading(true);
       try {
         const response = await api.getProductsAdmin();
         setProductsData(response);
       } catch (error) {
-        if (axios.isAxiosError(error)) {
-          const serverError = error.response?.data;
-          console.log(serverError);
-        }
+        const message = axios.isAxiosError(error)
+          ? error.response
+            ? "No se pudieron Cargar los Productos"
+            : "Error de conexion. Verifica tu Red"
+          : "Ocurrio un error inesperado";
+        setErrors(message);
+        toast.add({
+          type: "error",
+          title: "Productos",
+          description: message,
+        });
+      } finally {
+        setLoading(false);
       }
     };
     fetchDataProduct();
@@ -46,8 +85,13 @@ export const CreateProducts = () => {
               <Dialog onProductCreated={handleProductCreated} />
             </div>
           </div>
+          {errors && <p className="text-red-500">{errors}</p>}
           <div className="overflow-x-auto">
-            <Table option={productsData} />
+            {loading ? (
+              <SkeletonTable />
+            ) : (
+              <Table option={productsData} onDelete={handleDelete} />
+            )}
           </div>
         </div>
       </div>

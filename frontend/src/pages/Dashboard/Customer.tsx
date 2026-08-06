@@ -7,6 +7,8 @@ import { AppSidebar } from "@/components/SideBar";
 import { TableCustomized } from "@/components/TableCustomized";
 import { Select } from "@/components/Select";
 import Barchar from "@/components/grafics/Barchar";
+import { toast } from "@/components/ui/toast";
+import { SkeletonTable } from "@/components/SkeletonTable";
 
 const selectCustomerSort = [
   { label: "Nombre (A-Z)", value: "username" },
@@ -19,8 +21,12 @@ export const Customer = () => {
   const [nextUrl, setnextUrl] = useState<string | null>(null);
   const [prevUrl, setPrevUrl] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
+  const [errors, setErrors] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const fetchDataCustomer = async (url?: string, pageNumber: number = 1) => {
+    setLoading(true);
+    setErrors(null);
     try {
       const response = await api.getUsersListByAdmin(url);
       setCustomerData(response.results);
@@ -29,9 +35,18 @@ export const Customer = () => {
       setCurrentPage(pageNumber);
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        const serverError = error.response?.data;
-        console.log(serverError);
+        const message = error.response
+          ? "No se puediron cargar los Clientes."
+          : "Error de conexion con el servidor";
+        setErrors(message);
+        toast.add({
+          type: "error",
+          title: "Clientes",
+          description: message,
+        });
       }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -46,6 +61,7 @@ export const Customer = () => {
     const url = queryString
       ? `${import.meta.env.VITE_BASE_URL}users/admin/?${queryString}`
       : undefined;
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     fetchDataCustomer(url, 1);
   }, [ordering]);
 
@@ -91,16 +107,20 @@ export const Customer = () => {
               </div>
             ))}
           </div>
-
+          {errors && <p className="text-red-500">{errors}</p>}
           <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
             <div className="xl:col-span-2 min-w-0 overflow-x-auto">
-              <TableCustomized
-                options={customerData}
-                next={nextUrl}
-                prev={prevUrl}
-                onPageChange={fetchDataCustomer}
-                currentPage={currentPage}
-              />
+              {loading ? (
+                <SkeletonTable />
+              ) : (
+                <TableCustomized
+                  options={customerData}
+                  next={nextUrl}
+                  prev={prevUrl}
+                  onPageChange={fetchDataCustomer}
+                  currentPage={currentPage}
+                />
+              )}
             </div>
             <div className="min-w-0 min-h-76.25 bg-gray-50 py-4 rounded-xl border border-gray-200">
               <Barchar

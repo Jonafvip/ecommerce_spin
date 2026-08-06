@@ -73,11 +73,11 @@ export const CreateProducts = () => {
       <AppSidebar />
       <div className="flex flex-col w-full min-h-screen">
         <SidebarTrigger className="m-2" />
-        <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 py-6">
+        <div className="w-full max-w-6xl mx-auto px-2 pb-12">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 lg:pb-5">
             <div>
               <h2 className="text-2xl font-medium">Productos</h2>
-              <p className="text-muted-foreground tracking-wider mt-1">
+              <p className="text-base text-gray-500 tracking-wider mt-1">
                 Controla tu Inventario
               </p>
             </div>

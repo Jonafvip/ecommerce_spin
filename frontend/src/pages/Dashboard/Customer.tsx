@@ -76,10 +76,10 @@ export const Customer = () => {
       <AppSidebar />
       <div className="flex flex-col w-full min-h-screen">
         <SidebarTrigger className="m-2" />
-        <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+        <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-13 pb-12 ">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-            <div>
-              <h2 className="text-2xl sm:text-3xl tracking-wider">Clientes</h2>
+            <div className="px-2">
+              <h2 className="text-2xl sm:text-2xl font-medium">Clientes</h2>
               <p className="text-base text-gray-500 tracking-wider mt-1">
                 Gestiona tu lista de Clientes y Consulta las estadisticas
               </p>

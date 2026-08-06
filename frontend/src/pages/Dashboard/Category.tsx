@@ -137,14 +137,17 @@ export const Category = () => {
   return (
     <SidebarProvider>
       <AppSidebar />
-      <div className="flex flex-col w-full min-h-screen">
+      <div className="flex flex-col w-full min-h-screen px-4">
         <SidebarTrigger className="m-2" />
         <div className="flex flex-col lg:flex-row w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 gap-8 lg:gap-12 pb-12">
           <section className="w-full lg:w-8/12">
-            <h2 className="text-2xl sm:text-3xl  sm:px-4 py-4 sm:py-6 tracking-wider">
-              Gestiona tus categorias
-            </h2>
-            <div className="w-full overflow-x-auto rounded-lg border">
+            <div className="px-2">
+              <h2 className="text-2xl sm:text-2xl font-medium">Categorias</h2>
+              <p className="text-base text-gray-500 tracking-wider mt-1">
+                Gestiona tus categorias
+              </p>
+            </div>
+            <div className="w-full overflow-x-auto rounded-lg border mt-6">
               {loading ? (
                 <SkeletonTable />
               ) : (

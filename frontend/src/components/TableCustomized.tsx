@@ -28,11 +28,12 @@ export const TableCustomized = ({
     <div className="w-full">
       <div className="w-full overflow-hidden rounded-md border">
         <Table>
-          <TableHeader>
+          <TableHeader className="bg-gray-100">
             <TableRow>
               <TableHead className="pl-4">ID</TableHead>
               <TableHead>Name</TableHead>
               <TableHead>Email</TableHead>
+              <TableHead>Pedidos</TableHead>
               <TableHead>Role</TableHead>
             </TableRow>
           </TableHeader>
@@ -44,6 +45,7 @@ export const TableCustomized = ({
                   {op.full_name === " " ? op.username : op.full_name}
                 </TableCell>
                 <TableCell>{op.email}</TableCell>
+                <TableCell>{op.orders_count ?? 0}</TableCell>
                 <TableCell>{op.role}</TableCell>
               </TableRow>
             ))}

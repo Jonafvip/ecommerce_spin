@@ -23,6 +23,10 @@ export const Customer = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [errors, setErrors] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
+  const [stats, setStats] = useState({
+    count: 0,
+    customersNew: 0,
+  });
 
   const fetchDataCustomer = async (url?: string, pageNumber: number = 1) => {
     setLoading(true);
@@ -33,6 +37,7 @@ export const Customer = () => {
       setnextUrl(response.next);
       setPrevUrl(response.previous);
       setCurrentPage(pageNumber);
+      setStats((prev) => ({ ...prev, count: response.count }));
     } catch (error) {
       if (axios.isAxiosError(error)) {
         const message = error.response
@@ -66,10 +71,41 @@ export const Customer = () => {
   }, [ordering]);
 
   const customerMetrics = [
-    { id: "totales", label: "Clientes Totales" },
-    { id: "retencion", label: "Tasa de Retencion" },
-    { id: "nuevos", label: "Nuevos Clientes" },
+    { id: "totales", label: "Clientes Totales", result: stats.count },
+    { id: "retencion", label: "Tasa de Retencion",result: "Sin resultado" },
+    { id: "nuevos", label: "Nuevos Clientes", result: stats.customersNew },
   ];
+
+  useEffect(() => {
+    const fetchAllCustomers = async () => {
+      try {
+        let allUsers: UserListByAdmin[] = [];
+        let url: string | undefined = undefined;
+
+        do {
+          const page = await api.getUsersListByAdmin(url);
+          allUsers = [...allUsers, ...page.results];
+          url = page.next ?? undefined;
+        } while (url);
+
+        const thirtyDays = new Date();
+        thirtyDays.setDate(thirtyDays.getDate() - 30);
+
+        const customerNew = allUsers.filter((u) => {
+          if (!u.date_joined) return false;
+          return new Date(u.date_joined) >= thirtyDays;
+        }).length;
+
+        setStats((prev) => ({
+          ...prev,
+          customersNew: customerNew,
+        }));
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchAllCustomers();
+  }, []);
 
   return (
     <SidebarProvider>
@@ -103,7 +139,7 @@ export const Customer = () => {
                 <h5 className="text-sm text-muted-foreground">
                   {metric.label}
                 </h5>
-                <p className="text-2xl font-medium">—</p>
+                <p className="text-2xl font-medium">{metric.result}</p>
               </div>
             ))}
           </div>

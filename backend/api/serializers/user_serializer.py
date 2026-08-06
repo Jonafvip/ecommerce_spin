@@ -42,7 +42,7 @@ class UserListAuxSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ["id", "full_name"]
+        fields = ["id", "full_name", "username"]
 
     def get_full_name(self, obj):
         return f"{obj.first_name} {obj.last_name}"
@@ -50,10 +50,11 @@ class UserListAuxSerializer(serializers.ModelSerializer):
 
 class UserListByAdminSerializer(serializers.ModelSerializer):
     full_name = serializers.SerializerMethodField()
+    orders_count = serializers.IntegerField(read_only=True)
 
     class Meta:
         model = User
-        fields = ["id", "username", "full_name", "email", "role"]
+        fields = ["id", "username", "full_name", "email", "role","orders_count"]
 
     def get_full_name(self, obj):
         first = obj.first_name if obj.first_name else ""

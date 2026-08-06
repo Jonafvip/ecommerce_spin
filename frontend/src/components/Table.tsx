@@ -7,12 +7,15 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { type ProductListWatchAdmin } from "@/types/types";
+import { Button } from "@/components/ui/button";
+import { Trash2 } from "lucide-react";
 
 interface TableMyProps {
   option: ProductListWatchAdmin[];
+  onDelete: (id: string | number) => void;
 }
 
-export const Table = ({ option }: TableMyProps) => {
+export const Table = ({ option, onDelete }: TableMyProps) => {
   return (
     <TableGlobal className="border-2 border-gray-200">
       <TableHeader className="bg-gray-100">
@@ -20,13 +23,14 @@ export const Table = ({ option }: TableMyProps) => {
           <TableHead className="w-20">Image</TableHead>
           <TableHead>Product Name</TableHead>
           <TableHead>Category</TableHead>
-          <TableHead className="text-right">Price</TableHead>
-          <TableHead className="text-right">Stock</TableHead>
-          <TableHead className="text-right">Status</TableHead>
+          <TableHead>Price</TableHead>
+          <TableHead>Stock</TableHead>
+          <TableHead>Status</TableHead>
+          <TableHead>Acciones</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
-        {option?.slice(0, 10).map((op) => (
+        {option?.slice(0, 8).map((op) => (
           <TableRow key={op.id}>
             <TableCell>
               {typeof op.image === "string" ? (
@@ -43,13 +47,13 @@ export const Table = ({ option }: TableMyProps) => {
             </TableCell>
             <TableCell className="font-medium">{op.name}</TableCell>
             <TableCell>{op.category?.name ?? "Sin categoría"}</TableCell>
-            <TableCell className="text-right">${op.unit_price}</TableCell>
+            <TableCell>${op.unit_price}</TableCell>
             <TableCell
-              className={`text-right ${op.stock <= 5 ? "text-red-500" : "text-black"}`}
+              className={`text-center ${op.stock <= 5 ? "text-red-500" : "text-black"}`}
             >
               {op.stock}
             </TableCell>
-            <TableCell className="text-right">
+            <TableCell>
               <span
                 className={`inline-flex items-center rounded-full px-2 py-1 text-xs font-medium ${
                   op.is_active
@@ -59,6 +63,16 @@ export const Table = ({ option }: TableMyProps) => {
               >
                 {op.is_active ? "Activo" : "Inactivo"}
               </span>
+            </TableCell>
+            <TableCell>
+              <Button
+                variant="destructive"
+                size="sm"
+                onClick={() => onDelete(op.id)}
+              >
+                <Trash2 />
+                Eliminar
+              </Button>
             </TableCell>
           </TableRow>
         ))}

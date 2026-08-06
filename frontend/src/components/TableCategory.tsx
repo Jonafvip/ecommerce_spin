@@ -8,6 +8,8 @@ import {
 } from "@/components/ui/table";
 import { type CategoryList } from "@/types/types";
 import { PaginationProducts as Pagination } from "./PaginationProducts";
+import { Button } from "@/components/ui/button";
+import { Trash2 } from "lucide-react";
 
 interface MyTableCustomizedProp {
   options: CategoryList[];
@@ -15,6 +17,7 @@ interface MyTableCustomizedProp {
   prev?: string | null;
   currentPage?: number;
   onPageChange?: (url: string, pageNumber: number) => void;
+  onDelete: (id: string | number) => void;
 }
 
 export const TableCategory = ({
@@ -23,6 +26,7 @@ export const TableCategory = ({
   prev,
   currentPage,
   onPageChange,
+  onDelete,
 }: MyTableCustomizedProp) => {
   return (
     <div className="w-full">
@@ -34,6 +38,7 @@ export const TableCategory = ({
               <TableHead>Name</TableHead>
               <TableHead>Description</TableHead>
               <TableHead>Estado</TableHead>
+              <TableHead>Acciones</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -52,6 +57,12 @@ export const TableCategory = ({
                   >
                     {op.is_active ? "Activo" : "Inactivo"}
                   </span>
+                </TableCell>
+                <TableCell>
+                  <Button onClick={() => onDelete(op.id)} variant="destructive" size="sm">
+                    <Trash2 />
+                    Eliminar
+                  </Button>
                 </TableCell>
               </TableRow>
             ))}

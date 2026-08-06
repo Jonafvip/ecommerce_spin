@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import axios from "axios";
 import { useCart } from "@/context/CartContext";
+import { toast } from "@/components/ui/toast";
 
 const initialValue: Details = {
   id: 0,
@@ -26,6 +27,7 @@ export const ProductDetail = () => {
     useState<Details>(initialValue);
   const { id } = useParams<{ id: string }>();
   const { refreshCartCount } = useCart();
+  const [errors, setErrors] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchData = async (productId?: string | number) => {
@@ -49,13 +51,36 @@ export const ProductDetail = () => {
       console.error("El producto aún no ha cargado su ID.");
       return;
     }
+    setErrors(null);
     try {
       await api.addProductToCart(productDetailData.id, 1);
       await refreshCartCount();
+      toast.add({
+        type: "success",
+        title: "Cart",
+        description: "Producto agregado al carrito Exitosamente!",
+      });
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        const serverError = error.response?.data;
-        console.log(serverError);
+        if (error.response) {
+          const data = error.response.data as Record<string, string[]>;
+          const message = Object.values(data).flat();
+          setErrors(message.join(" - ") || "Error desconocido");
+          toast.add({
+            type: "error",
+            title: "Cart",
+            description: message.join(", "),
+          });
+        } else {
+          setErrors("Error de conexion del servidor");
+          toast.add({
+            type: "error",
+            title: "Error de red",
+            description: "No se pudo conectar al servidor",
+          });
+        }
+      } else {
+        setErrors("Ocurrio un error inesperado");
       }
     }
   };
@@ -70,6 +95,7 @@ export const ProductDetail = () => {
           />
         </div>
         <div className="flex flex-col px-4 md:pt-13 md:px-1 mb-30 md:mb-1  justify-between tracking-wide">
+          {errors && <p className="text-red-500">{errors}</p>}
           <div className="flex flex-col gap-5">
             <Badge variant="outline" className="p-4">
               Categoria - {productDetailData.category.name}

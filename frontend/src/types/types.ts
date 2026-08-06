@@ -132,7 +132,8 @@ export interface UserListByAdmin {
   username?: string;
   full_name: string;
   email: string;
-  orders_count?:string
+  orders_count?: string;
+  date_joined?: string;
   role: string;
 }
 
@@ -145,5 +146,5 @@ export interface OrderList {
     full_name: string;
     username: string;
   };
-  total:number
+  total: number;
 }

@@ -132,6 +132,7 @@ export interface UserListByAdmin {
   username?: string;
   full_name: string;
   email: string;
+  orders_count?:string
   role: string;
 }
 

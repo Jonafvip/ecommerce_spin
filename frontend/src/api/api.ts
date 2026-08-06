@@ -47,6 +47,13 @@ export const api = {
     );
     return response.data;
   },
+  deleteProduct: async (id: string | number): Promise<void> => {
+    const token = localStorage.getItem("auth_token");
+    const response = await axios.delete(`${BASE_URL}products/${id}/`, {
+      headers: { Authorization: `Token ${token}` },
+    });
+    return response.data;
+  },
   getProductsNavigation: async (
     url?: string,
   ): Promise<PaginatedProductsResponse> => {
@@ -79,6 +86,13 @@ export const api = {
         headers: { Authorization: `Token ${token}` },
       },
     );
+    return response.data;
+  },
+  deleteCategory: async (id: number | string): Promise<void> => {
+    const token = localStorage.getItem("auth_token");
+    const response = await axios.delete(`${BASE_URL}categories/${id}/`, {
+      headers: { Authorization: `Token ${token}` },
+    });
     return response.data;
   },
   getCategoriesNavigation: async (

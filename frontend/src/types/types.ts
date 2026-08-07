@@ -77,6 +77,7 @@ export interface CategoryCreate {
   description: string;
   is_active: boolean;
 }
+export type Role = "ADMIN" | "CUSTOMER";
 
 export interface RegisterUser {
   username: string;
@@ -84,6 +85,7 @@ export interface RegisterUser {
   last_name: string;
   email: string;
   password: string;
+  role: Role;
 }
 
 export interface LoginUser {

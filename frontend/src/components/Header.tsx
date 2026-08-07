@@ -5,11 +5,28 @@ import { NavLink } from "react-router-dom";
 import { HoverCard } from "@/components/HoverCard";
 import { useCart } from "@/context/CartContext";
 import { useAuth } from "@/context/AuthContext";
+import { api } from "@/api/api";
+import { useEffect, useState } from "react";
 
 export const Header = () => {
   const { cartCount } = useCart();
-  const { isAuthenticated} = useAuth();
-  // const token = localStorage.getItem("auth_token");
+  const { isAuthenticated } = useAuth();
+  const [role, setRole] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      if (!isAuthenticated) {
+        return;
+      }
+      try {
+        const response = await api.getUserDetail();
+        setRole(response.role);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchUser();
+  }, [isAuthenticated]);
 
   return (
     <div className="flex items-center justify-between border-b border-gray-200 px-4 py-4 md:px-15 md:py-6">
@@ -37,9 +54,9 @@ export const Header = () => {
 
       {/* nav icons */}
       <ul className="hidden md:flex gap-8">
-        {isAuthenticated ? (
+        {isAuthenticated && role === "ADMIN" ? (
           <li>
-            <NavLink to="/dash">DashBoard</NavLink>
+            <NavLink to="/dashboard">DashBoard</NavLink>
           </li>
         ) : (
           ""

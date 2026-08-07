@@ -19,7 +19,7 @@ import {
 import { NavLink } from "react-router-dom";
 
 const menuItems = [
-  { to: "/dash", label: "Dashboard", icon: LayoutDashboard },
+  { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { to: "/create-products", label: "Productos", icon: Archive },
   { to: "/customers", label: "Clientes", icon: Users },
   { to: "/categories", label: "Categorias", icon: ListFilterPlus },

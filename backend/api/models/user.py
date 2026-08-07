@@ -11,7 +11,7 @@ class User(AbstractUser):
     role = models.CharField(max_length=10, choices=RoleTextChoice.choices, default=RoleTextChoice.CUSTOMER)
 
     def __str__(self):
-        return self.get_full_name()
+        return f"{self.username}"
 
     class Meta:
         db_table = "user"

@@ -2,6 +2,7 @@ from rest_framework import serializers
 from ..models.order import Order
 from ..models.order_detail import OrderDetail
 from .user_serializer import UserListAuxSerializer
+from .order_details_serializer import OrderDetailsReadProductSerializer
 
 
 class OrderDetailCreateSerializer(serializers.ModelSerializer):
@@ -53,10 +54,11 @@ class OrderCreateSerializer(serializers.ModelSerializer):
 class OrderListSerializer(serializers.ModelSerializer):
     user = serializers.SerializerMethodField()
     total = serializers.SerializerMethodField()
+    details = OrderDetailsReadProductSerializer(many=True)
 
     class Meta:
         model = Order
-        fields = ["id", "status", "created_at", "user", "total"]
+        fields = ["id", "status", "created_at", "user", "total", "details"]
 
     def get_user(self, obj):
         from .user_serializer import UserListAuxSerializer

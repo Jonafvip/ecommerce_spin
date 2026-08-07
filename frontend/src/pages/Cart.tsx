@@ -11,6 +11,7 @@ import { toast } from "@/components/ui/toast";
 export const Cart = () => {
   const [cartData, setCartData] = useState<OmitUserInCart[]>([]);
   const { refreshCartCount } = useCart();
+  const [errors, setErrors] = useState<string | null>(null);
 
   const subtotal = cartData.reduce((accCart, car) => {
     const cartTotal = car.details.reduce((accDetail, det) => {
@@ -105,15 +106,26 @@ export const Cart = () => {
   }, []);
 
   const handleCheckout = async () => {
+    const orderDetails = cartData.flatMap((car) =>
+      car.details.map((det) => ({
+        product: det.product,
+        quantity: det.quantity,
+      })),
+    );
+
+    if (orderDetails.length === 0) return;
+
     try {
-      await api.postOrder(
-        cartData.flatMap((car) =>
-          car.details.map((det) => ({
-            product: det.product,
-            quantity: det.quantity,
-          })),
-        ),
+      await api.postOrder(orderDetails);
+
+      const detailIds = cartData.flatMap((car) =>
+        car.details.map((det) => Number(det.id)),
       );
+      await Promise.all(detailIds.map((id) => api.removeCartItem(id)));
+
+      setCartData([]);
+      await refreshCartCount();
+
       toast.add({
         type: "success",
         title: "Compra",
@@ -121,8 +133,25 @@ export const Cart = () => {
       });
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        const serverError = error.response?.data;
-        console.log(serverError);
+        if (error.response) {
+          const data = error.response.data as Record<string, string[]>;
+          const message = Object.values(data).flat();
+          setErrors(message.join(" - ") || "Error desconocido");
+          toast.add({
+            type: "error",
+            title: "Cart",
+            description: message.join(", "),
+          });
+        } else {
+          setErrors("Error de conexion del servidor");
+          toast.add({
+            type: "error",
+            title: "Error de red",
+            description: "No se pudo conectar al servidor",
+          });
+        }
+      } else {
+        setErrors("Ocurrio un error inesperado");
       }
     }
   };
@@ -131,63 +160,70 @@ export const Cart = () => {
     <div className="w-full flex flex-col justify-center  md:flex-row md:justify-center">
       {/* section */}
       <section className="w-full min-h-175 md:w-10/17">
-        <h2 className="text-4xl font-light mb-2 p-8 md:p-10">Cart</h2>
+        <h2 className="text-4xl font-light mb-2 p-8 md:p-10">Carrito</h2>
+        {errors && <p className="text-red-500">{errors}</p>}
         <Separator />
-        {cartData.map((car) => (
-          <div key={car.id} className="p-2 md:p-0">
-            {car.details.map((det) => (
-              <div key={det.id} className="w-full flex">
-                {" "}
-                <div className="w-full flex flex-wrap py-4 pl-9 gap-10">
-                  <img src={det.product_image} className="w-44 h-50" />
-                  <div className="flex flex-col justify-between">
-                    <div className="py-2">
-                      <h2 className="text-2xl font-light">
-                        {det.product_name}
-                      </h2>
-                      <p>{det.product_description}</p>
-                    </div>
-                    <div className="flex items-center gap-3 mt-2">
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="h-8 w-8 p-0 text-xl"
-                        onClick={() => handleDecrease(det.id, det.quantity)}
-                        disabled={det.quantity <= 1}
-                      >
-                        -
-                      </Button>
-                      <span className="text-xl font-medium text-gray-700 min-w-5 text-center">
-                        {det.quantity}
-                      </span>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="h-8 w-8 p-0 text-xl"
-                        onClick={() => handleIncrease(det.id, det.quantity)}
-                      >
-                        +
-                      </Button>
+        {cartData.every((car) => car.details.length === 0) ? (
+          <p className="text-3xl text-muted-foreground p-11">
+            No hay Productos en el carrito...
+          </p>
+        ) : (
+          cartData.map((car) => (
+            <div key={car.id} className="p-2 md:p-0">
+              {car.details.map((det) => (
+                <div key={det.id} className="w-full flex">
+                  {" "}
+                  <div className="w-full flex flex-wrap py-4 pl-9 gap-10">
+                    <img src={det.product_image} className="w-44 h-50" />
+                    <div className="flex flex-col justify-between">
+                      <div className="py-2">
+                        <h2 className="text-2xl font-light">
+                          {det.product_name}
+                        </h2>
+                        <p>{det.product_description}</p>
+                      </div>
+                      <div className="flex items-center gap-3 mt-2">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="h-8 w-8 p-0 text-xl"
+                          onClick={() => handleDecrease(det.id, det.quantity)}
+                          disabled={det.quantity <= 1}
+                        >
+                          -
+                        </Button>
+                        <span className="text-xl font-medium text-gray-700 min-w-5 text-center">
+                          {det.quantity}
+                        </span>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="h-8 w-8 p-0 text-xl"
+                          onClick={() => handleIncrease(det.id, det.quantity)}
+                        >
+                          +
+                        </Button>
+                      </div>
                     </div>
                   </div>
+                  <div className="flex flex-col items-center justify-between p-6">
+                    <p className="text-2xl">
+                      ${Number(det.product_price) * det.quantity}
+                    </p>
+                    <Button
+                      variant="destructive"
+                      className="cursor-pointer pt-4 pb-4"
+                      onClick={() => handleRemove(det.id)}
+                    >
+                      Remove
+                    </Button>
+                  </div>
                 </div>
-                <div className="flex flex-col items-center justify-between p-6">
-                  <p className="text-2xl">
-                    ${Number(det.product_price) * det.quantity}
-                  </p>
-                  <Button
-                    variant="destructive"
-                    className="cursor-pointer pt-4 pb-4"
-                    onClick={() => handleRemove(det.id)}
-                  >
-                    Remove
-                  </Button>
-                </div>
-              </div>
-            ))}
-          </div>
-        ))}
-        <Separator />
+              ))}
+              <Separator />
+            </div>
+          ))
+        )}
       </section>
 
       {/* aside */}
@@ -223,12 +259,13 @@ export const Cart = () => {
           <Button
             className="w-40 max-w-40  md:max-w-full mx-auto py-6 text-2xs mt-2 md:w-80 md:text-lg"
             onClick={handleCheckout}
+            disabled={cartData.every((car) => car.details.length === 0)}
           >
             Continuar Compra
           </Button>
           <div className="flex flex-col gap-3 px-2 py-4">
             <div className="flex gap-5">
-              <ShieldCheck /> <h4>Suguridad al Comprar</h4>
+              <ShieldCheck /> <h4>Seguridad al Comprar</h4>
             </div>
             <p className="pl-10">
               Transacciones encryptadas via Paypal o Stripe

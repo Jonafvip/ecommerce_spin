@@ -15,6 +15,10 @@ import { Category } from "./pages/Dashboard/Category";
 import { Order } from "./pages/Dashboard/Order";
 import { Toaster } from "@/components/ui/toast";
 import { AuthProvider } from "./context/AuthContext";
+import { Profile } from "./pages/Profile";
+import { AdminRoute } from "./pages/auth/AdminRoute";
+import { ProtectedRoute } from "./pages/auth/ProtectedRoute";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -49,24 +53,52 @@ const router = createBrowserRouter([
         element: <About />,
       },
       {
-        path: "/dash",
-        element: <Dashboard />,
+        path: "/dashboard",
+        element: (
+          <AdminRoute>
+            <Dashboard />
+          </AdminRoute>
+        ),
       },
       {
         path: "/create-products",
-        element: <CreateProducts />,
+        element: (
+          <AdminRoute>
+            <CreateProducts />
+          </AdminRoute>
+        ),
       },
       {
         path: "/customers",
-        element: <Customer />,
+        element: (
+          <AdminRoute>
+            <Customer />
+          </AdminRoute>
+        ),
       },
       {
         path: "/categories",
-        element: <Category />,
+        element: (
+          <AdminRoute>
+            <Category />
+          </AdminRoute>
+        ),
       },
       {
         path: "/orders",
-        element: <Order />,
+        element: (
+          <AdminRoute>
+            <Order />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "/profile",
+        element: (
+          <ProtectedRoute>
+            <Profile />
+          </ProtectedRoute>
+        ),
       },
     ],
   },

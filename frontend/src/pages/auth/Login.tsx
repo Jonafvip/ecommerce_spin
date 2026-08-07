@@ -87,7 +87,7 @@ export const Login = () => {
           ""
         )}
         <Input
-          label="Username"
+          label="Nombre de Usuario"
           name="username"
           placeholder="Ingrese un Nombre de usuario"
           value={userData.username}

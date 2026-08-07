@@ -89,7 +89,7 @@ export const Register = () => {
           ""
         )}
         <Input
-          label="Username"
+          label="Nombre de Usuario"
           name="username"
           placeholder="Ingrese un Nombre de usuario"
           value={userData.username}
@@ -97,14 +97,14 @@ export const Register = () => {
           required={true}
         />
         <Input
-          label="FirstName"
+          label="Primer Nombre"
           name="first_name"
           placeholder="Ingrese su nombre"
           value={userData.first_name}
           onChange={handleChange}
         />
         <Input
-          label="LastName"
+          label="Primer Apellido"
           name="last_name"
           placeholder="Ingresu su apellido"
           value={userData.last_name}

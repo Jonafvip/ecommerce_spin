@@ -139,6 +139,15 @@ export interface UserListByAdmin {
   role: string;
 }
 
+interface OrderDetailItem {
+  id: number | string;
+  product: number;
+  product_name: string;
+  product_image: string;
+  quantity: number | string;
+  total: number;
+}
+
 export interface OrderList {
   id: number;
   status: string;
@@ -149,4 +158,5 @@ export interface OrderList {
     username: string;
   };
   total: number;
+  details?: OrderDetailItem[];
 }

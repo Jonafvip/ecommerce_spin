@@ -190,4 +190,11 @@ export const api = {
     });
     return response.data;
   },
+  getMyOrders: async (): Promise<OrderList[]> => {
+    const token = localStorage.getItem("auth_token");
+    const response = await axios.get<OrderList[]>(`${BASE_URL}orders/mine/`, {
+      headers: { Authorization: `Token  ${token}` },
+    });
+    return response.data;
+  },
 };

@@ -6,7 +6,7 @@ from rest_framework.authtoken.models import Token
 class UserCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ["username", "first_name", "last_name", "email", "password"]
+        fields = ["username", "first_name", "last_name", "email", "password", "role"]
 
     def validate_username(self, value):
         if User.objects.filter(username=value).exists():

@@ -27,6 +27,8 @@ export const HoverCard = () => {
                   <>
                     <NavLink to="/profile">Mi cuenta</NavLink>
                     <Separator />
+                    <NavLink to="/orderHistory">Historial Pedidos</NavLink>
+                    <Separator />
                     <NavLink to="/" onClick={logout}>
                       Cerrar Sesion
                     </NavLink>

@@ -1,4 +1,4 @@
-import { type RegisterUser } from "@/types/types";
+import { type RegisterUser, type Role } from "@/types/types";
 import { api } from "@/api/api";
 import React, { useState } from "react";
 import { Input } from "@/components/Input";
@@ -8,13 +8,20 @@ import { toast } from "@/components/ui/toast";
 import { Spinner } from "@/components/ui/spinner";
 import { Badge } from "@/components/ui/badge";
 import { useNavigate } from "react-router-dom";
+import { Select, type SelectionOption } from "@/components/Select";
 const initialValues: RegisterUser = {
   username: "",
   first_name: "",
   last_name: "",
   email: "",
   password: "",
+  role: "CUSTOMER",
 };
+
+const roleOptions: SelectionOption[] = [
+  { label: "Cliente", value: "CUSTOMER" },
+  { label: "Administrador", value: "ADMIN" },
+];
 
 export const Register = () => {
   const navigate = useNavigate();
@@ -119,6 +126,14 @@ export const Register = () => {
           onChange={handleChange}
           required={true}
           type="password"
+        />
+        <Select
+          value={userData.role}
+          options={roleOptions}
+          placeholder="Selecciona un rol"
+          onChange={(value) =>
+            setUserData({ ...userData, role: value as Role })
+          }
         />
         <Button type="submit" className="p-6">
           {loading ? <Spinner /> : "Registrarse"}

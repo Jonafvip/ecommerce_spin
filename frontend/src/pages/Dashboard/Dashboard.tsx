@@ -62,7 +62,7 @@ export const Dashboard = () => {
       id: "promedio",
       label: "Promedio de Pedidos",
       icon: <ScrollText size="20" />,
-      result: stats.average,
+      result: stats.average.toFixed(2),
     },
   ];
 
@@ -137,9 +137,7 @@ export const Dashboard = () => {
                 className="border border-gray-200 bg-gray-50 p-5 rounded-2xl font-light tracking-wider flex flex-col justify-between gap-6 min-h-35"
               >
                 <div className="flex items-center justify-between">
-                  <h5 className="text-sm font-medium">
-                    {card.label}
-                  </h5>
+                  <h5 className="text-sm font-medium">{card.label}</h5>
                   <div className="flex items-center justify-center w-9 h-9 rounded-full bg-white border border-gray-200 shrink-0">
                     {card.icon}
                   </div>

@@ -47,7 +47,7 @@ export const Order = () => {
         <div className="pb-6">
           <h2 className="text-2xl sm:text-2xl font-medium">Pedidos</h2>
           <p className="text-base text-gray-500 tracking-wider mt-1">
-            Gestionar y realizar el seguimiento de la satisfacción del clientes
+            Gestiona y realizar el seguimiento de la satisfacción del clientes
           </p>
         </div>
         {errors && <p className="text-red-500">{errors}</p>}

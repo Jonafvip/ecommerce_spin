@@ -137,9 +137,9 @@ export const Category = () => {
   return (
     <SidebarProvider>
       <AppSidebar />
-      <div className="flex flex-col w-full min-h-screen px-4">
+      <div className="flex flex-col w-full min-h-screen">
         <SidebarTrigger className="m-2" />
-        <div className="flex flex-col lg:flex-row w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 gap-8 lg:gap-12 pb-12">
+        <div className="flex flex-col lg:flex-row w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 gap-8 lg:gap-12 pb-12">
           <section className="w-full lg:w-8/12">
             <div className="px-2">
               <h2 className="text-2xl sm:text-2xl font-medium">Categorias</h2>

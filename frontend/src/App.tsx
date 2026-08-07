@@ -18,6 +18,7 @@ import { AuthProvider } from "./context/AuthContext";
 import { Profile } from "./pages/Profile";
 import { AdminRoute } from "./pages/auth/AdminRoute";
 import { ProtectedRoute } from "./pages/auth/ProtectedRoute";
+import { OrderHistory } from "./pages/OrderHistory";
 
 const router = createBrowserRouter([
   {
@@ -97,6 +98,14 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <Profile />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/orderHistory",
+        element: (
+          <ProtectedRoute>
+            <OrderHistory />
           </ProtectedRoute>
         ),
       },

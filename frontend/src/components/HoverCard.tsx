@@ -25,6 +25,8 @@ export const HoverCard = () => {
               <>
                 {isAuthenticated ? (
                   <>
+                    <NavLink to="/profile">Mi cuenta</NavLink>
+                    <Separator />
                     <NavLink to="/" onClick={logout}>
                       Cerrar Sesion
                     </NavLink>

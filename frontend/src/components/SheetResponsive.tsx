@@ -13,8 +13,10 @@ import { NavLink } from "react-router-dom";
 
 const mobileLinks = [
   { section: "Home", url: "/" },
-  { section: "Products", url: "/products" },
+  { section: "Productos", url: "/products" },
   { section: "About", url: "/about" },
+  { section: "Login", url: "/login" },
+  { section: "Register", url: "/register" },
 ];
 
 export const SheetSide = () => {

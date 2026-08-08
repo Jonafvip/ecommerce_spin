@@ -47,6 +47,7 @@ export const Products = () => {
   };
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     fetchProductsData(undefined, 1);
   }, []);
 
@@ -54,7 +55,6 @@ export const Products = () => {
     const fetchCategoriesData = async () => {
       try {
         const response = await api.getCategories();
-        console.log(response)
         setCategoriesData(response);
       } catch (error) {
         if(axios.isAxiosError(error)){

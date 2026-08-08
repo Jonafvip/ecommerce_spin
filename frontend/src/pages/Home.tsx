@@ -15,6 +15,8 @@ import imgTecnologia from "@/assets/tecnologia.webp";
 import imgHogar from "@/assets/hogar.webp";
 import imgRopa from "@/assets/ropa.webp";
 import imgHerramientas from "@/assets/herramientas.webp";
+import axios from "axios";
+import { Badge } from "@/components/ui/badge";
 
 type ProductListExceptCategory = Omit<ProductsList, "category">;
 
@@ -52,7 +54,10 @@ export const Home = () => {
         const response = await api.getProducts();
         setProductsData(response.results);
       } catch (error) {
-        console.log(error);
+        if (axios.isAxiosError(error)) {
+          const serverError = error.response?.data;
+          console.log(serverError);
+        }
       }
     };
     fetchData();
@@ -73,6 +78,9 @@ export const Home = () => {
 
           <div className="relative z-10 flex min-h-104 items-center justify-center px-4 md:px-30  text-center md:min-h-128 md:top-17.5 md:justify-start md:text-left">
             <div className="max-w-md md:max-w-lg">
+              <Badge variant="secondary" className="text-xl mb-5 p-4 tracking-wide font-light">
+                Spin Version 1.0.0
+              </Badge>
               <h2 className="text-2xl font-semibold text-gray-900 sm:text-3xl md:text-4xl">
                 Encuentra todo lo que necesitas, en un solo lugar.
               </h2>

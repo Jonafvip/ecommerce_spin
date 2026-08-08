@@ -29,7 +29,7 @@ export const Header = () => {
   }, [isAuthenticated]);
 
   return (
-    <div className="flex items-center justify-between border-b border-gray-200 px-4 py-4 md:px-15 md:py-6">
+    <div className="sticky top-0 z-50 bg-white flex items-center justify-between border-b border-gray-200 px-4 py-4 md:px-15 md:py-6">
       <div className="flex items-center gap-3 md:gap-0">
         <div className="md:hidden">
           <SheetSide />

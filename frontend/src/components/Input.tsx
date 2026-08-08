@@ -36,7 +36,7 @@ export const Input = ({
     <Field>
       <FieldLabel>{label}</FieldLabel>
       <div
-        className={`${type === "password" ? "flex items-center gap-2" : ""}`}
+        className={`${type === "password" ? "flex items-center gap-2 relative" : ""}`}
       >
         <InputGlobal
           type={inputType}
@@ -51,7 +51,7 @@ export const Input = ({
         {type === "password" ? (
           <Button
             variant="ghost"
-            className="py-5"
+            className="py-5 absolute left-55 md:left-90 lg:left-100"
             onClick={togglePasswordVisibility}
           >
             {showPassword ? <Eye /> : <EyeClosed />}

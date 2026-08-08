@@ -12,6 +12,7 @@ from rest_framework.filters import OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
 from ..filters import ProductFilter
 from rest_framework.decorators import action
+from ..permissions import IsAdminOrReadOnly
 
 
 class ProductViewSet(ModelViewSet):
@@ -48,6 +49,5 @@ class ProductViewSet(ModelViewSet):
         if page is None:
             serializer = self.get_serializer(page, many=True)
             return self.get_paginated_response(serializer.data)
-        
         serializer = self.get_serializer(filter_queryset, many=True)
         return Response(serializer.data)

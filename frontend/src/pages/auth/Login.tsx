@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import axios from "axios";
 import { toast } from "@/components/ui/toast";
 import { useAuth } from "@/context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { Spinner } from "@/components/ui/spinner";
 
@@ -106,6 +106,13 @@ export const Login = () => {
         <Button type="submit" className="p-6">
           {loading ? <Spinner /> : "Inicar Sesion"}
         </Button>
+        <p>
+          No tienes una cuenta?{" "}
+          <NavLink to="/register" className="underline">
+            {" "}
+            Registrate
+          </NavLink>
+        </p>
       </form>
     </div>
   );

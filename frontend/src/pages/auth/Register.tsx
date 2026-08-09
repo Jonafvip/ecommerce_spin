@@ -7,7 +7,7 @@ import axios from "axios";
 import { toast } from "@/components/ui/toast";
 import { Spinner } from "@/components/ui/spinner";
 import { Badge } from "@/components/ui/badge";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { Select, type SelectionOption } from "@/components/Select";
 const initialValues: RegisterUser = {
   username: "",
@@ -73,7 +73,7 @@ export const Register = () => {
     }
   };
   return (
-    <div className="h-125 flex items-center justify-center my-30">
+    <div className="h-135 flex items-center justify-center my-30">
       <form
         className="w-84  md:w-1/2 lg:w-1/3 flex flex-col items-center justify-center gap-8 border rounded-2xl p-8 shadow-2xl"
         onSubmit={handleSubmit}
@@ -127,17 +127,26 @@ export const Register = () => {
           required={true}
           type="password"
         />
-        <Select
-          value={userData.role}
-          options={roleOptions}
-          placeholder="Selecciona un rol"
-          onChange={(value) =>
-            setUserData({ ...userData, role: value as Role })
-          }
-        />
-        <Button type="submit" className="p-6">
-          {loading ? <Spinner /> : "Registrarse"}
-        </Button>
+        <div className="flex justify-center items-center gap-5">
+          <Select
+            value={userData.role}
+            options={roleOptions}
+            placeholder="Selecciona un rol"
+            onChange={(value) =>
+              setUserData({ ...userData, role: value as Role })
+            }
+          />
+          <Button type="submit" className="p-6">
+            {loading ? <Spinner /> : "Registrarse"}
+          </Button>
+        </div>
+        <p>
+          Ya tienes una cuenta?{" "}
+          <NavLink to="/login" className="underline">
+            {" "}
+            Inicia Sesion
+          </NavLink>
+        </p>
       </form>
     </div>
   );

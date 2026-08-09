@@ -19,6 +19,7 @@ import { Profile } from "./pages/Profile";
 import { AdminRoute } from "./pages/auth/AdminRoute";
 import { ProtectedRoute } from "./pages/auth/ProtectedRoute";
 import { OrderHistory } from "./pages/OrderHistory";
+import { Error404 } from "./pages/Error404";
 
 const router = createBrowserRouter([
   {
@@ -108,6 +109,10 @@ const router = createBrowserRouter([
             <OrderHistory />
           </ProtectedRoute>
         ),
+      },
+      {
+        path: "*",
+        element: <Error404 />,
       },
     ],
   },

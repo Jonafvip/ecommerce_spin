@@ -28,7 +28,7 @@ export const TableCustomized = ({
     <div className="w-full">
       <div className="w-full overflow-hidden rounded-md border">
         <Table>
-          <TableHeader className="bg-gray-100">
+          <TableHeader>
             <TableRow>
               <TableHead className="pl-4">ID</TableHead>
               <TableHead>Name</TableHead>

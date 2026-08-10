@@ -19,21 +19,23 @@ interface TableMyProps {
 
 export const Table = ({ option, onDelete, onUpdate }: TableMyProps) => {
   return (
-    <TableGlobal className="border-2 border-gray-200 mt-6 lg:mt-0 md:mt-0">
-      <TableHeader className="bg-gray-100">
+    <TableGlobal className="mt-6 border border-border md:mt-0 lg:mt-0">
+      <TableHeader>
         <TableRow>
-          <TableHead className="w-20">Image</TableHead>
-          <TableHead>Product Name</TableHead>
-          <TableHead>Category</TableHead>
-          <TableHead>Price</TableHead>
-          <TableHead>Stock</TableHead>
-          <TableHead>Status</TableHead>
-          <TableHead className="text-center">Acciones</TableHead>
+          <TableHead className="w-20 text-foreground">Image</TableHead>
+          <TableHead className="text-foreground">Product Name</TableHead>
+          <TableHead className="text-foreground">Category</TableHead>
+          <TableHead className="text-foreground">Price</TableHead>
+          <TableHead className="text-foreground">Stock</TableHead>
+          <TableHead className="text-foreground">Status</TableHead>
+          <TableHead className="text-center text-foreground">
+            Acciones
+          </TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
         {option?.slice(0, 8).map((op) => (
-          <TableRow key={op.id}>
+          <TableRow key={op.id} className="border-border">
             <TableCell>
               {typeof op.image === "string" ? (
                 <img
@@ -42,16 +44,20 @@ export const Table = ({ option, onDelete, onUpdate }: TableMyProps) => {
                   className="h-15 w-15 rounded-md object-contain"
                 />
               ) : (
-                <div className="h-10 w-10 rounded-md bg-slate-100 flex items-center justify-center text-xs text-gray-400">
+                <div className="flex h-10 w-10 items-center justify-center rounded-md bg-muted text-xs text-muted-foreground">
                   No img
                 </div>
               )}
             </TableCell>
-            <TableCell className="font-medium">{op.name}</TableCell>
-            <TableCell>{op.category?.name ?? "Sin categoría"}</TableCell>
-            <TableCell>${op.unit_price}</TableCell>
+            <TableCell className="font-medium text-foreground">
+              {op.name}
+            </TableCell>
+            <TableCell className="text-muted-foreground">
+              {op.category?.name ?? "Sin categoría"}
+            </TableCell>
+            <TableCell className="text-foreground">${op.unit_price}</TableCell>
             <TableCell
-              className={`text-center ${op.stock <= 5 ? "text-red-500" : "text-black"}`}
+              className={`text-center ${op.stock <= 5 ? "text-destructive" : "text-foreground"}`}
             >
               {op.stock}
             </TableCell>
@@ -59,15 +65,15 @@ export const Table = ({ option, onDelete, onUpdate }: TableMyProps) => {
               <span
                 className={`inline-flex items-center rounded-full px-2 py-1 text-xs font-medium ${
                   op.is_active
-                    ? "bg-green-50 text-green-700 ring-1 ring-green-600/20"
-                    : "bg-red-50 text-red-700 ring-1 ring-red-600/20"
+                    ? "bg-emerald-100 text-emerald-700 ring-1 ring-emerald-600/20 dark:bg-emerald-900/40 dark:text-emerald-300 dark:ring-emerald-300/30"
+                    : "bg-red-100 text-red-700 ring-1 ring-red-600/20 dark:bg-red-900/40 dark:text-red-300 dark:ring-red-300/30"
                 }`}
               >
                 {op.is_active ? "Activo" : "Inactivo"}
               </span>
             </TableCell>
             <TableCell>
-              <div className="flex justify-center items-center gap-2">
+              <div className="flex items-center justify-center gap-2">
                 <Button
                   variant="destructive"
                   size="sm"

@@ -127,7 +127,7 @@ export const Register = () => {
           required={true}
           type="password"
         />
-        <div className="flex justify-center items-center gap-5">
+        <div className="flex flex-col justify-center items-center md:flex-row  gap-5">
           <Select
             value={userData.role}
             options={roleOptions}

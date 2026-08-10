@@ -34,8 +34,10 @@ export interface ProductListWatchAdmin {
   name: string;
   unit_price: string;
   product_code: string;
+  description?:string
   stock: number;
   category: {
+    id?:number
     name: string;
   };
   image?: string;

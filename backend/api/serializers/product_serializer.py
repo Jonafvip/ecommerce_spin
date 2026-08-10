@@ -21,6 +21,7 @@ class ProductListAdminSeriliazer(serializers.ModelSerializer):
             "id",
             "name",
             "unit_price",
+            "description",
             "stock",
             "category",
             "product_code",

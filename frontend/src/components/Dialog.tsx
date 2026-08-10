@@ -28,6 +28,8 @@ import { Badge } from "@/components/ui/badge";
 
 interface DialogProps {
   onProductCreated: (newProduct: ProductListWatchAdmin) => void;
+  product: ProductListWatchAdmin | null;
+  onCancelEdit: () => void;
 }
 
 const initialValue: ProductCreate = {
@@ -41,13 +43,18 @@ const initialValue: ProductCreate = {
   product_code: "",
 };
 
-export const Dialog = ({ onProductCreated }: DialogProps) => {
+export const Dialog = ({
+  onProductCreated,
+  onCancelEdit,
+  product,
+}: DialogProps) => {
   const [productData, setProductData] = useState<ProductCreate>(initialValue);
   const [categoriesData, setCategoriesData] = useState<CategoryList[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [errors, setErrors] = useState<string | null>(null);
   const [categoriesLoading, setCategoriesLoading] = useState<boolean>(false);
   const [categoriesErrors, setCategoriesErrors] = useState<string | null>(null);
+  const [open, setOpen] = useState<boolean>(false);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
@@ -86,14 +93,24 @@ export const Dialog = ({ onProductCreated }: DialogProps) => {
     }
 
     try {
-      const createdProduct = await api.postProductCreate(formdata);
-      onProductCreated(createdProduct);
-      toast.add({
-        type: "success",
-        title: "Producto",
-        description: "Producto Creado Correctamente",
-      });
-      setProductData(initialValue);
+      if (product) {
+        const updated = await api.updateProducts(product.id, formdata);
+        onProductCreated(updated);
+        toast.add({
+          type: "success",
+          title: "Producto",
+          description: "Producto Actualizado Correctamente",
+        });
+      } else {
+        const createdProduct = await api.postProductCreate(formdata);
+        onProductCreated(createdProduct);
+        toast.add({
+          type: "success",
+          title: "Producto",
+          description: "Producto Creado Correctamente",
+        });
+        setProductData(initialValue);
+      }
     } catch (error) {
       if (axios.isAxiosError(error)) {
         if (error.response) {
@@ -145,15 +162,28 @@ export const Dialog = ({ onProductCreated }: DialogProps) => {
   };
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
+    if (product) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setOpen(true);
+      setProductData({
+        name: product.name,
+        description: product.description!,
+        unit_price: String(product.unit_price),
+        stock: product.stock,
+        category: product.category.id ?? 0,
+        image: null,
+        is_active: product.is_active,
+        product_code: product.product_code,
+      });
+    }
     fetchCategoriesData();
-  }, []);
+  }, [product]);
 
   return (
-    <DialogGlobal>
+    <DialogGlobal open={open} onOpenChange={setOpen}>
       <DialogTrigger
         render={
-          <Button variant="default" className="p-6">
+          <Button variant="default" className="p-6" onClick={onCancelEdit}>
             <Plus />
             Agregar nuevo Producto
           </Button>
@@ -161,9 +191,13 @@ export const Dialog = ({ onProductCreated }: DialogProps) => {
       />
       <DialogContent className="sm:max-w-4xl">
         <DialogHeader>
-          <DialogTitle>Agregar Producto</DialogTitle>
+          <DialogTitle>
+            {product ? "Actualizar Producto" : "Agregar Producto"}
+          </DialogTitle>
           <DialogDescription>
-            Complete los campos necesarios para agregar un producto
+            {product
+              ? "Modifica los campos y guarda los cambios"
+              : "Complete los campos necesarios para agregar un producto"}
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit}>

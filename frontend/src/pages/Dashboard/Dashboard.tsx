@@ -130,29 +130,33 @@ export const Dashboard = () => {
             </Button>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 py-6 md:py-10">
+          <div className="grid grid-cols-1 gap-4 py-6 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4 md:py-10">
             {metricCards.map((card) => (
               <div
                 key={card.id}
-                className="border border-gray-200 bg-gray-50 p-5 rounded-2xl font-light tracking-wider flex flex-col justify-between gap-6 min-h-35"
+                className="flex min-h-35 flex-col justify-between gap-6 rounded-2xl border border-border bg-card p-5 font-light tracking-wider"
               >
                 <div className="flex items-center justify-between">
-                  <h5 className="text-sm font-medium">{card.label}</h5>
-                  <div className="flex items-center justify-center w-9 h-9 rounded-full bg-white border border-gray-200 shrink-0">
+                  <h5 className="text-sm font-medium text-foreground">
+                    {card.label}
+                  </h5>
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-border bg-background">
                     {card.icon}
                   </div>
                 </div>
-                <p className="text-4xl font-medium">{card.result}</p>
+                <p className="text-4xl font-medium text-foreground">
+                  {card.result}
+                </p>
               </div>
             ))}
           </div>
 
-          <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
-            <div className="xl:col-span-2 border-2 border-gray-200 rounded-2xl p-4 overflow-x-auto">
+          <div className="grid grid-cols-1 gap-6 xl:grid-cols-3">
+            <div className="overflow-x-auto rounded-2xl border-2 border-border p-4 xl:col-span-2">
               <Step4 />
             </div>
-            <div className="border-2 border-gray-200 rounded-2xl p-4">
-              <h2 className="text-xl tracking-wide px-4 pt-4 pb-2">
+            <div className="rounded-2xl border-2 border-border p-4">
+              <h2 className="px-4 pb-2 pt-4 text-xl tracking-wide text-foreground">
                 Top Products
               </h2>
               <div className="flex flex-col gap-2 p-4">

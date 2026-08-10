@@ -182,7 +182,7 @@ export const Cart = () => {
                         </h2>
                         <p>{det.product_description}</p>
                       </div>
-                      <div className="flex items-center gap-3 mt-2">
+                      <div className="mt-2 flex items-center gap-3">
                         <Button
                           variant="outline"
                           size="sm"
@@ -192,7 +192,7 @@ export const Cart = () => {
                         >
                           -
                         </Button>
-                        <span className="text-xl font-medium text-gray-700 min-w-5 text-center">
+                        <span className="min-w-5 text-center text-xl font-medium text-foreground">
                           {det.quantity}
                         </span>
                         <Button
@@ -207,7 +207,7 @@ export const Cart = () => {
                     </div>
                   </div>
                   <div className="flex flex-col items-center justify-between p-6">
-                    <p className="text-2xl">
+                    <p className="text-2xl text-foreground">
                       ${Number(det.product_price) * det.quantity}
                     </p>
                     <Button
@@ -228,31 +228,35 @@ export const Cart = () => {
 
       {/* aside */}
       <aside className="w-full py-20 px-8 md:px-8 md:w-1/3 md:py-30">
-        <div className="border rounded-2xl p-6 shadow-md flex flex-col gap-3 md:gap-4 bg-gray-50 ">
-          <h2 className="text-xl font-light tracking-wider border-b pb-3">
+        <div className="flex flex-col gap-3 rounded-2xl border border-border bg-card p-6 shadow-md md:gap-4">
+          <h2 className="border-b border-border pb-3 text-xl font-light tracking-wider text-foreground">
             Resumen del pedido
           </h2>
 
-          <div className="flex flex-col justify-between items-center md:flex-row text-lg py-2 px-4">
-            <span className="text-gray-600">SubTotal:</span>
-            <span className="font-light text-xl">${subtotal.toFixed(2)}</span>
+          <div className="flex flex-col items-center justify-between px-4 py-2 text-lg md:flex-row">
+            <span className="text-muted-foreground">SubTotal:</span>
+            <span className="text-xl font-light text-foreground">
+              ${subtotal.toFixed(2)}
+            </span>
           </div>
 
-          <div className="flex flex-col justify-between items-center md:flex-row text-lg py-2 px-4">
-            <span className="text-gray-600">Envio:</span>
-            <span className="font-light text-xl">Calculado para pagar</span>
+          <div className="flex flex-col items-center justify-between px-4 py-2 text-lg md:flex-row">
+            <span className="text-muted-foreground">Envio:</span>
+            <span className="text-xl font-light text-foreground">
+              Calculado para pagar
+            </span>
           </div>
 
-          <div className="flex flex-col justify-between items-center md:flex-row text-lg py-2 px-4">
-            <span className="text-gray-600">Tax:</span>
-            <span className="font-light text-xl">$0.00</span>
+          <div className="flex flex-col items-center justify-between px-4 py-2 text-lg md:flex-row">
+            <span className="text-muted-foreground">Tax:</span>
+            <span className="text-xl font-light text-foreground">$0.00</span>
           </div>
 
           <Separator />
 
-          <div className="flex flex-col justify-between items-center md:flex-row text-lg py-2 px-4">
-            <span className="text-gray-600">Total:</span>
-            <span className="font-semibold text-2xl">
+          <div className="flex flex-col items-center justify-between px-4 py-2 text-lg md:flex-row">
+            <span className="text-muted-foreground">Total:</span>
+            <span className="text-2xl font-semibold text-foreground">
               ${subtotal.toFixed(2)}
             </span>
           </div>

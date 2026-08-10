@@ -32,8 +32,8 @@ export const SheetSide = () => {
           side="left"
           className="w-[85vw] max-w-sm p-0 data-[side=left]:max-w-sm"
         >
-          <SheetHeader className="border-b border-gray-200 px-4 py-4">
-            <SheetTitle>Menu</SheetTitle>
+          <SheetHeader className="border-b border-border px-4 py-4">
+            <SheetTitle className="text-foreground">Menu</SheetTitle>
           </SheetHeader>
 
           <SheetFooter className="mt-0 gap-2 p-4">
@@ -45,7 +45,7 @@ export const SheetSide = () => {
               </NavLink>
             ))}
 
-            <SheetClose className="bg-black text-white p-4 rounded-2xl">
+            <SheetClose className="rounded-2xl bg-primary p-4 text-primary-foreground">
               Cancelar
             </SheetClose>
           </SheetFooter>

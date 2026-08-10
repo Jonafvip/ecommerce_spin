@@ -9,13 +9,15 @@ import {
 import { type ProductListWatchAdmin } from "@/types/types";
 import { Button } from "@/components/ui/button";
 import { Trash2 } from "lucide-react";
+import { SquarePen } from "lucide-react";
 
 interface TableMyProps {
   option: ProductListWatchAdmin[];
   onDelete: (id: string | number) => void;
+  onUpdate: (product: ProductListWatchAdmin) => void;
 }
 
-export const Table = ({ option, onDelete }: TableMyProps) => {
+export const Table = ({ option, onDelete, onUpdate }: TableMyProps) => {
   return (
     <TableGlobal className="border-2 border-gray-200 mt-6 lg:mt-0 md:mt-0">
       <TableHeader className="bg-gray-100">
@@ -26,7 +28,7 @@ export const Table = ({ option, onDelete }: TableMyProps) => {
           <TableHead>Price</TableHead>
           <TableHead>Stock</TableHead>
           <TableHead>Status</TableHead>
-          <TableHead>Acciones</TableHead>
+          <TableHead className="text-center">Acciones</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -65,14 +67,24 @@ export const Table = ({ option, onDelete }: TableMyProps) => {
               </span>
             </TableCell>
             <TableCell>
-              <Button
-                variant="destructive"
-                size="sm"
-                onClick={() => onDelete(op.id)}
-              >
-                <Trash2 />
-                Eliminar
-              </Button>
+              <div className="flex justify-center items-center gap-2">
+                <Button
+                  variant="destructive"
+                  size="sm"
+                  onClick={() => onDelete(op.id)}
+                >
+                  <Trash2 />
+                  Eliminar
+                </Button>
+                <Button
+                  variant="secondary"
+                  onClick={() => onUpdate(op)}
+                  size="sm"
+                >
+                  <SquarePen />
+                  Actualizar
+                </Button>
+              </div>
             </TableCell>
           </TableRow>
         ))}

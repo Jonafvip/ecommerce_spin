@@ -37,14 +37,14 @@ export const HoverCard = () => {
                   <>
                     <NavLink
                       to="/register"
-                      className="font-normal text-gray-600 hover:text-black"
+                      className="font-normal text-muted-foreground hover:text-foreground"
                     >
                       Registrarse
                     </NavLink>
                     <Separator />
                     <NavLink
                       to="/login"
-                      className="font-normal text-gray-600 hover:text-black"
+                      className="font-normal text-muted-foreground hover:text-foreground"
                     >
                       Iniciar Sesion
                     </NavLink>

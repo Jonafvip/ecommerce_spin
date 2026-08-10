@@ -36,18 +36,18 @@ export const Card = ({
           : undefined
       }
     >
-      <div className="relative w-full aspect-square bg-gray-100 shrink-0">
+      <div className="relative w-full aspect-square shrink-0 bg-muted">
         {image ? (
           <>
             <div className="absolute inset-0 z-10 bg-black/10 transition-colors hover:bg-transparent" />
             <img
               src={image}
               alt={`Imagen de ${title}`}
-              className="w-full h-full object-cover z-0"
+              className="z-0 h-full w-full object-cover"
             />
           </>
         ) : (
-          <div className="flex h-full w-full items-center justify-center text-sm text-gray-400">
+          <div className="flex h-full w-full items-center justify-center text-sm text-muted-foreground">
             Sin imagen
           </div>
         )}

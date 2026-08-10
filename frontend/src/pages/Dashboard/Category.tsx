@@ -139,15 +139,17 @@ export const Category = () => {
       <AppSidebar />
       <div className="flex flex-col w-full min-h-screen">
         <SidebarTrigger className="m-2" />
-        <div className="flex flex-col lg:flex-row w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 gap-8 lg:gap-12 pb-12">
+        <div className="mx-auto flex w-full max-w-7xl flex-col gap-8 px-4 pb-12 sm:px-6 lg:flex-row lg:gap-12 lg:px-12">
           <section className="w-full lg:w-8/12">
             <div className="px-2">
-              <h2 className="text-2xl sm:text-2xl font-medium">Categorias</h2>
-              <p className="text-base text-gray-500 tracking-wider mt-1">
+              <h2 className="text-2xl font-medium text-foreground sm:text-2xl">
+                Categorias
+              </h2>
+              <p className="mt-1 text-base tracking-wider text-muted-foreground">
                 Gestiona tus categorias
               </p>
             </div>
-            <div className="w-full overflow-x-auto rounded-lg border mt-6">
+            <div className="mt-6 w-full overflow-x-auto rounded-lg border border-border">
               {loading ? (
                 <SkeletonTable />
               ) : (
@@ -166,15 +168,17 @@ export const Category = () => {
           <aside className="w-full lg:w-4/12 lg:pt-21">
             {errors && <p className="text-red-500">{errors}</p>}
             <form
-              className="flex flex-col gap-4 border rounded-lg p-6 shadow-sm bg-card"
+              className="flex flex-col gap-4 rounded-lg border border-border bg-card p-6 shadow-sm"
               onSubmit={handleSubmit}
             >
-              <h2 className="text-xl sm:text-2xl mb-2">
+              <h2 className="mb-2 text-xl text-foreground sm:text-2xl">
                 Crear nueva Categoria
               </h2>
 
               <div className="flex flex-col gap-1.5">
-                <Label>Ingrese Nombre de la categoria</Label>
+                <Label className="text-foreground">
+                  Ingrese Nombre de la categoria
+                </Label>
                 <Input
                   name="name"
                   value={categoryFormData.name}
@@ -184,7 +188,7 @@ export const Category = () => {
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <Label>Ingrese Descripcion</Label>
+                <Label className="text-foreground">Ingrese Descripcion</Label>
                 <Input
                   name="description"
                   value={categoryFormData.description}
@@ -193,7 +197,7 @@ export const Category = () => {
                 />
               </div>
 
-              <Button className="p-5 mt-2 w-full" type="submit">
+              <Button className="mt-2 w-full p-5" type="submit">
                 {loading ? <Spinner /> : "Guardar"}
               </Button>
             </form>

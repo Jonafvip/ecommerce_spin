@@ -57,9 +57,9 @@ export const Products = () => {
         const response = await api.getCategories();
         setCategoriesData(response);
       } catch (error) {
-        if(axios.isAxiosError(error)){
-          const serverError = error.response?.data
-          console.log(serverError)
+        if (axios.isAxiosError(error)) {
+          const serverError = error.response?.data;
+          console.log(serverError);
         }
       }
     };
@@ -106,11 +106,11 @@ export const Products = () => {
     <div className="flex">
       {/* Filtros */}
       <aside className="shrink-0 pl-8 hidden md:block">
-        <div className="flex flex-col justify-center p-8 pt-12 border-b-2">
-          <h4 className="text-xl mb-3">Categoria</h4>
+        <div className="flex flex-col justify-center border-b-2 border-border p-8 pt-12">
+          <h4 className="mb-3 text-xl text-foreground">Categoria</h4>
           <button
             onClick={() => setSelectedCategory(null)}
-            className={`text-left py-1 text-sm tracking-wider ${selectedCategory === null ? "font-bold text-black" : "font-light text-gray-600 hover:text-black"}`}
+            className={`text-left py-1 text-sm tracking-wider ${selectedCategory === null ? "font-bold text-foreground" : "font-light text-muted-foreground hover:text-foreground"}`}
           >
             Todas las categorías
           </button>
@@ -118,10 +118,10 @@ export const Products = () => {
             <button
               key={cat.id}
               onClick={() => setSelectedCategory(cat.id)}
-              className={`text-left py-1  tracking-wider transition-colors ${
+              className={`text-left py-1 tracking-wider transition-colors ${
                 selectedCategory === cat.id
-                  ? "font-bold text-black"
-                  : "font-light text-gray-600 hover:text-black"
+                  ? "font-bold text-foreground"
+                  : "font-light text-muted-foreground hover:text-foreground"
               }`}
             >
               {cat.name}

@@ -72,7 +72,7 @@ export const Customer = () => {
 
   const customerMetrics = [
     { id: "totales", label: "Clientes Totales", result: stats.count },
-    { id: "retencion", label: "Tasa de Retencion",result: "Sin resultado" },
+    { id: "retencion", label: "Tasa de Retencion", result: "Sin resultado" },
     { id: "nuevos", label: "Nuevos Clientes", result: stats.customersNew },
   ];
 
@@ -113,10 +113,12 @@ export const Customer = () => {
       <div className="flex flex-col w-full min-h-screen">
         <SidebarTrigger className="m-2" />
         <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-13 pb-12 ">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div className="px-2">
-              <h2 className="text-2xl sm:text-2xl font-medium">Clientes</h2>
-              <p className="text-base text-gray-500 tracking-wider mt-1">
+              <h2 className="text-2xl font-medium sm:text-2xl text-foreground">
+                Clientes
+              </h2>
+              <p className="mt-1 text-base tracking-wider text-muted-foreground">
                 Gestiona tu lista de Clientes y Consulta las estadisticas
               </p>
             </div>
@@ -130,22 +132,24 @@ export const Customer = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 py-6">
+          <div className="grid grid-cols-1 gap-4 py-6 sm:grid-cols-3">
             {customerMetrics.map((metric) => (
               <div
                 key={metric.id}
-                className="border border-gray-200 bg-gray-50 p-5 rounded-2xl font-light tracking-wider flex flex-col justify-between gap-6 min-h-35"
+                className="flex min-h-35 flex-col justify-between gap-6 rounded-2xl border border-border bg-card p-5 font-light tracking-wider"
               >
                 <h5 className="text-sm text-muted-foreground">
                   {metric.label}
                 </h5>
-                <p className="text-2xl font-medium">{metric.result}</p>
+                <p className="text-2xl font-medium text-foreground">
+                  {metric.result}
+                </p>
               </div>
             ))}
           </div>
           {errors && <p className="text-red-500">{errors}</p>}
-          <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
-            <div className="xl:col-span-2 min-w-0 overflow-x-auto">
+          <div className="grid grid-cols-1 gap-6 xl:grid-cols-3">
+            <div className="min-w-0 overflow-x-auto xl:col-span-2">
               {loading ? (
                 <SkeletonTable />
               ) : (
@@ -158,7 +162,7 @@ export const Customer = () => {
                 />
               )}
             </div>
-            <div className="min-w-0 min-h-76.25 bg-gray-50 py-4 rounded-xl border border-gray-200">
+            <div className="min-h-76.25 min-w-0 rounded-xl border border-border bg-card py-4">
               <Barchar
                 data={[
                   { name: "January", value: 100 },

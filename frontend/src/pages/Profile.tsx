@@ -36,13 +36,15 @@ export const Profile = () => {
         </p>
       </div>
 
-      <div className="rounded-2xl border bg-white shadow-sm">
+      <div className="rounded-2xl border border-border bg-card shadow-sm">
         <div className="p-6">
-          <h3 className="text-xl font-semibold">Información Personal</h3>
+          <h3 className="text-xl font-semibold text-foreground">
+            Información Personal
+          </h3>
         </div>
         <Separator />
 
-        <div className="p-6 space-y-4">
+        <div className="space-y-4 p-6">
           <div>
             <Label className="text-muted-foreground">Nombre de usuario</Label>
 

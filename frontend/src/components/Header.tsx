@@ -1,4 +1,4 @@
-import { Search } from "lucide-react";
+import { Moon, Search, Sun } from "lucide-react";
 import { ShoppingCart } from "lucide-react";
 import { SheetSide } from "@/components/SheetResponsive";
 import { NavLink } from "react-router-dom";
@@ -7,11 +7,15 @@ import { useCart } from "@/context/CartContext";
 import { useAuth } from "@/context/AuthContext";
 import { api } from "@/api/api";
 import { useEffect, useState } from "react";
+import { Button } from "@base-ui/react";
 
 export const Header = () => {
   const { cartCount } = useCart();
   const { isAuthenticated } = useAuth();
   const [role, setRole] = useState<string | null>(null);
+  const [isDark, setIsDark] = useState(() =>
+    document.documentElement.classList.contains("dark"),
+  );
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -28,27 +32,34 @@ export const Header = () => {
     fetchUser();
   }, [isAuthenticated]);
 
+  const toggleTheme = () => {
+    const next = !isDark;
+    setIsDark(next);
+    document.documentElement.classList.toggle("dark", next);
+    localStorage.setItem("theme", next ? "dark" : "light");
+  };
+
   return (
-    <div className="sticky top-0 z-50 bg-white flex items-center justify-between border-b border-gray-200 px-4 py-4 md:px-15 md:py-6">
+    <div className="sticky top-0 z-50 flex items-center justify-between border-b border-border bg-background/95 px-4 py-4 backdrop-blur md:px-15 md:py-6">
       <div className="flex items-center gap-3 md:gap-0">
         <div className="md:hidden">
           <SheetSide />
         </div>
-        <h2 className="text-lg font-semibold md:text-2xl">
+        <h2 className="text-lg font-semibold text-foreground md:text-2xl">
           <NavLink to="/">Ecommerce-SPIN</NavLink>
         </h2>
       </div>
 
       {/* nav center */}
       <ul className="hidden md:flex gap-4">
-        <li className="cursor-pointer border-b border-transparent transition-colors hover:border-gray-800">
-          <NavLink to="/">Home</NavLink>
+        <li className="cursor-pointer border-b border-transparent transition-colors hover:border-foreground">
+          <NavLink to="/" className="text-foreground">Home</NavLink>
         </li>
-        <li className="cursor-pointer border-b border-transparent transition-colors hover:border-gray-800">
-          <NavLink to="/products">Productos</NavLink>
+        <li className="cursor-pointer border-b border-transparent transition-colors hover:border-foreground">
+          <NavLink to="/products" className="text-foreground">Productos</NavLink>
         </li>
-        <li className="cursor-pointer border-b border-transparent transition-colors hover:border-gray-800">
-          <NavLink to="/about"> About</NavLink>
+        <li className="cursor-pointer border-b border-transparent transition-colors hover:border-foreground">
+          <NavLink to="/about" className="text-foreground"> About</NavLink>
         </li>
       </ul>
 
@@ -56,28 +67,31 @@ export const Header = () => {
       <ul className="hidden md:flex gap-8">
         {isAuthenticated && role === "ADMIN" ? (
           <li>
-            <NavLink to="/dashboard">DashBoard</NavLink>
+            <NavLink to="/dashboard" className="text-foreground">DashBoard</NavLink>
           </li>
         ) : (
           ""
         )}
-        <li className="cursor-pointer">
+        <li className="cursor-pointer text-foreground">
           <Search />
         </li>
-        <li className="cursor-pointer">
+        <li className="cursor-pointer text-foreground">
           <HoverCard />
         </li>
         <li className="cursor-pointer">
           <NavLink to="/cart">
             <div className="relative">
               {cartCount > 0 && (
-                <div className="w-5 h-5 z-10 absolute -top-4 -right-4 bg-black rounded-full flex items-center justify-center p-2">
-                  <p className="text-white">{cartCount}</p>
+                <div className="absolute -top-4 -right-4 z-10 flex h-5 w-5 items-center justify-center rounded-full bg-primary p-2">
+                  <p className="text-primary-foreground">{cartCount}</p>
                 </div>
               )}
-              <ShoppingCart />
+              <ShoppingCart className="text-foreground" />
             </div>
           </NavLink>
+        </li>
+        <li>
+          <Button onClick={toggleTheme} className="text-foreground">{isDark ? <Sun /> : <Moon />}</Button>
         </li>
       </ul>
     </div>

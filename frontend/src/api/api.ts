@@ -71,6 +71,16 @@ export const api = {
     );
     return response.data;
   },
+  updateProducts: async (
+    id: number | string,
+    data: FormData,
+  ): Promise<ProductListWatchAdmin> => {
+    const token = localStorage.getItem("auth_token");
+    const response = await axios.patch<ProductListWatchAdmin>(`${BASE_URL}products/${id}/`, data, {
+      headers: { Authorization: `Token ${token}` },
+    });
+    return response.data;
+  },
   getCategories: async (): Promise<CategoryList[]> => {
     const response = await axios.get<CategoryList[]>(
       `${BASE_URL}categories/all-categories/`,

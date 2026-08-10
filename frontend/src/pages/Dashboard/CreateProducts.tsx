@@ -13,9 +13,16 @@ export const CreateProducts = () => {
   const [productsData, setProductsData] = useState<ProductListWatchAdmin[]>([]);
   const [errors, setErrors] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
+  const [productSelected, setProductSelected] =
+    useState<ProductListWatchAdmin | null>(null);
 
   const handleProductCreated = (newProduct: ProductListWatchAdmin) => {
-    setProductsData((prevProducts) => [newProduct, ...prevProducts]);
+    setProductsData((prev) =>
+      prev.some((p) => p.id === newProduct.id)
+        ? prev.map((p) => (p.id === newProduct.id ? newProduct : p))
+        : [newProduct, ...prev],
+    );
+    setProductSelected(null);
   };
 
   const handleDelete = async (id: string | number) => {
@@ -82,7 +89,11 @@ export const CreateProducts = () => {
               </p>
             </div>
             <div className="w-full sm:w-auto">
-              <Dialog onProductCreated={handleProductCreated} />
+              <Dialog
+                onProductCreated={handleProductCreated}
+                product={productSelected}
+                onCancelEdit={() => setProductSelected(null)}
+              />
             </div>
           </div>
           {errors && <p className="text-red-500">{errors}</p>}
@@ -90,7 +101,11 @@ export const CreateProducts = () => {
             {loading ? (
               <SkeletonTable />
             ) : (
-              <Table option={productsData} onDelete={handleDelete} />
+              <Table
+                option={productsData}
+                onDelete={handleDelete}
+                onUpdate={setProductSelected}
+              />
             )}
           </div>
         </div>

@@ -157,7 +157,7 @@ export const Dashboard = () => {
             </div>
             <div className="rounded-2xl border-2 border-border p-4">
               <h2 className="px-4 pb-2 pt-4 text-xl tracking-wide text-foreground">
-                Top Products
+                Top Productos
               </h2>
               <div className="flex flex-col gap-2 p-4">
                 {productData.map((pro) => (

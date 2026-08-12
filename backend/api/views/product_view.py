@@ -29,8 +29,8 @@ class ProductViewSet(ModelViewSet):
         "list": ProductListSerializer,
         "create": ProductCreateSerializer,
         "retrieve": ProductDetailSerializer,
-        "update": ProductDetailSerializer,
-        "partial_update": ProductDetailSerializer,
+        "update": ProductCreateSerializer,
+        "partial_update": ProductCreateSerializer,
         "get_list_products_admin": ProductListAdminSeriliazer,
     }
 

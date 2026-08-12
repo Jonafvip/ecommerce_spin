@@ -55,3 +55,11 @@ class ProductCreateSerializer(serializers.ModelSerializer):
         if value > 100000:
             raise serializers.ValidationError("El precio del producto excede el limite")
         return value
+
+    def validate_product_code(self, value):
+        qs = Product.objects.filter(pruduct_code=value)
+        if self.instance:
+            qs = qs.exclude(pk=self.instance.pk)
+        if qs.exists():
+            raise serializers.ValidationError("El codigo de producto ya existe")
+        return value

@@ -14,6 +14,7 @@ const initialValue: Details = {
   name: "",
   description: "",
   image: "",
+  stock: 0,
   category: {
     id: 0,
     name: "",
@@ -88,11 +89,19 @@ export const ProductDetail = () => {
   return (
     <div className="w-full h-175 mb-30 md:mb-0">
       <section className="flex flex-col md:flex-row pt-60 pl-6 md:pl-2 md:pt-20 pb-45 justify-center h-screen gap-5 md:gap-20">
-        <div className="w-80 mx-auto md:mx-0 h-130 mt-12 md:w-96">
+        <div className="relative w-80 mx-auto md:mx-0 h-130 mt-12 md:w-96">
           <img
             src={productDetailData.image || undefined}
             className="h-90 md:h-112.5 p-6 mt-40 md:mt-0  md:p-2 "
           />
+          {productDetailData.stock === 0 && (
+            <Badge
+              variant="destructive"
+              className="p-4 absolute top-0 right-0 z-10"
+            >
+              Agotado
+            </Badge>
+          )}
         </div>
         <div className="flex flex-col px-4 md:pt-13 md:px-1 mb-30 md:mb-1  justify-between tracking-wide">
           {errors && <p className="text-red-500">{errors}</p>}
@@ -111,6 +120,7 @@ export const ProductDetail = () => {
           <Button
             className="rounded-none p-6 text-xl flex gap-4 mt-5"
             onClick={() => handleAddProducToCard()}
+            disabled={productDetailData.stock === 0 ? true : false}
           >
             Agregar al Carrito <ArrowRight />
           </Button>

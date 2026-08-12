@@ -1,8 +1,10 @@
 from rest_framework import serializers
 from ..models.order import Order
 from ..models.order_detail import OrderDetail
+from ..models.product import Product
 from .user_serializer import UserListAuxSerializer
 from .order_details_serializer import OrderDetailsReadProductSerializer
+from django.db import transaction
 
 
 class OrderDetailCreateSerializer(serializers.ModelSerializer):
@@ -36,19 +38,29 @@ class OrderCreateSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         details_data = validated_data.pop("details")
-        order = Order.objects.create(**validated_data)
+        with transaction.atomic():
+            order = Order.objects.create(**validated_data)
 
-        for detail in details_data:
-            product = detail["product"]
-            OrderDetail.objects.create(
-                order=order,
-                product=product,
-                quantity=detail["quantity"],
-                price=product.unit_price,
-            )
-            product.stock -= detail["quantity"]
-            product.save()
-        return order
+            for detail in details_data:
+                product = Product.objects.select_for_update().get(
+                    pk=detail["product"].pk
+                )
+
+                if product.stock < detail["quantity"]:
+                    raise serializers.ValidationError(
+                        f"Stock insuficiente para {product.name}"
+                    )
+
+                OrderDetail.objects.create(
+                    order=order,
+                    product=product,
+                    quantity=detail["quantity"],
+                    price=product.unit_price,
+                )
+                product.stock -= detail["quantity"]
+                product.save(update_fields=["stock"])
+
+            return order
 
 
 class OrderListSerializer(serializers.ModelSerializer):

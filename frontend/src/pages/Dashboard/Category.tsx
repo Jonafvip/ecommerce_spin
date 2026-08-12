@@ -11,6 +11,7 @@ import { AppSidebar } from "@/components/SideBar";
 import { Spinner } from "@/components/ui/spinner";
 import { toast } from "@/components/ui/toast";
 import { SkeletonTable } from "@/components/SkeletonTable";
+import { ConfirmDeleteDialog } from "@/components/ConfirmDeleteDialog";
 
 const initialValue: CategoryCreate = {
   name: "",
@@ -27,6 +28,9 @@ export const Category = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [errors, setErrors] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
+  const [categoryToDelete, setCategoryToDelete] = useState<CategoryList | null>(
+    null,
+  );
 
   const handleCategoryCreated = (newCategory: CategoryList) => {
     setCategoryData((prevCategory) => [newCategory, ...prevCategory]);
@@ -159,7 +163,7 @@ export const Category = () => {
                   next={nextUrl}
                   prev={prevUrl}
                   onPageChange={fetchData}
-                  onDelete={handleDelete}
+                  onDelete={setCategoryToDelete}
                 />
               )}
             </div>
@@ -204,6 +208,16 @@ export const Category = () => {
           </aside>
         </div>
       </div>
+      <ConfirmDeleteDialog
+        open={!!categoryToDelete}
+        title="Eliminar Categoria"
+        description="¿Estás seguro de querer eliminar esta categoria?"
+        onClose={() => setCategoryToDelete(null)}
+        onConfirm={() => {
+          handleDelete(categoryToDelete?.id as string | number);
+          setCategoryToDelete(null);
+        }}
+      />
     </SidebarProvider>
   );
 };

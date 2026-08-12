@@ -8,12 +8,15 @@ import { useEffect, useState } from "react";
 import { Dialog } from "@/components/Dialog";
 import { toast } from "@/components/ui/toast";
 import { SkeletonTable } from "@/components/SkeletonTable";
+import { ConfirmDeleteDialog } from "@/components/ConfirmDeleteDialog";
 
 export const CreateProducts = () => {
   const [productsData, setProductsData] = useState<ProductListWatchAdmin[]>([]);
   const [errors, setErrors] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [productSelected, setProductSelected] =
+    useState<ProductListWatchAdmin | null>(null);
+  const [productToDelete, setProductToDelete] =
     useState<ProductListWatchAdmin | null>(null);
 
   const handleProductCreated = (newProduct: ProductListWatchAdmin) => {
@@ -103,13 +106,23 @@ export const CreateProducts = () => {
             ) : (
               <Table
                 option={productsData}
-                onDelete={handleDelete}
+                onDelete={setProductToDelete}
                 onUpdate={setProductSelected}
               />
             )}
           </div>
         </div>
       </div>
+      <ConfirmDeleteDialog
+        open={!!productToDelete}
+        title="Eliminar Producto"
+        description="¿Estás seguro de querer eliminar este producto?"
+        onClose={() => setProductToDelete(null)}
+        onConfirm={() => {
+          handleDelete(productToDelete?.id as string | number);
+          setProductToDelete(null);
+        }}
+      />
     </SidebarProvider>
   );
 };

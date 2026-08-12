@@ -22,12 +22,13 @@ export const Table = ({ option, onDelete, onUpdate }: TableMyProps) => {
     <TableGlobal className="mt-6 border border-border md:mt-0 lg:mt-0">
       <TableHeader>
         <TableRow>
-          <TableHead className="w-20 text-foreground">Image</TableHead>
-          <TableHead className="text-foreground">Product Name</TableHead>
-          <TableHead className="text-foreground">Category</TableHead>
-          <TableHead className="text-foreground">Price</TableHead>
+          <TableHead className="w-20 text-foreground">Imagen</TableHead>
+          <TableHead className="text-foreground">Nombre del Producto</TableHead>
+          <TableHead className="text-foreground">Codigo del Producto</TableHead>
+          <TableHead className="text-foreground">Categoria</TableHead>
+          <TableHead className="text-foreground">Precio</TableHead>
           <TableHead className="text-foreground">Stock</TableHead>
-          <TableHead className="text-foreground">Status</TableHead>
+          <TableHead className="text-foreground">Estado</TableHead>
           <TableHead className="text-center text-foreground">
             Acciones
           </TableHead>
@@ -51,6 +52,9 @@ export const Table = ({ option, onDelete, onUpdate }: TableMyProps) => {
             </TableCell>
             <TableCell className="font-medium text-foreground">
               {op.name}
+            </TableCell>
+            <TableCell className="font-medium text-foreground">
+              {op.product_code}
             </TableCell>
             <TableCell className="text-muted-foreground">
               {op.category?.name ?? "Sin categoría"}

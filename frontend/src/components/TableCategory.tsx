@@ -17,7 +17,7 @@ interface MyTableCustomizedProp {
   prev?: string | null;
   currentPage?: number;
   onPageChange?: (url: string, pageNumber: number) => void;
-  onDelete: (id: string | number) => void;
+  onDelete: (category: CategoryList) => void;
 }
 
 export const TableCategory = ({
@@ -64,7 +64,7 @@ export const TableCategory = ({
                 </TableCell>
                 <TableCell>
                   <Button
-                    onClick={() => onDelete(op.id)}
+                    onClick={() => onDelete(op)}
                     variant="destructive"
                     size="sm"
                   >

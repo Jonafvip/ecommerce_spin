@@ -11,6 +11,7 @@ export interface ProductDetail {
   description: string;
   unit_price: string;
   product_code: string;
+  stock?: number;
   image: string;
   category: {
     id: number;

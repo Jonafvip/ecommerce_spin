@@ -57,7 +57,7 @@ class ProductCreateSerializer(serializers.ModelSerializer):
         return value
 
     def validate_product_code(self, value):
-        qs = Product.objects.filter(pruduct_code=value)
+        qs = Product.objects.filter(product_code=value)
         if self.instance:
             qs = qs.exclude(pk=self.instance.pk)
         if qs.exists():

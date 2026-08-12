@@ -10,7 +10,7 @@ import { useAuth } from "@/context/AuthContext";
 const HOVER_CARD_SIDES = ["bottom"] as const;
 
 export const HoverCard = () => {
-  const { isAuthenticated, logout } = useAuth();
+  const { isAuthenticated } = useAuth();
   return (
     <div className="flex flex-wrap justify-center gap-2">
       {HOVER_CARD_SIDES.map((side) => (

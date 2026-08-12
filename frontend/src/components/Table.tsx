@@ -13,7 +13,7 @@ import { SquarePen } from "lucide-react";
 
 interface TableMyProps {
   option: ProductListWatchAdmin[];
-  onDelete: (id: string | number) => void;
+  onDelete: (product: ProductListWatchAdmin) => void;
   onUpdate: (product: ProductListWatchAdmin) => void;
 }
 
@@ -77,7 +77,7 @@ export const Table = ({ option, onDelete, onUpdate }: TableMyProps) => {
                 <Button
                   variant="destructive"
                   size="sm"
-                  onClick={() => onDelete(op.id)}
+                  onClick={() => onDelete(op)}
                 >
                   <Trash2 />
                   Eliminar

@@ -1,5 +1,11 @@
 import { toast } from "@/components/ui/toast";
-import { createContext, useContext, useState, type ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  type ReactNode,
+} from "react";
 
 interface AuthContextType {
   isAuthenticated: boolean;
@@ -27,6 +33,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       title: "Sesion Cerrada Exitosamente",
     });
   };
+
+  useEffect(() => {
+    const handleUnauthorized = () => {
+      setIsAuthenticated(false);
+    };
+    window.addEventListener("auth:unauthorized", handleUnauthorized);
+    return () => window.removeEventListener("auth:unauthorized", handleUnauthorized);
+  }, []);
 
   return (
     <AuthContext.Provider value={{ isAuthenticated, login, logout }}>

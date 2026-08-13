@@ -18,9 +18,9 @@ import { apiClient, TOKEN_AUTH } from "./client";
 
 export const api = {
   getProducts: async (): Promise<{ results: ProductListExceptCategory[] }> => {
-    const response = await apiClient.get<{ results: ProductListExceptCategory[] }>(
-      "products/",
-    );
+    const response = await apiClient.get<{
+      results: ProductListExceptCategory[];
+    }>("products/");
     return response.data;
   },
   getProductDetail: async (
@@ -96,7 +96,10 @@ export const api = {
     return response.data;
   },
   postLogin: async (userdata: LoginUser): Promise<AuthTokenResponse> => {
-    const response = await apiClient.post<AuthTokenResponse>(TOKEN_AUTH, userdata);
+    const response = await apiClient.post<AuthTokenResponse>(
+      TOKEN_AUTH,
+      userdata,
+    );
     return response.data;
   },
   logoutUser: () => {
@@ -129,6 +132,15 @@ export const api = {
   },
   getUserDetail: async (): Promise<UserDetailt> => {
     const response = await apiClient.get<UserDetailt>("user/me/");
+    return response.data;
+  },
+  updateUserDetail: async (data: {
+    username: string;
+    first_name: string;
+    last_name: string;
+    email: string;
+  }): Promise<UserDetailt> => {
+    const response = await apiClient.patch<UserDetailt>("user/me/", data);
     return response.data;
   },
   getUsersListByAdmin: async (

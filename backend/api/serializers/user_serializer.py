@@ -37,6 +37,28 @@ class UserDetailSerializer(serializers.ModelSerializer):
         fields = ["id", "username", "first_name", "last_name", "email", "role"]
 
 
+class UserUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ["username", "first_name", "last_name", "email"]
+
+    def validate_username(self, value):
+        qs = User.objects.filter(username=value)
+        if self.instance:
+            qs = qs.exclude(pk=self.instance.pk)
+        if qs.exists():
+            raise serializers.ValidationError("Este username ya existe")
+        return value
+
+    def validate_email(self, value):
+        qs = User.objects.filter(email=value)
+        if self.instance:
+            qs = qs.exclude(pk=self.instance.pk)
+        if qs.exists():
+            raise serializers.ValidationError("Este email ya existe")
+        return value
+
+
 class UserListAuxSerializer(serializers.ModelSerializer):
     full_name = serializers.SerializerMethodField()
 

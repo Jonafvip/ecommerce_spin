@@ -3,8 +3,13 @@ from ..serializers.user_serializer import (
     UserCreateSerializer,
     UserDetailSerializer,
     UserListByAdminSerializer,
+    UserUpdateSerializer,
 )
-from rest_framework.generics import CreateAPIView, RetrieveAPIView, ListAPIView
+from rest_framework.generics import (
+    CreateAPIView,
+    RetrieveUpdateAPIView,
+    ListAPIView,
+)
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
@@ -30,13 +35,17 @@ class UserCreateAPIView(CreateAPIView):
         )
 
 
-class UserRetrieveAPIView(RetrieveAPIView):
+class UserRetrieveAPIView(RetrieveUpdateAPIView):
     serializer_class = UserDetailSerializer
     permission_classes = [IsAuthenticated]
 
     def get_object(self):
         return self.request.user
 
+    def get_serializer_class(self):
+        if self.request.method in ("PUT", "PATCH"):
+            return UserUpdateSerializer
+        return UserDetailSerializer
 
 class UserListByAdminAPIView(ListAPIView):
     queryset = User.objects.filter(is_active=True)

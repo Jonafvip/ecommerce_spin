@@ -184,22 +184,22 @@ export const Profile = () => {
                 </div>
               </div>
 
-              <div className="mt-2 flex items-center gap-2 sm:ml-auto sm:mt-0">
+              <div className="mt-2 flex flex-col items-center gap-2 sm:ml-auto sm:mt-0">
                 {isEditing ? (
                   <>
-                    <Button variant="outline" onClick={handleCancelEdit}>
-                      Cancelar
-                    </Button>
-                    <Button onClick={handleSave} disabled={saving}>
+                    <Button onClick={handleSave} disabled={saving} className="w-34">
                       {saving ? <Spinner /> : "Guardar"}
+                    </Button>
+                    <Button variant="outline" onClick={handleCancelEdit} className="w-34">
+                      Cancelar
                     </Button>
                   </>
                 ) : (
-                  <Button variant="outline" onClick={() => setIsEditing(true)}>
+                  <Button variant="outline" onClick={() => setIsEditing(true)} className="w-34">
                     <SquarePen /> Editar Perfil
                   </Button>
                 )}
-                <Button variant="outline" onClick={handleLogout}>
+                <Button variant="outline" onClick={handleLogout} className="w-34">
                   <LogOut /> Cerrar Sesión
                 </Button>
               </div>

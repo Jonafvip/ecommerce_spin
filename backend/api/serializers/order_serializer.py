@@ -71,6 +71,7 @@ class OrderListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
         fields = ["id", "status", "created_at", "user", "total", "details"]
+        read_only_fields = ["status"]
 
     def get_user(self, obj):
         from .user_serializer import UserListAuxSerializer

@@ -12,7 +12,7 @@ from rest_framework import status
 class CartViewSet(ModelViewSet):
     queryset = Cart.objects.select_related("user")
     serializer_class = CartListSerializer
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
 
     serializer_actions = {
         "list": CartListSerializer,
@@ -20,8 +20,6 @@ class CartViewSet(ModelViewSet):
     }
 
     def get_permissions(self):
-        if self.action == "create":
-            return [AllowAny()]
         return [IsAuthenticated()]
 
     def get_queryset(self):

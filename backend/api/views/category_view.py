@@ -4,17 +4,17 @@ from ..serializers.category_serializer import (
     CategoryCreateSerializer,
 )
 from rest_framework.viewsets import ModelViewSet
-from ..permissions import IsAdminOrReadOnly
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated,AllowAny
+from rest_framework.permissions import IsAuthenticated, AllowAny
+from ..permissions import IsAdmin
 
 
 class CategoryViewSet(ModelViewSet):
     serializer_class = CategoryListSerializer
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
     filter_backends = [DjangoFilterBackend]
     pagination_class = PageNumberPagination
     pagination_class.page_size = 10
@@ -30,9 +30,9 @@ class CategoryViewSet(ModelViewSet):
         return CategoryListSerializer
 
     def get_permissions(self):
-        if self.action == "all_category":
-            return [AllowAny()]
-        return super().get_permissions()
+        if self.action in ["create", "update", "partial_update", "destroy"]:
+            return [IsAdmin()]
+        return [AllowAny()]
 
     @action(detail=False, methods=["get"], url_path="all-categories")
     def all_category(self, request):

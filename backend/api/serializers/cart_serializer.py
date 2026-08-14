@@ -17,7 +17,7 @@ class CartCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cart
         fields = ["id", "status", "user", "details"]
-        read_only_fields = ["id", "status", "created_at"]
+        read_only_fields = ["id", "status", "created_at","user"]
 
     def validate(self, data):
         details = data["details"]

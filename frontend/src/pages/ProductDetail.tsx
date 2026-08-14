@@ -70,7 +70,9 @@ export const ProductDetail = () => {
           toast.add({
             type: "error",
             title: "Cart",
-            description: message.join(", "),
+            description:
+              message.join(", ") ||
+              "Necesitas Iniciar Sesion para agregar un Producto",
           });
         } else {
           setErrors("Error de conexion del servidor");

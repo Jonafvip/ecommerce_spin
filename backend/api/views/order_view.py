@@ -1,8 +1,8 @@
-from rest_framework import viewsets, status
+from rest_framework import viewsets
 from ..models.order import Order
 from ..serializers.order_serializer import OrderListSerializer, OrderCreateSerializer
 from rest_framework.permissions import IsAuthenticated, AllowAny
-from ..permissions import IsAdmin, IsCustomer
+from ..permissions import IsAdmin
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
@@ -10,22 +10,17 @@ from rest_framework.response import Response
 class OrderViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.select_related("user")
     serializer_class = OrderListSerializer
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
 
     serializer_actions = {
         "list": OrderListSerializer,
         "create": OrderCreateSerializer,
     }
 
-    serializer_permissions = {
-        "list": [IsAuthenticated()],
-        "create": [IsAuthenticated()],
-        "destroy": [IsAdmin()],
-        "get_my_orders": [IsAuthenticated()],
-    }
-
     def get_permissions(self):
-        return self.serializer_permissions.get(self.action, super().get_permissions())
+        if self.action == "destroy":
+            return [IsAdmin()]
+        return super().get_permissions()
 
     def get_queryset(self):
         user = self.request.user

@@ -5,14 +5,14 @@ from ..serializers.product_serializer import (
     ProductDetailSerializer,
     ProductListAdminSeriliazer,
 )
-from ..permissions import IsAdminOrReadOnly
+from ..permissions import IsAdminOrReadOnly, IsAdmin
 from rest_framework.viewsets import ModelViewSet
-from rest_framework.pagination import PageNumberPagination, Response
+from rest_framework.pagination import PageNumberPagination
+from rest_framework.response import Response
 from rest_framework.filters import OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
 from ..filters import ProductFilter
 from rest_framework.decorators import action
-from ..permissions import IsAdminOrReadOnly
 
 
 class ProductViewSet(ModelViewSet):
@@ -34,6 +34,11 @@ class ProductViewSet(ModelViewSet):
         "get_list_products_admin": ProductListAdminSeriliazer,
     }
 
+    def get_permissions(self):
+        if self.action == "get_list_products_admin":
+            return [IsAdmin()]
+        return super().get_permissions()
+
     def get_queryset(self):
         return Product.objects.select_related("category").filter(is_active=True)
 
@@ -46,8 +51,8 @@ class ProductViewSet(ModelViewSet):
         filter_queryset = self.filter_queryset(queryset)
 
         page = self.paginate_queryset(filter_queryset)
-        if page is None:
-            serializer = self.get_serializer(page, many=True)
-            return self.get_paginated_response(serializer.data)
-        serializer = self.get_serializer(filter_queryset, many=True)
-        return Response(serializer.data)
+        if page is not None:
+            return self.get_paginated_response(
+                self.get_serializer(page, many=True).data
+            )
+        return Response(self.get_serializer(filter_queryset, many=True).data)

@@ -11,6 +11,7 @@ from rest_framework.generics import (
     ListAPIView,
 )
 from rest_framework.permissions import AllowAny, IsAuthenticated
+from ..permissions import IsAdmin
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from rest_framework import status
@@ -47,10 +48,11 @@ class UserRetrieveAPIView(RetrieveUpdateAPIView):
             return UserUpdateSerializer
         return UserDetailSerializer
 
+
 class UserListByAdminAPIView(ListAPIView):
     queryset = User.objects.filter(is_active=True)
     serializer_class = UserListByAdminSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAdmin]
     filter_backends = [DjangoFilterBackend, OrderingFilter]
     ordering_fields = ["username"]
     pagination_class = PageNumberPagination

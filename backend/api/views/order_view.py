@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 from ..models.order import Order
 from ..serializers.order_serializer import OrderListSerializer, OrderCreateSerializer
-from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.permissions import IsAuthenticated
 from ..permissions import IsAdmin
 from rest_framework.decorators import action
 from rest_framework.response import Response

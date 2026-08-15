@@ -3,7 +3,7 @@ from ..models.cart import Cart
 from ..models.product import Product
 from ..models.cart_detail import CartDetail
 from ..serializers.cart_serializer import CartCreateSerializer, CartListSerializer
-from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import status

@@ -58,7 +58,7 @@ export const CreateProducts = () => {
       setLoading(true);
       try {
         const response = await api.getProductsAdmin();
-        setProductsData(response);
+        setProductsData(response.results);
       } catch (error) {
         const message = axios.isAxiosError(error)
           ? error.response

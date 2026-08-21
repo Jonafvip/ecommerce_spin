@@ -9,7 +9,7 @@ import { ArrowDownToLine } from "lucide-react";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/SideBar";
 import { Button } from "@/components/ui/button";
-import { Step4 } from "@/components/grafics/Diagrams";
+import { Step4, type ChartPoint } from "@/components/grafics/Diagrams";
 
 export const Dashboard = () => {
   const [userDataDetail, setUserDataDetail] = useState<UserDetailt>();
@@ -21,6 +21,7 @@ export const Dashboard = () => {
     customers: 0,
     average: 0,
   });
+  const [salesData, setSalesData] = useState<ChartPoint[]>([]);
 
   const metricCards = [
     {
@@ -71,6 +72,16 @@ export const Dashboard = () => {
           customers: totalCustomer,
           average: totalCustomer > 0 ? totalOrders / totalCustomer : 0,
         });
+
+        const byMonth = orders.reduce<Record<string, number>>((acc, o) => {
+          const d = new Date(o.created_at);
+          const key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`;
+          acc[key] = (acc[key] ?? 0) + Number(o.total);
+          return acc;
+        }, {});
+        setSalesData(
+          Object.entries(byMonth).map(([name, ventas]) => ({ name, ventas })),
+        );
       } catch (error) {
         console.log(error);
       }
@@ -126,7 +137,13 @@ export const Dashboard = () => {
 
           <div className="grid grid-cols-1 gap-6 xl:grid-cols-3">
             <div className="overflow-x-auto rounded-2xl border-2 border-border p-4 xl:col-span-2">
-              <Step4 />
+              <h2 className="px-1 pb-1 text-xl tracking-wide text-foreground">
+                Ventas Mensuales
+              </h2>
+              <p className="px-1 pb-4 text-sm text-muted-foreground tracking-wider">
+                Suma de los ingresos generados por los pedidos en cada mes.
+              </p>
+              <Step4 data={salesData} />
             </div>
             <div className="rounded-2xl border-2 border-border p-4">
               <h2 className="px-4 pb-2 pt-4 text-xl tracking-wide text-foreground">

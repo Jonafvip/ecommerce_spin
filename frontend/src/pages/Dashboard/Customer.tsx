@@ -27,6 +27,9 @@ export const Customer = () => {
     count: 0,
     customersNew: 0,
   });
+  const [customerGrowth, setCustomerGrowth] = useState<
+    { name: string; value: number }[]
+  >([]);
 
   const fetchDataCustomer = async (url?: string, pageNumber: number = 1) => {
     setLoading(true);
@@ -96,6 +99,25 @@ export const Customer = () => {
           return new Date(u.date_joined) >= thirtyDays;
         }).length;
 
+        const monthNames = [
+          "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+          "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre",
+        ];
+        const byMonth: Record<string, number> = {};
+        allUsers.forEach((u) => {
+          if (!u.date_joined) return;
+          const d = new Date(u.date_joined);
+          const key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`;
+          byMonth[key] = (byMonth[key] ?? 0) + 1;
+        });
+        const growth = Object.entries(byMonth)
+          .sort(([a], [b]) => a.localeCompare(b))
+          .map(([key, value]) => {
+            const month = Number(key.split("-")[1]) - 1;
+            return { name: monthNames[month], value };
+          });
+
+        setCustomerGrowth(growth);
         setStats((prev) => ({
           ...prev,
           customersNew: customerNew,
@@ -163,13 +185,13 @@ export const Customer = () => {
               )}
             </div>
             <div className="min-h-76.25 min-w-0 rounded-xl border border-border bg-card py-4">
-              <Barchar
-                data={[
-                  { name: "January", value: 100 },
-                  { name: "February", value: 150 },
-                  { name: "Marz", value: 250 },
-                ]}
-              />
+              <h2 className="px-4 pb-1 text-xl tracking-wide text-foreground">
+                Clientes Registrados por Mes
+              </h2>
+              <p className="px-4 pb-4 text-sm text-muted-foreground tracking-wider">
+                Cantidad de clientes que se registraron en la plataforma cada mes.
+              </p>
+              <Barchar data={customerGrowth} />
             </div>
           </div>
         </section>

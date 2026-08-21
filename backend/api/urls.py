@@ -9,6 +9,7 @@ from .views.user_view import (
 )
 from .views.cart_view import CartViewSet
 from rest_framework.routers import SimpleRouter
+from .views.report_view import Top5BestSellingProductsAPIView
 
 router = SimpleRouter()
 router.register(r"products", ProductViewSet, basename="products")
@@ -20,5 +21,10 @@ urlpatterns = [
     path("user/register/", UserCreateAPIView.as_view(), name="user-register"),
     path("user/me/", UserRetrieveAPIView.as_view(), name="user-me"),
     path("users/admin/", UserListByAdminAPIView.as_view(), name="user-admin"),
+    path(
+        "report/products/",
+        Top5BestSellingProductsAPIView.as_view(),
+        name="tops-products",
+    ),
     path("", include(router.urls)),
 ]

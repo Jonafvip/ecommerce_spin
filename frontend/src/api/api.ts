@@ -1,17 +1,18 @@
-import {
-  type PaginatedProductsResponse,
-  type ProductListExceptCategory,
-  type CategoryList,
-  type ProductDetail,
-  type RegisterUser,
-  type LoginUser,
-  type AuthTokenResponse,
-  type OmitUserInCart,
-  type UserDetailt,
-  type PaginatedCustomerResponse,
-  type CategoryCreate,
-  type PaginationCategory,
-  type OrderList,
+import type {
+  PaginatedProductsResponse,
+  ProductListExceptCategory,
+  CategoryList,
+  ProductDetail,
+  RegisterUser,
+  LoginUser,
+  AuthTokenResponse,
+  OmitUserInCart,
+  UserDetailt,
+  PaginatedCustomerResponse,
+  CategoryCreate,
+  PaginationCategory,
+  OrderList,
+  ReportDetailItem,
 } from "@/types/types";
 import { type ProductListWatchAdmin } from "@/types/types";
 import { apiClient, TOKEN_AUTH } from "./client";
@@ -51,8 +52,8 @@ export const api = {
     const response = await apiClient.get<PaginatedProductsResponse>(endpoint);
     return response.data;
   },
-  getProductsAdmin: async (): Promise<ProductListWatchAdmin[]> => {
-    const response = await apiClient.get<ProductListWatchAdmin[]>(
+  getProductsAdmin: async (): Promise<{ results: ProductListWatchAdmin[] }> => {
+    const response = await apiClient.get<{ results: ProductListWatchAdmin[] }>(
       "products/list-products-admin/",
     );
     return response.data;
@@ -164,6 +165,11 @@ export const api = {
   },
   getMyOrders: async (): Promise<OrderList[]> => {
     const response = await apiClient.get<OrderList[]>("orders/mine/");
+    return response.data;
+  },
+  getReportTop5Products: async (): Promise<ReportDetailItem[]> => {
+    const response =
+      await apiClient.get<ReportDetailItem[]>("report/products/");
     return response.data;
   },
 };

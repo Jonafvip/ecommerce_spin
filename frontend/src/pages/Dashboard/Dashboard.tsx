@@ -1,22 +1,19 @@
 import { useEffect, useState } from "react";
 import { api } from "@/api/api";
-import { type UserDetailt } from "@/types/types";
+import { type ReportDetailItem, type UserDetailt } from "@/types/types";
 import { FaMoneyBill1Wave } from "react-icons/fa6";
 import { IoBagOutline } from "react-icons/io5";
 import { MdOutlinePeopleAlt } from "react-icons/md";
 import { ScrollText } from "lucide-react";
 import { ArrowDownToLine } from "lucide-react";
-import axios from "axios";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/SideBar";
 import { Button } from "@/components/ui/button";
 import { Step4 } from "@/components/grafics/Diagrams";
-import Camisa from "@/assets/camisa.webp";
-import Moto from "@/assets/motocierra.webp";
-import Refri from "@/assets/refrigeradora.webp";
-import Tv from "@/assets/nueva-smart-tv.webp";
+
 export const Dashboard = () => {
   const [userDataDetail, setUserDataDetail] = useState<UserDetailt>();
+  const [topProducts, setTopProducts] = useState<ReportDetailItem[]>([]);
 
   const [stats, setStats] = useState({
     income: 0,
@@ -24,20 +21,6 @@ export const Dashboard = () => {
     customers: 0,
     average: 0,
   });
-
-  const productData = [
-    { id: 1, name: "Televisor", price: 789.99, stock: 20, image: Tv },
-    { id: 2, name: "Refrigeradora", price: 839.99, stock: 40, image: Refri },
-    {
-      id: 3,
-      name: "Camisa de Algodon",
-      price: 129.99,
-      stock: 50,
-      image: Camisa,
-    },
-    { id: 4, name: "Motocierra", price: 669.99, stock: 60, image: Moto },
-    { id: 5, name: "MotocierraV2", price: 559.99, stock: 30, image: Moto },
-  ];
 
   const metricCards = [
     {
@@ -67,27 +50,17 @@ export const Dashboard = () => {
   ];
 
   useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const response = await api.getUserDetail();
-        setUserDataDetail(response);
-      } catch (error) {
-        if (axios.isAxiosError(error)) {
-          const serverError = error.response?.data;
-          console.log("Errores", serverError);
-        }
-      }
-    };
-    fetchUserData();
-  }, []);
-
-  useEffect(() => {
     const fetchStats = async () => {
       try {
-        const [orders, customers] = await Promise.all([
-          api.getOrders(),
-          api.getUsersListByAdmin(),
-        ]);
+        const [orders, customers, userDataDetail, reportTop5Products] =
+          await Promise.all([
+            api.getOrders(),
+            api.getUsersListByAdmin(),
+            api.getUserDetail(),
+            api.getReportTop5Products(),
+          ]);
+        setUserDataDetail(userDataDetail);
+        setTopProducts(reportTop5Products);
         const totalOrders = orders.length;
         const income = orders.reduce((acc, o) => acc + Number(o.total), 0);
         const totalCustomer = customers.count;
@@ -160,7 +133,7 @@ export const Dashboard = () => {
                 Top Productos
               </h2>
               <div className="flex flex-col gap-2 p-4">
-                {productData.map((pro) => (
+                {topProducts.map((pro) => (
                   <div
                     key={pro.id}
                     className="flex items-center justify-between gap-3 py-2"
@@ -176,11 +149,16 @@ export const Dashboard = () => {
                           {pro.name}
                         </h2>
                         <p className="text-xs text-muted-foreground">
-                          {pro.stock} unidades
+                          {pro.unidades_mas_vendidas}{" "}
+                          {pro.unidades_mas_vendidas === 1
+                            ? "unidad vendida"
+                            : "unidades vendidas"}
                         </p>
                       </div>
                     </div>
-                    <p className="text-sm font-medium shrink-0">${pro.price}</p>
+                    <p className="text-sm font-medium shrink-0">
+                      ${pro.unit_price}
+                    </p>
                   </div>
                 ))}
               </div>

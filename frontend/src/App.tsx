@@ -8,6 +8,8 @@ import { Login } from "./pages/auth/Login";
 import { Cart } from "./pages/Cart";
 import { CartProvider } from "./context/CartContext";
 import { About } from "./pages/About";
+import { PrivacyPolicy } from "./pages/PrivacyPolicy";
+import { TermsOfService } from "./pages/TermsOfService";
 import { Dashboard } from "./pages/Dashboard/Dashboard";
 import { CreateProducts } from "./pages/Dashboard/CreateProducts";
 import { Customer } from "./pages/Dashboard/Customer";
@@ -53,6 +55,14 @@ const router = createBrowserRouter([
       {
         path: "/about",
         element: <About />,
+      },
+      {
+        path: "/privacy-policy",
+        element: <PrivacyPolicy />,
+      },
+      {
+        path: "/terms-of-service",
+        element: <TermsOfService />,
       },
       {
         path: "/dashboard",

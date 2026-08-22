@@ -1,7 +1,7 @@
 import { Moon, Search, Sun } from "lucide-react";
 import { ShoppingCart } from "lucide-react";
 import { SheetSide } from "@/components/SheetResponsive";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { HoverCard } from "@/components/HoverCard";
 import { useCart } from "@/context/CartContext";
 import { useAuth } from "@/context/AuthContext";
@@ -12,10 +12,25 @@ import { Button } from "@base-ui/react";
 export const Header = () => {
   const { cartCount } = useCart();
   const { isAuthenticated } = useAuth();
+  const navigate = useNavigate();
   const [role, setRole] = useState<string | null>(null);
   const [isDark, setIsDark] = useState(() =>
     document.documentElement.classList.contains("dark"),
   );
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [query, setQuery] = useState("");
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    const q = query.trim();
+    setSearchOpen(false);
+    navigate(q ? `/products?search=${encodeURIComponent(q)}` : "/products");
+  };
+
+  const closeSearch = () => {
+    setQuery("");
+    setSearchOpen(false);
+  };
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -72,8 +87,36 @@ export const Header = () => {
         ) : (
           ""
         )}
-        <li className="cursor-pointer text-foreground">
-          <Search />
+        <li className="flex items-center text-foreground">
+          <button
+            type="button"
+            onClick={() => setSearchOpen(true)}
+            aria-label="Buscar"
+            className={`cursor-pointer transition-all duration-300 ${
+              searchOpen ? "pointer-events-none w-0 opacity-0" : "opacity-100"
+            }`}
+          >
+            <Search />
+          </button>
+          <form
+            onSubmit={handleSearch}
+            className={`flex items-center overflow-hidden transition-all duration-300 ease-out ${
+              searchOpen
+                ? "ml-2 w-44 translate-x-0 opacity-100"
+                : "w-0 translate-x-4 opacity-0"
+            }`}
+          >
+            <input
+              autoFocus
+              type="text"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              onKeyDown={(e) => e.key === "Escape" && closeSearch()}
+              onBlur={closeSearch}
+              placeholder="Buscar productos..."
+              className="w-full rounded-md border border-border bg-background px-2 py-1 text-sm text-foreground outline-none focus:border-foreground"
+            />
+          </form>
         </li>
         <li className="cursor-pointer text-foreground">
           <HoverCard />

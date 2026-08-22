@@ -9,7 +9,7 @@ from ..permissions import IsAdminOrReadOnly, IsAdmin
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
-from rest_framework.filters import OrderingFilter
+from rest_framework.filters import OrderingFilter, SearchFilter
 from django_filters.rest_framework import DjangoFilterBackend
 from ..filters import ProductFilter
 from rest_framework.decorators import action
@@ -19,8 +19,9 @@ class ProductViewSet(ModelViewSet):
     queryset = Product.objects.select_related("category").filter(is_active=True)
     serializer_class = ProductListSerializer
     permission_classes = [IsAdminOrReadOnly]
-    filter_backends = [DjangoFilterBackend, OrderingFilter]
+    filter_backends = [DjangoFilterBackend, OrderingFilter, SearchFilter]
     filterset_class = ProductFilter
+    search_fields = ["name", "description"]
     ordering_fields = ["name", "unit_price"]
     pagination_class = PageNumberPagination
     pagination_class.page_size = 9

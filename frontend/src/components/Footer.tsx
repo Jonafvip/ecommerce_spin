@@ -6,6 +6,7 @@ import { FaCcPaypal } from "react-icons/fa";
 import { FaCcMastercard } from "react-icons/fa";
 import { FaCcVisa } from "react-icons/fa";
 import { Store } from "lucide-react";
+import { NavLink } from "react-router-dom";
 
 export const Footer = () => {
   return (
@@ -67,8 +68,22 @@ export const Footer = () => {
           <div>
             <h3 className="py-4 text-xl font-light tracking-wider text-foreground">Legal</h3>
             <ul className="flex flex-col gap-4 text-xs text-muted-foreground">
-              <li>Politica de Privacidad</li>
-              <li>Terminos de Servicio</li>
+              <li>
+                <NavLink
+                  to="/privacy-policy"
+                  className="transition-colors hover:text-foreground"
+                >
+                  Politica de Privacidad
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/terms-of-service"
+                  className="transition-colors hover:text-foreground"
+                >
+                  Terminos de Servicio
+                </NavLink>
+              </li>
               <li>Articulos</li>
             </ul>
           </div>

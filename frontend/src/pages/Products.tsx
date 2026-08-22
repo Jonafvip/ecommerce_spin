@@ -9,6 +9,7 @@ import {
 } from "@/types/types";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
 const CustomerSortOptions: SelectionOption[] = [
   { value: "name", label: "Nombre (A-Z)" },
@@ -31,6 +32,8 @@ export const Products = () => {
   const [totalPages, setTotalPages] = useState(0);
   const [count, setCount] = useState(0);
   const PAGE_SIZE = 9;
+  const [searchParams] = useSearchParams();
+  const search = searchParams.get("search") ?? "";
 
   const fetchProductsData = async (ulr?: string, pageNumber: number = 1) => {
     try {
@@ -88,6 +91,10 @@ export const Products = () => {
           params.append("category", selectedCategory.toString());
         }
 
+        if (search) {
+          params.append("search", search);
+        }
+
         const queryString = params.toString();
         const url = queryString
           ? `${import.meta.env.VITE_BASE_URL}products/?${queryString}`
@@ -100,7 +107,7 @@ export const Products = () => {
     };
     fetchDataProductQueryParams();
     window.scroll(0, 0);
-  }, [priceRange, ordering, selectedCategory]);
+  }, [priceRange, ordering, selectedCategory, search]);
 
   return (
     <div className="flex">
@@ -166,6 +173,11 @@ export const Products = () => {
         <div className="flex flex-col items-center md:flex-row justify-between gap-5 px-8 md:px-14">
           <h2 className="pb-2 text-3xl font-light tracking-wider">
             Products <span className="text-xl">({count})</span>
+            {search && (
+              <span className="block text-base text-muted-foreground">
+                Resultados para: "{search}"
+              </span>
+            )}
           </h2>
           <div className="shrink-0">
             <Select

@@ -35,7 +35,7 @@ export const Table = ({ option, onDelete, onUpdate }: TableMyProps) => {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {option?.slice(0, 8).map((op) => (
+        {option?.map((op) => (
           <TableRow key={op.id} className="border-border">
             <TableCell>
               {typeof op.image === "string" ? (

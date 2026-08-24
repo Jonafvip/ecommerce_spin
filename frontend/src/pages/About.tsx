@@ -1,3 +1,5 @@
+import { NavLink } from "react-router-dom";
+
 export const About = () => {
   return (
     <main className="min-h-screen bg-background px-4 py-10 sm:px-8 md:px-16">
@@ -51,6 +53,15 @@ export const About = () => {
               <li>• Productos seleccionados con atención al detalle.</li>
             </ul>
           </div>
+        </div>
+
+        <div className="flex justify-center pt-2">
+          <NavLink
+            to="/about/history"
+            className="rounded-lg border border-border px-4 py-2 text-sm text-foreground transition-colors hover:bg-muted"
+          >
+            Conoce nuestra historia →
+          </NavLink>
         </div>
       </section>
     </main>

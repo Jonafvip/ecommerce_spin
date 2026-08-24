@@ -2,6 +2,14 @@ import { api } from "@/api/api";
 import { AppSidebar } from "@/components/SideBar";
 import { Table } from "@/components/Table";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
 import type { ProductListWatchAdmin } from "@/types/types";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -9,6 +17,8 @@ import { Dialog } from "@/components/Dialog";
 import { toast } from "@/components/ui/toast";
 import { SkeletonTable } from "@/components/SkeletonTable";
 import { ConfirmDeleteDialog } from "@/components/ConfirmDeleteDialog";
+
+const PAGE_SIZE = 8;
 
 export const CreateProducts = () => {
   const [productsData, setProductsData] = useState<ProductListWatchAdmin[]>([]);
@@ -18,6 +28,7 @@ export const CreateProducts = () => {
     useState<ProductListWatchAdmin | null>(null);
   const [productToDelete, setProductToDelete] =
     useState<ProductListWatchAdmin | null>(null);
+  const [page, setPage] = useState(1);
 
   const handleProductCreated = (newProduct: ProductListWatchAdmin) => {
     setProductsData((prev) =>
@@ -78,6 +89,13 @@ export const CreateProducts = () => {
     fetchDataProduct();
   }, []);
 
+  const totalPages = Math.max(1, Math.ceil(productsData.length / PAGE_SIZE));
+  const currentPage = Math.min(page, totalPages);
+  const pageItems = productsData.slice(
+    (currentPage - 1) * PAGE_SIZE,
+    currentPage * PAGE_SIZE,
+  );
+
   return (
     <SidebarProvider>
       <AppSidebar />
@@ -105,12 +123,59 @@ export const CreateProducts = () => {
               <SkeletonTable />
             ) : (
               <Table
-                option={productsData}
+                option={pageItems}
                 onDelete={setProductToDelete}
                 onUpdate={setProductSelected}
               />
             )}
           </div>
+
+          {!loading && totalPages > 1 && (
+            <Pagination className="mt-6">
+              <PaginationContent>
+                <PaginationItem>
+                  <PaginationPrevious
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setPage((p) => Math.max(1, p - 1));
+                    }}
+                    className={
+                      currentPage === 1 ? "pointer-events-none opacity-50" : ""
+                    }
+                  />
+                </PaginationItem>
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
+                  <PaginationItem key={p}>
+                    <PaginationLink
+                      href="#"
+                      isActive={p === currentPage}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setPage(p);
+                      }}
+                    >
+                      {p}
+                    </PaginationLink>
+                  </PaginationItem>
+                ))}
+                <PaginationItem>
+                  <PaginationNext
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setPage((p) => Math.min(totalPages, p + 1));
+                    }}
+                    className={
+                      currentPage === totalPages
+                        ? "pointer-events-none opacity-50"
+                        : ""
+                    }
+                  />
+                </PaginationItem>
+              </PaginationContent>
+            </Pagination>
+          )}
         </div>
       </div>
       <ConfirmDeleteDialog

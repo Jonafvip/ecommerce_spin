@@ -50,16 +50,37 @@ export const Footer = () => {
           <div>
             <h3 className="py-4 text-xl font-light tracking-wider text-foreground">Support</h3>
             <ul className="flex flex-col gap-4 text-xs text-muted-foreground">
-              <li>Centro de ayuda</li>
+              <li>
+                <NavLink
+                  to="/help-centers"
+                  className="transition-colors hover:text-foreground"
+                >
+                  Centro de ayuda
+                </NavLink>
+              </li>
               <li>Envíos y devoluciones</li>
               <li>Seguimiento de pedidos</li>
-              <li>Contactanos</li>
+              <li>
+                <NavLink
+                  to="/support"
+                  className="transition-colors hover:text-foreground"
+                >
+                  Contactanos
+                </NavLink>
+              </li>
             </ul>
           </div>
           <div>
             <h3 className="py-4 text-xl font-light tracking-wider text-foreground">About</h3>
             <ul className="flex flex-col gap-4 text-xs text-muted-foreground">
-              <li>Nuevos Historia</li>
+              <li>
+                <NavLink
+                  to="/about/history"
+                  className="transition-colors hover:text-foreground"
+                >
+                  Nuestra historia
+                </NavLink>
+              </li>
               <li>Sustentabilidad</li>
               <li>Carreras</li>
               <li>Prensas</li>

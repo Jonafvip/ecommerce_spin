@@ -9,6 +9,7 @@ import { Select } from "@/components/Select";
 import Barchar from "@/components/grafics/Barchar";
 import { toast } from "@/components/ui/toast";
 import { SkeletonTable } from "@/components/SkeletonTable";
+import { Users, UserPlus, Percent } from "lucide-react";
 
 const selectCustomerSort = [
   { label: "Nombre (A-Z)", value: "username" },
@@ -74,9 +75,36 @@ export const Customer = () => {
   }, [ordering]);
 
   const customerMetrics = [
-    { id: "totales", label: "Clientes Totales", result: stats.count },
-    { id: "retencion", label: "Tasa de Retencion", result: "Sin resultado" },
-    { id: "nuevos", label: "Nuevos Clientes", result: stats.customersNew },
+    {
+      id: "totales",
+      label: "Clientes Totales",
+      result: stats.count,
+      hint: "Registrados en total",
+      icon: <Users size="20" />,
+      iconClass: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400",
+      bar: "from-emerald-400 to-emerald-600",
+      glow: "bg-emerald-400/20",
+    },
+    {
+      id: "retencion",
+      label: "Tasa de Retencion",
+      result: "Sin resultado",
+      hint: "No disponible aún",
+      icon: <Percent size="20" />,
+      iconClass: "bg-sky-500/10 text-sky-600 dark:text-sky-400",
+      bar: "from-sky-400 to-sky-600",
+      glow: "bg-sky-400/20",
+    },
+    {
+      id: "nuevos",
+      label: "Nuevos Clientes",
+      result: stats.customersNew,
+      hint: "Últimos 30 días",
+      icon: <UserPlus size="20" />,
+      iconClass: "bg-violet-500/10 text-violet-600 dark:text-violet-400",
+      bar: "from-violet-400 to-violet-600",
+      glow: "bg-violet-400/20",
+    },
   ];
 
   useEffect(() => {
@@ -158,14 +186,32 @@ export const Customer = () => {
             {customerMetrics.map((metric) => (
               <div
                 key={metric.id}
-                className="flex min-h-35 flex-col justify-between gap-6 rounded-2xl border border-border bg-card p-5 font-light tracking-wider"
+                className="group relative flex min-h-[140px] flex-col justify-between gap-5 overflow-hidden rounded-2xl border border-border bg-card p-5 font-light tracking-wider transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-black/5"
               >
-                <h5 className="text-sm text-muted-foreground">
-                  {metric.label}
-                </h5>
-                <p className="text-2xl font-medium text-foreground">
-                  {metric.result}
-                </p>
+                <div
+                  className={`pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full bg-gradient-to-br ${metric.glow} to-transparent opacity-0 blur-2xl transition-opacity duration-300 group-hover:opacity-100`}
+                />
+                <div
+                  className={`absolute inset-x-0 top-0 h-1 bg-gradient-to-r ${metric.bar}`}
+                />
+                <div className="flex items-center justify-between">
+                  <h5 className="text-sm font-medium text-foreground">
+                    {metric.label}
+                  </h5>
+                  <div
+                    className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ${metric.iconClass}`}
+                  >
+                    {metric.icon}
+                  </div>
+                </div>
+                <div>
+                  <p className="text-3xl font-semibold text-foreground sm:text-4xl">
+                    {metric.result}
+                  </p>
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    {metric.hint}
+                  </p>
+                </div>
               </div>
             ))}
           </div>

@@ -44,11 +44,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   };
 
   useEffect(() => {
-    if (!isAuthenticated) {
-      setCartCount(0);
-      return;
-    }
-    refreshCartCount();
+    queueMicrotask(() => refreshCartCount());
   }, [isAuthenticated]);
 
   return (

@@ -4,7 +4,7 @@ import { type ReportDetailItem, type UserDetailt } from "@/types/types";
 import { FaMoneyBill1Wave } from "react-icons/fa6";
 import { IoBagOutline } from "react-icons/io5";
 import { MdOutlinePeopleAlt } from "react-icons/md";
-import { ScrollText } from "lucide-react";
+import { ScrollText, LineChart, Trophy } from "lucide-react";
 import { ArrowDownToLine } from "lucide-react";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/SideBar";
@@ -165,44 +165,66 @@ export const Dashboard = () => {
           </div>
 
           <div className="grid grid-cols-1 gap-6 xl:grid-cols-3">
-            <div className="overflow-x-auto rounded-2xl border-2 border-border p-4 xl:col-span-2">
-              <h2 className="px-1 pb-1 text-xl tracking-wide text-foreground">
-                Ventas Mensuales
-              </h2>
-              <p className="px-1 pb-4 text-sm text-muted-foreground tracking-wider">
-                Suma de los ingresos generados por los pedidos en cada mes.
-              </p>
-              <Step4 data={salesData} />
+            <div className="relative overflow-hidden rounded-2xl border border-border bg-card xl:col-span-2">
+              <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-violet-400 to-indigo-600" />
+              <div className="flex items-start justify-between gap-4 p-5">
+                <div>
+                  <h2 className="text-xl tracking-wide text-foreground">
+                    Ventas Mensuales
+                  </h2>
+                  <p className="mt-1 text-sm text-muted-foreground tracking-wider">
+                    Suma de los ingresos generados por los pedidos en cada mes.
+                  </p>
+                </div>
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-violet-500/10 text-violet-600 dark:text-violet-400">
+                  <LineChart size="20" />
+                </div>
+              </div>
+              <div className="px-2 pb-4">
+                <Step4 data={salesData} />
+              </div>
             </div>
-            <div className="rounded-2xl border-2 border-border p-4">
-              <h2 className="px-4 pb-2 pt-4 text-xl tracking-wide text-foreground">
-                Top Productos
-              </h2>
-              <div className="flex flex-col gap-1 p-4">
-                {topProducts.map((pro) => (
+            <div className="relative overflow-hidden rounded-2xl border border-border bg-card">
+              <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-amber-400 to-orange-500" />
+              <div className="flex items-start justify-between gap-4 p-5">
+                <div>
+                  <h2 className="text-xl tracking-wide text-foreground">
+                    Top Productos
+                  </h2>
+                  <p className="mt-1 text-sm text-muted-foreground tracking-wider">
+                    Los 5 productos más vendidos de la plataforma.
+                  </p>
+                </div>
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400">
+                  <Trophy size="20" />
+                </div>
+              </div>
+              <div className="flex flex-col gap-1 px-3 pb-4">
+                {topProducts.map((pro, index) => (
                   <div
                     key={pro.id}
-                    className="flex items-center justify-between gap-3 rounded-xl px-2 py-2 transition-colors hover:bg-muted/60"
+                    className="group flex items-center gap-3 rounded-xl border border-transparent px-2 py-2.5 transition-all duration-200 hover:border-border hover:bg-muted/50"
                   >
-                    <div className="flex items-center gap-3 min-w-0">
-                      <img
-                        src={pro.image}
-                        alt={pro.name}
-                        className="w-14 h-14 object-cover rounded-xl shrink-0"
-                      />
-                      <div className="min-w-0">
-                        <h2 className="text-sm font-medium truncate">
-                          {pro.name}
-                        </h2>
-                        <p className="text-xs text-muted-foreground">
-                          {pro.unidades_mas_vendidas}{" "}
-                          {pro.unidades_mas_vendidas === 1
-                            ? "unidad vendida"
-                            : "unidades vendidas"}
-                        </p>
-                      </div>
+                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-muted text-xs font-semibold text-muted-foreground transition-colors group-hover:bg-amber-500/10 group-hover:text-amber-600">
+                      {index + 1}
+                    </span>
+                    <img
+                      src={pro.image}
+                      alt={pro.name}
+                      className="h-14 w-14 shrink-0 rounded-xl object-cover ring-1 ring-border"
+                    />
+                    <div className="min-w-0 flex-1">
+                      <h3 className="truncate text-sm font-medium text-foreground">
+                        {pro.name}
+                      </h3>
+                      <p className="text-xs text-muted-foreground">
+                        {pro.unidades_mas_vendidas}{" "}
+                        {pro.unidades_mas_vendidas === 1
+                          ? "unidad vendida"
+                          : "unidades vendidas"}
+                      </p>
                     </div>
-                    <p className="text-sm font-medium shrink-0">
+                    <p className="shrink-0 text-sm font-semibold text-foreground">
                       ${pro.unit_price}
                     </p>
                   </div>

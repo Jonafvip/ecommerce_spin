@@ -9,7 +9,7 @@ import { Select } from "@/components/Select";
 import Barchar from "@/components/grafics/Barchar";
 import { toast } from "@/components/ui/toast";
 import { SkeletonTable } from "@/components/SkeletonTable";
-import { Users, UserPlus, Percent } from "lucide-react";
+import { Users, UserPlus, Percent, BarChart3 } from "lucide-react";
 
 const selectCustomerSort = [
   { label: "Nombre (A-Z)", value: "username" },
@@ -230,14 +230,25 @@ export const Customer = () => {
                 />
               )}
             </div>
-            <div className="min-h-76.25 min-w-0 rounded-xl border border-border bg-card py-4">
-              <h2 className="px-4 pb-1 text-xl tracking-wide text-foreground">
-                Clientes Registrados por Mes
-              </h2>
-              <p className="px-4 pb-4 text-sm text-muted-foreground tracking-wider">
-                Cantidad de clientes que se registraron en la plataforma cada mes.
-              </p>
-              <Barchar data={customerGrowth} />
+            <div className="relative min-h-[300px] min-w-0 overflow-hidden rounded-2xl border border-border bg-card">
+              <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-emerald-400 to-emerald-600" />
+              <div className="flex items-start justify-between gap-4 p-5">
+                <div>
+                  <h2 className="text-xl tracking-wide text-foreground">
+                    Clientes Registrados por Mes
+                  </h2>
+                  <p className="mt-1 text-sm text-muted-foreground tracking-wider">
+                    Cantidad de clientes que se registraron en la plataforma cada
+                    mes.
+                  </p>
+                </div>
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
+                  <BarChart3 size="20" />
+                </div>
+              </div>
+              <div className="px-2 pb-4">
+                <Barchar data={customerGrowth} />
+              </div>
             </div>
           </div>
         </section>

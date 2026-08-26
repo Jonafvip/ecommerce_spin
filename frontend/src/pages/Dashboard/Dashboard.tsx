@@ -29,24 +29,40 @@ export const Dashboard = () => {
       label: "Ingresos Totales",
       icon: <FaMoneyBill1Wave size="20" />,
       result: `$${stats.income}`,
+      hint: "Ingresos acumulados",
+      iconClass: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400",
+      bar: "from-emerald-400 to-emerald-600",
+      glow: "bg-emerald-400/20",
     },
     {
       id: "pedidos",
       label: "Total de Pedidos",
       icon: <IoBagOutline size="20" />,
       result: stats.orders,
+      hint: "Órdenes registradas",
+      iconClass: "bg-sky-500/10 text-sky-600 dark:text-sky-400",
+      bar: "from-sky-400 to-sky-600",
+      glow: "bg-sky-400/20",
     },
     {
       id: "clientes",
       label: "Clientes Activos",
       icon: <MdOutlinePeopleAlt size="20" />,
       result: stats.customers,
+      hint: "Usuarios activos",
+      iconClass: "bg-violet-500/10 text-violet-600 dark:text-violet-400",
+      bar: "from-violet-400 to-violet-600",
+      glow: "bg-violet-400/20",
     },
     {
       id: "promedio",
       label: "Promedio de Pedidos",
       icon: <ScrollText size="20" />,
       result: stats.average.toFixed(2),
+      hint: "Por cliente",
+      iconClass: "bg-amber-500/10 text-amber-600 dark:text-amber-400",
+      bar: "from-amber-400 to-amber-600",
+      glow: "bg-amber-400/20",
     },
   ];
 
@@ -118,19 +134,32 @@ export const Dashboard = () => {
             {metricCards.map((card) => (
               <div
                 key={card.id}
-                className="flex min-h-35 flex-col justify-between gap-6 rounded-2xl border border-border bg-card p-5 font-light tracking-wider"
+                className="group relative flex min-h-[140px] flex-col justify-between gap-5 overflow-hidden rounded-2xl border border-border bg-card p-5 font-light tracking-wider transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-black/5"
               >
+                <div
+                  className={`pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full bg-gradient-to-br ${card.glow} to-transparent opacity-0 blur-2xl transition-opacity duration-300 group-hover:opacity-100`}
+                />
+                <div
+                  className={`absolute inset-x-0 top-0 h-1 bg-gradient-to-r ${card.bar}`}
+                />
                 <div className="flex items-center justify-between">
                   <h5 className="text-sm font-medium text-foreground">
                     {card.label}
                   </h5>
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-border bg-background">
+                  <div
+                    className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ${card.iconClass}`}
+                  >
                     {card.icon}
                   </div>
                 </div>
-                <p className="text-4xl font-medium text-foreground">
-                  {card.result}
-                </p>
+                <div>
+                  <p className="text-3xl font-semibold text-foreground sm:text-4xl">
+                    {card.result}
+                  </p>
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    {card.hint}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
@@ -149,11 +178,11 @@ export const Dashboard = () => {
               <h2 className="px-4 pb-2 pt-4 text-xl tracking-wide text-foreground">
                 Top Productos
               </h2>
-              <div className="flex flex-col gap-2 p-4">
+              <div className="flex flex-col gap-1 p-4">
                 {topProducts.map((pro) => (
                   <div
                     key={pro.id}
-                    className="flex items-center justify-between gap-3 py-2"
+                    className="flex items-center justify-between gap-3 rounded-xl px-2 py-2 transition-colors hover:bg-muted/60"
                   >
                     <div className="flex items-center gap-3 min-w-0">
                       <img

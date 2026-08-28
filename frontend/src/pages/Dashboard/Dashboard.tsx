@@ -10,6 +10,7 @@ import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/SideBar";
 import { Button } from "@/components/ui/button";
 import { Step4, type ChartPoint } from "@/components/grafics/Diagrams";
+import { formatCurrency } from "@/lib/format";
 
 export const Dashboard = () => {
   const [userDataDetail, setUserDataDetail] = useState<UserDetailt>();
@@ -225,7 +226,7 @@ export const Dashboard = () => {
                       </p>
                     </div>
                     <p className="shrink-0 text-sm font-semibold text-foreground">
-                      ${pro.unit_price}
+                      {formatCurrency(pro.unit_price)}
                     </p>
                   </div>
                 ))}

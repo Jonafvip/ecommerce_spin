@@ -13,6 +13,7 @@ import {
 import type { ProductListWatchAdmin } from "@/types/types";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Boxes } from "lucide-react";
 import { Dialog } from "@/components/Dialog";
 import { toast } from "@/components/ui/toast";
 import { SkeletonTable } from "@/components/SkeletonTable";
@@ -50,9 +51,9 @@ export const CreateProducts = () => {
       });
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        const message = error.response
-          ? "No se pudo eliminar el Producto"
-          : "Error de conextion con el servidor";
+          const message = error.response
+            ? "No se pudo eliminar el Producto"
+            : "Error de conexión con el servidor";
         setErrors(message);
         toast.add({
           type: "error",
@@ -103,11 +104,18 @@ export const CreateProducts = () => {
         <SidebarTrigger className="m-2" />
         <div className="w-full max-w-6xl mx-auto px-2 pb-12">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 lg:pb-5">
-            <div>
-              <h2 className="text-2xl font-medium">Productos</h2>
-              <p className="text-base text-gray-500 tracking-wider mt-1">
-                Controla tu Inventario
-              </p>
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <h2 className="text-2xl font-medium text-foreground">
+                  Productos
+                </h2>
+                <p className="mt-1 text-base text-muted-foreground tracking-wider">
+                  Controla tu Inventario
+                </p>
+              </div>
+              <div className="hidden h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-violet-500/10 text-violet-600 dark:text-violet-400 sm:flex">
+                <Boxes size="22" />
+              </div>
             </div>
             <div className="w-full sm:w-auto">
               <Dialog
@@ -118,16 +126,19 @@ export const CreateProducts = () => {
             </div>
           </div>
           {errors && <p className="text-red-500">{errors}</p>}
-          <div className="overflow-x-auto">
-            {loading ? (
-              <SkeletonTable />
-            ) : (
-              <Table
-                option={pageItems}
-                onDelete={setProductToDelete}
-                onUpdate={setProductSelected}
-              />
-            )}
+          <div className="relative mt-2 overflow-hidden rounded-2xl border border-border bg-card">
+            <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-violet-400 to-indigo-600" />
+            <div className="p-4">
+              {loading ? (
+                <SkeletonTable />
+              ) : (
+                <Table
+                  option={pageItems}
+                  onDelete={setProductToDelete}
+                  onUpdate={setProductSelected}
+                />
+              )}
+            </div>
           </div>
 
           {!loading && totalPages > 1 && (

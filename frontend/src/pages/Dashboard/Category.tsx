@@ -12,6 +12,7 @@ import { Spinner } from "@/components/ui/spinner";
 import { toast } from "@/components/ui/toast";
 import { SkeletonTable } from "@/components/SkeletonTable";
 import { ConfirmDeleteDialog } from "@/components/ConfirmDeleteDialog";
+import { Tags } from "lucide-react";
 
 const initialValue: CategoryCreate = {
   name: "",
@@ -54,9 +55,9 @@ export const Category = () => {
       });
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        const message = error.response
-          ? "No se pudo eliminar la categoria"
-          : "Error de conextion con el servidor";
+          const message = error.response
+            ? "No se pudo eliminar la categoria"
+            : "Error de conexión con el servidor";
         setErrors(message);
         toast.add({
           type: "error",
@@ -79,8 +80,8 @@ export const Category = () => {
     } catch (error) {
       if (axios.isAxiosError(error)) {
         const message = error.response
-          ? "No se puediron cargar las categorias."
-          : "Error de conexion con el servidor";
+          ? "No se pudieron cargar las categorías."
+          : "Error de conexión con el servidor";
         setErrors(message);
         toast.add({
           type: "error",
@@ -145,27 +146,35 @@ export const Category = () => {
         <SidebarTrigger className="m-2" />
         <div className="mx-auto flex w-full max-w-7xl flex-col gap-8 px-4 pb-12 sm:px-6 lg:flex-row lg:gap-12 lg:px-12">
           <section className="w-full lg:w-8/12">
-            <div className="px-2">
-              <h2 className="text-2xl font-medium text-foreground sm:text-2xl">
-                Categorias
-              </h2>
-              <p className="mt-1 text-base tracking-wider text-muted-foreground">
-                Gestiona tus categorias
-              </p>
+            <div className="flex items-start justify-between gap-4 px-2">
+              <div>
+                <h2 className="text-2xl font-medium text-foreground sm:text-2xl">
+                  Categorias
+                </h2>
+                <p className="mt-1 text-base tracking-wider text-muted-foreground">
+                  Gestiona tus categorias
+                </p>
+              </div>
+              <div className="hidden h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-amber-500/10 text-amber-600 dark:text-amber-400 sm:flex">
+                <Tags size="22" />
+              </div>
             </div>
-            <div className="mt-6 w-full overflow-x-auto rounded-lg border border-border">
-              {loading ? (
-                <SkeletonTable />
-              ) : (
-                <TableCategory
-                  options={categoryData}
-                  currentPage={currentPage}
-                  next={nextUrl}
-                  prev={prevUrl}
-                  onPageChange={fetchData}
-                  onDelete={setCategoryToDelete}
-                />
-              )}
+            <div className="relative mt-6 overflow-hidden rounded-2xl border border-border bg-card">
+              <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-amber-400 to-orange-500" />
+              <div className="p-4">
+                {loading ? (
+                  <SkeletonTable />
+                ) : (
+                  <TableCategory
+                    options={categoryData}
+                    currentPage={currentPage}
+                    next={nextUrl}
+                    prev={prevUrl}
+                    onPageChange={fetchData}
+                    onDelete={setCategoryToDelete}
+                  />
+                )}
+              </div>
             </div>
           </section>
 

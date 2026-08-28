@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/table";
 import { type ProductListWatchAdmin } from "@/types/types";
 import { Button } from "@/components/ui/button";
+import { formatCurrency } from "@/lib/format";
 import { Trash2 } from "lucide-react";
 import { SquarePen } from "lucide-react";
 
@@ -59,7 +60,9 @@ export const Table = ({ option, onDelete, onUpdate }: TableMyProps) => {
             <TableCell className="text-muted-foreground">
               {op.category?.name ?? "Sin categoría"}
             </TableCell>
-            <TableCell className="text-foreground">${op.unit_price}</TableCell>
+            <TableCell className="text-foreground">
+              {formatCurrency(op.unit_price)}
+            </TableCell>
             <TableCell
               className={`text-center ${op.stock <= 5 ? "text-destructive" : "text-foreground"}`}
             >

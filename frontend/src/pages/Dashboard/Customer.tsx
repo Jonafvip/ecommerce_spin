@@ -9,7 +9,7 @@ import { Select } from "@/components/Select";
 import Barchar from "@/components/grafics/Barchar";
 import { toast } from "@/components/ui/toast";
 import { SkeletonTable } from "@/components/SkeletonTable";
-import { Users, UserPlus, Percent, BarChart3 } from "lucide-react";
+import { Users, UserPlus, Percent, BarChart3, RefreshCw } from "lucide-react";
 
 const selectCustomerSort = [
   { label: "Nombre (A-Z)", value: "username" },
@@ -44,9 +44,9 @@ export const Customer = () => {
       setStats((prev) => ({ ...prev, count: response.count }));
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        const message = error.response
-          ? "No se puediron cargar los Clientes."
-          : "Error de conexion con el servidor";
+          const message = error.response
+            ? "No se pudieron cargar los Clientes."
+            : "Error de conexión con el servidor";
         setErrors(message);
         toast.add({
           type: "error",
@@ -215,11 +215,29 @@ export const Customer = () => {
               </div>
             ))}
           </div>
-          {errors && <p className="text-red-500">{errors}</p>}
+          {errors && (
+            <div className="flex items-center justify-between gap-4 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-red-700">
+              <span>{errors}</span>
+              <button
+                type="button"
+                onClick={() => fetchDataCustomer(undefined, 1)}
+                className="inline-flex items-center gap-2 rounded-lg border border-red-300 px-3 py-1.5 text-sm font-medium transition-colors hover:bg-red-100"
+              >
+                <RefreshCw size="16" /> Reintentar
+              </button>
+            </div>
+          )}
           <div className="grid grid-cols-1 gap-6 xl:grid-cols-3">
             <div className="min-w-0 overflow-x-auto xl:col-span-2">
               {loading ? (
                 <SkeletonTable />
+              ) : customerData.length === 0 ? (
+                <div className="flex flex-col items-center justify-center gap-2 py-16 text-center">
+                  <Users className="h-10 w-10 text-muted-foreground/50" />
+                  <p className="text-sm text-muted-foreground">
+                    No hay clientes para mostrar.
+                  </p>
+                </div>
               ) : (
                 <TableCustomized
                   options={customerData}
